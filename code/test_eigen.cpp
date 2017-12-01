@@ -5,10 +5,10 @@ using namespace Eigen;
 
 int main()
 {
-    Matrix3f A;
+    MatrixXf A(n,n);
     Vector3f b;
-    A << 1,2,3,  4,5,6,  7,8,10;
-    b << 3, 3, 4;
+    A << 3,6,14, 6,14,36, 14,36,98;
+    b << 36, 98, 276;
     cout << "Here is the matrix A:\n" << A << endl;
     cout << "Here is the vector b:\n" << b << endl;
     Vector3f x = A.colPivHouseholderQr().solve(b);
