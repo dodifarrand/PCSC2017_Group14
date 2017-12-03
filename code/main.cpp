@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+#include <Eigen/Dense>
+using namespace Eigen;
 
 
 int main(int argc, char* argv[]){
@@ -26,7 +28,7 @@ int main(int argc, char* argv[]){
     {
         std::string line;
         getline(read_file, line);
-        std::cout << line[0];
+        //std::cout << line[0];
        // std::cout << line << std::endl;
         if (line.compare("") != 0){
             i++;
@@ -61,7 +63,7 @@ int main(int argc, char* argv[]){
     read_file.close();
 
     int n;
-    std::cout << "Enter degree of polynomial do you want to use?" << std::endl;$
+    std::cout << "Enter degree of polynomial do you want to use?" << std::endl;
     // add assert statement of check for validity
     std::cin >> n;
 
@@ -76,7 +78,7 @@ int main(int argc, char* argv[]){
         }
     }
 
-    // augmented matrix
+    // augmented matrix B
     double B[n+1][n+2];
     double a[n+1];  // vector of coefficients ex: a[2] contains coefficient that multiplies x^2
 
@@ -101,7 +103,7 @@ int main(int argc, char* argv[]){
     for (int i = 0; i < n+1; i++) //print the Normal-augmented matrix
     {
         for (int j = 0; j < n+2; j++){
-            std::cout<<B[i][j]<<std::setw(16);
+            std::cout<<B[i][j]<<std::setw(6);
 
         }
         std::cout<<"\n";
