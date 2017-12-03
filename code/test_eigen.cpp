@@ -7,10 +7,13 @@ int main()
 {
     MatrixXf A(3,3);
     Vector3f b;
-    A << 3,6,14,6,14,36,14,36,98;
-    b << 36, 98, 276;
+    A << 5,21,111,21,111,651,111,651,4035;
+    b << 25, 127, 739;
     cout << "Here is the matrix A:\n" << A << endl;
     cout << "Here is the vector b:\n" << b << endl;
     Vector3f x = A.colPivHouseholderQr().solve(b);
     cout << "The solution is:\n" << x << endl;
 }
+
+
+// y= + (1.8701)x^0 + (0.3333)x^1 + (0.0779)x^2
