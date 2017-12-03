@@ -1,3 +1,8 @@
 #include <iostream>
 
-// function to read inputs from file
+// read inputs from file
+
+
+
+
+
