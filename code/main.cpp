@@ -86,12 +86,14 @@ int main(int argc, char* argv[]){
     else if (argc == 3){
         n = atoi(argv[2]);
     }
+    
     // now we have degree of polynomial n
 
 
 
 // *****************************************************************************************************
     // note: this we should also have for int and double
+
     // start creating arrays to input into least square method
     // vector of sigmas to be used in augmented matrix
     double X[2*n+1];    // will store the sigmas
@@ -104,7 +106,7 @@ int main(int argc, char* argv[]){
 
     // augmented matrix B
     double A[n+1][n+1];
-    double a[n+1];  // vector of coefficients ex: a[2] contains coefficient that multiplies x^2
+    //double a[n+1];  // vector of coefficients ex: a[2] contains coefficient that multiplies x^2
 
     for (int i = 0; i < n+1; i++){
         for (int j = 0; j< n+1; j++){
@@ -127,7 +129,7 @@ int main(int argc, char* argv[]){
     for (int i = 0; i < n+1; i++) //print the Normal-augmented matrix
     {
         for (int j = 0; j < n+1; j++){
-            std::cout<<A[i][j]<<std::setw(6);
+            std::cout<<A[i][j]<<std::setw(10);
 
         }
         std::cout<<"\n";
