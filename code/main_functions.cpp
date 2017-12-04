@@ -5,62 +5,14 @@
 #include <vector>
 #include <cassert>
 
-void myFunc1(){
-
-}
-
 int main(int argc, char* argv[]){
 
 
 // ******************************************************************************************************
     // Enter a function
-    std::cout << "Enter function you would like to approximate and press enter\n";
+    std::cout << "Enter  function you would like to approximate and press enter\n";
     std::string func_name;
     std::getline(std::cin, func_name);
-
-    std::string plus ("+");
-    std::string minus ("-");
-    std::string mult ("*");
-    std::string division ("/");
-
-    // different member versions of find in the same order as above:
-    std::size_t found_plus = func_name.find(plus);
-    std::size_t found_minus = func_name.find(minus);
-    std::size_t found_mult = func_name.find(mult);
-    std::size_t found_division = func_name.find(division);
-    // trigonometric expressions
-    std::size_t found_sin = func_name.find("sin");
-    std::size_t found_exp = func_name.find("exp");
-    std::size_t found_log = func_name.find("log");
-
-    // expression in brackets
-    std::size_t found_openbrackets = func_name.find("(");
-    std::size_t found_closebrackets = func_name.find(")");
-
-
-
-    std::size_t found_x = func_name.find("x");
-
-    int n_plus= std::count( func_name.begin(), func_name.end(), '+' );
-    int n_minus= std::count( func_name.begin(), func_name.end(), '-' );
-    int n_mults = std::count( func_name.begin(), func_name.end(), '*' );
-    int n_div= std::count( func_name.begin(), func_name.end(), '/' );
-    int n_x = std::count( func_name.begin(), func_name.end(), 'x' );
-    int n_sin = std::count( func_name.begin(), func_name.end(), 'sin(' );
-    int n_exp = std::count( func_name.begin(), func_name.end(), 'exp(' );
-    int n_log = std::count( func_name.begin(), func_name.end(), 'log(' );
-
-
-    // priority
-    if (found_exp!=std::string::npos){
-        for (int i = 0; i < n_exp; i++){
-
-        }
-    }
-    else if (found_exp==std::string::npos){
-
-    }
-
 
 
     // end of read file

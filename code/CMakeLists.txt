@@ -9,6 +9,4 @@ add_executable(main main.cpp)
 add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
 
-add_executable(functions functions.cpp)
-add_executable(trigFunctions trigFunctions.cpp functions.cpp)
 add_executable(main_functions main_functions.cpp)
