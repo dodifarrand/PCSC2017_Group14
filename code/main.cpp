@@ -20,7 +20,8 @@ template<class T> void Print(T*& v, const int length);
 int main(int argc, char* argv[]){
 
 
-
+// ******************************************************************************************************
+    // Read file
     std::cout << "Enter filename and press enter\n";
     std::string f_name;
     std::getline(std::cin, f_name);
@@ -74,13 +75,23 @@ int main(int argc, char* argv[]){
 
     }
     read_file.close();
+// ******************************************************************************************************
+    // end of read file
+    int n; // degree of polynomial
+    if (argc < 3) {
+        std::cout << "Enter degree of polynomial do you want to use?" << std::endl;
+        // add assert statement of check for validity
+        std::cin >> n;
+    }
+    else if (argc == 3){
+        n = atoi(argv[2]);
+    }
+    // now we have degree of polynomial n
 
-    int n;
-    std::cout << "Enter degree of polynomial do you want to use?" << std::endl;
-    // add assert statement of check for validity
-    std::cin >> n;
 
 
+// *****************************************************************************************************
+    // note: this we should also have for int and double
     // start creating arrays to input into least square method
     // vector of sigmas to be used in augmented matrix
     double X[2*n+1];    // will store the sigmas
@@ -109,6 +120,7 @@ int main(int argc, char* argv[]){
         }
 
     }
+// ******************************************************************************************************
 
 
     std::cout<<"\nThe Normal Matrix is as follows:\n";
