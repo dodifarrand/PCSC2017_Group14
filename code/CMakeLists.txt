@@ -8,5 +8,4 @@ add_executable(read_input read_input.cpp)
 add_executable(main main.cpp)
 add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
-target_link_libraries(main Eigen3::Eigen)
 
