@@ -25,7 +25,7 @@ int main()
     //int yi[3] = {1,4,9};
     //VectorXd y;
     //MatrixXd A;
-    //CalculateCoeff(xi,yi,2,2);
+    //CalculateCoeff(xi,yi,5,2);
     pieceWiseQuadratic(xi, yi, 5,2);
 }
 
@@ -95,19 +95,6 @@ void pieceWiseQuadratic(int *x, int *y, int pointNb,int polDegree){
         j = j+3;
         f = f+1;
     }
-    //A(0,0)=x[0];
-    //A(0,1)=1;
-    //A(1,0)=x[1];
-    //A(1,1)=1;
-    //A(2,2)=pow(x[1],2);
-    //A(2,3)=x[1];
-    //A(2,4)=1;
-    //A(3,2)=pow(x[2],2);
-    //A(3,3)=x[2];
-    //A(3,4)=1;
-    //A(4,0)=1;
-    //A(4,2)=-2*x[1];
-    //A(4,3)=-1;
     cout << "Here is the matrix A:\n" << A << endl;
     cout << "Here is the vector b:\n" << b << endl;
     VectorXd a = A.colPivHouseholderQr().solve(b);
