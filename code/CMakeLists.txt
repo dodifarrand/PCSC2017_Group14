@@ -4,10 +4,9 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 #set(HEADER_FILES ComplexNumber.hpp)
 add_executable(test_eig test_eigen.cpp)
 target_link_libraries (test_eig Eigen3::Eigen)
-<<<<<<< HEAD
 add_executable(read_input read_input.cpp)
 add_executable(main main.cpp)
-=======
 add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
->>>>>>> rodolphe
+target_link_libraries(main Eigen3::Eigen)
+
