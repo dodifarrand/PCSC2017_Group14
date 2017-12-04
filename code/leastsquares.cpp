@@ -4,7 +4,7 @@ using namespace std;
 using namespace Eigen;
 
 void CalculateCoeff(int *x, int *y, int pointNb, int polDegree);
-void pieceWiseLinear(int *x, int *y, int pointNb,int polDegree);
+void pieceWiseQuadratic(int *x, int *y, int pointNb,int polDegree);
 
 int main()
 {
@@ -26,7 +26,7 @@ int main()
     //VectorXd y;
     //MatrixXd A;
     //CalculateCoeff(xi,yi,2,2);
-    pieceWiseLinear(xi, yi, 5,2);
+    pieceWiseQuadratic(xi, yi, 5,2);
 }
 
 void CalculateCoeff(int *x, int *y, int pointNb, int polDegree){
@@ -56,7 +56,7 @@ void CalculateCoeff(int *x, int *y, int pointNb, int polDegree){
     cout << "The solution is:\n" << a << endl;
 }
 
-void pieceWiseLinear(int *x, int *y, int pointNb,int polDegree){
+void pieceWiseQuadratic(int *x, int *y, int pointNb,int polDegree){
     int unknownNb = (pointNb-1)*(polDegree+1);
     MatrixXd A(unknownNb,unknownNb);
     VectorXd b(unknownNb);
