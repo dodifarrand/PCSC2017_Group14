@@ -10,3 +10,4 @@ add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
 
 add_executable(main_functions main_functions.cpp)
+add_executable(test_parser test_parser.cpp)
