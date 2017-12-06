@@ -18,25 +18,27 @@ enum Token {
 class Scanner
 {
 public:
-    void GetSymbolName(char* stringOut, int &length);
+    Scanner (char const * buf); // initialize scanner
 private:
-    int lengthSymbol;
-    int beginSymbol;
+    char const * const buffer;
 };
-// \* brief method to retrieve a name of a symbol passed through stringOut, the symbol name is of length "length"
-void Scanner::GetSymbolName(char *stringOut, int &length) {
-    assert(length>=maxSymbolLength);
-    assert(lengthSymbol >= maxSymbolLength);
-    std::strncpy(stringOut, &buffer[beginSymbol], lengthSymbol);    // copy the
-    stringOut[lengthSymbol] = '\0';
-    length = lengthSymbol;
+
+Scanner::Scanner (char const * buf) : buffer (buf)
+{
+    std::cout << "Scanner with \"" << buf << "\""  << std::endl; // only way to include " in a string is to put a backslash
 
 }
+
+
 
 class SymbolTable
 {
 public:
+    // constructor
     explicit SymbolTable(int size); // should not be called by compiler implicitly, only when we really want a symbol table
+    ~SymbolTable(); // destructor
+    int
+
 };
 int main(int argc, char* argv[]){
     Token r;
