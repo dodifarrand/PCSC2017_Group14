@@ -8,5 +8,10 @@ add_executable(read_input read_input.cpp)
 add_executable(main main.cpp)
 add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
+<<<<<<< HEAD
 add_executable(plot plotTest.cpp)
 set(HEADER_FILES gnuplot-iostream.hpp)
+=======
+
+add_executable(main_functions main_functions.cpp)
+>>>>>>> 1a6b3bf4fc843b3dc186a80cbd5dedad67fd0826
