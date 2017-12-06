@@ -31,38 +31,6 @@ Scanner::Scanner (char const * buffer) : line (buffer)  // set line to buffer wh
 
 }
 
-// class to parse string containing the function
-// this will be used by the scanner in order to parse the token
-// the symbol table will be used by the parser in order to evaluate the
-class Parser
-{
-public:
-    // constructor
-    Parser();
-    // destructor
-    ~Parser();
-
-    // function to evaluate what is parsed should tell us if it was successful or not
-    //
-    int Eval();
-
-
-};
-
-Parser::Parser() {
-    std::cout << "Create object of type parser" << std::endl;
-}
-
-
-Parser::~Parser() {
-    std::cout << "Destroy the parser" << std::endl;
-}
-
-int Parser::Eval() {
-    std::cout << "evaluate the tree" << std::endl;
-    return -1;
-}
-
 // class of symbols to make the link between variable names and values
 // In computing, a hash table (hash map) is a data structure which implements
 // an associative array abstract data type, a structure that can map keys to
@@ -79,12 +47,64 @@ public:
 
 };
 
+// class to parse string containing the function
+// this will be used by the scanner in order to parse the token
+// the symbol table will be used by the parser in order to evaluate the
+class Parser
+{
+public:
+    // constructor
+    Parser(Scanner &ScanScanner, SymbolTable &ST_table, Scanner &scanner, SymbolTable &symTable);   // when the parser is constructed, it needs access to the scanner and the symbol table
+    // destructor
+    ~Parser();
+
+    // function to evaluate what is parsed should tell us if it was successful or not
+    //
+    int Eval();
+private:
+    Scanner &scanner;
+    SymbolTable &symTable;
+
+
+
+};
+// define constructor
+Parser::Parser(Scanner &ScanScanner, SymbolTable &ST_table, Scanner &scanner, SymbolTable &symTable)
+        : scanner(scanner), symTable(symTable) {
+
+    std::cout << "Create object of type parser" << std::endl;
+}
+
+// define the destructor
+Parser::~Parser() {
+    std::cout << "Destroy the parser" << std::endl;
+}
+
+// define function to evaluate tree
+int Parser::Eval() {
+    std::cout << "evaluate the tree" << std::endl;
+    return -1;
+}
+
+
 
 
 
 
 int main(int argc, char* argv[]){
+    const int maxBuf = 100;
 
+        char buf [maxBuf];
+        int status;
+        SymbolTable symTab;
+        do
+        {
+            std::cout << "> "; // prompt
+            std::cin.getline (buf, maxBuf);
+            Scanner scanner (buf);
+            Parser parser(scanner, symTab, scanner, symTab);
+            status = parser.Eval ();
+        } while (status != -1);
 
     // different tokens that can be encountered
     Token r;
