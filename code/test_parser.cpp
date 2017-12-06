@@ -41,8 +41,8 @@ class SymbolTable
 {
 public:
     // constructor
-    SymbolTable(); // should not be called by compiler implicitly, only when we really want a symbol table
-    ~SymbolTable(); // destructor
+    SymbolTable(){}; // should not be called by compiler implicitly, only when we really want a symbol table
+    ~SymbolTable(){}; // destructor
 
 
 };
@@ -99,7 +99,7 @@ int main(int argc, char* argv[]){
         SymbolTable symTab;
         do
         {
-            std::cout << "> "; // prompt
+            std::cout << "Enter a function "; // prompt
             std::cin.getline (buf, maxBuf);
             Scanner scanner (buf);
             Parser parser(scanner, symTab, scanner, symTab);
