@@ -9,30 +9,32 @@ using std::vector;
 VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree);
 VectorXd pieceWise(double *x, double *y, int pointNb,int polDegree);
 vector<double> linspace(double a, double b, int n);
+vector<double> generateRange(double a, double b, double c);
 
-int main()
-{
-    double *xi = new double[11];
-    double *yi = new double[11];
-    double *sinxi = new double[1001];
-    vector<double> vec = linspace(0,100,1001);
-    for(int i = 0;i<1001;i++){
-        sinxi[i]=sin(vec[i]);
+int main() {
+
+    double *xi = new double[5];
+    double *yi = new double[5];
+    double *funci = new double[41];
+    vector<double> vec = linspace(-10,10,41);
+    for(int i = 0;i<41;i++){
+        funci[i]=2*pow(vec[i],6)-6*pow(vec[i],4)-3;
     }
     int j = 0;
-    for(int i = 0;i<1001;i+=100){
+    for(int i = 0;i<41;i+=5){
         xi[j]=vec[i];
-        yi[j]=sinxi[i];
+        yi[j]=funci[i];
         j = j+1;
     }
-    VectorXd coeff1 = CalculateCoeff(xi,yi,11,4);
-    //VectorXd coeff2 = pieceWise(xi, yi,11,3);
+
+    VectorXd coeff1 = CalculateCoeff(xi,yi,9,2);
+    VectorXd coeff2 = pieceWise(xi, yi,9,2);
 
     cout << "The 1st solution is:\n" << coeff1 << endl;
-    //cout << "The 2nd solution is:\n" << coeff2 << endl;
+    cout << "The 2nd solution is:\n" << coeff2 << endl;
     delete[] xi;
     delete[] yi;
-    delete[] sinxi;
+    delete[] funci;
 
 }
 
@@ -170,6 +172,15 @@ vector<double> linspace(double a, double b, int n) {
     while(a <= b) {
         array.push_back(a);
         a += step;           // could recode to better handle rounding errors
+    }
+    return array;
+}
+
+vector<double> generateRange(double a, double b, double c) {
+    vector<double> array;
+    while(a <= c) {
+        array.push_back(a);
+        a += b;         // could recode to better handle rounding errors
     }
     return array;
 }

@@ -59,9 +59,6 @@ int main(int argc, char* argv[]){
     }
 
 
-
-
-
     for (int i = 0; i < N; i++){
         x[i] = a+i*steps;
         std::cout << x[i] << std::endl;
