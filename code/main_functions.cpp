@@ -5,6 +5,9 @@
 #include <vector>
 #include <cassert>
 
+
+
+
 int main(int argc, char* argv[]){
 
 
@@ -42,7 +45,8 @@ int main(int argc, char* argv[]){
     double (*p_function)(double x);
 
 // simple functions
-    //
+    //  pass function name to create an object of type Func
+    // return a pointer to the function
     if (func_name=="sin(x)"){
         p_function = &sin;
     }
