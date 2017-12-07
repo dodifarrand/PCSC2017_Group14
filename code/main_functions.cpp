@@ -42,6 +42,7 @@ int main(int argc, char* argv[]){
     double (*p_function)(double x);
 
 // simple functions
+    //
     if (func_name=="sin(x)"){
         p_function = &sin;
     }
