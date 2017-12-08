@@ -2,6 +2,30 @@
 #include <fstream>
 // read inputs from file
 
+// just doubles
+// Get info to be used by approx
+// main: read file constructor(filename)
+// data structure in points
+// in approx: method takes point instance
+// vector to evaluate the function
+
+// read file: if in file cloud of points, we already know header: x, y ,
+
+// read two files x and y, and x' where we want to evaluate the function
+// generic approx: fitting inside check if your flag is poly, then you do poly, otherwise other
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int main(int argc, char* argv[]) {
 
