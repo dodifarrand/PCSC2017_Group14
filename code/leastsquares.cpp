@@ -13,12 +13,12 @@ vector<double> generateRange(double a, double b, double c);
 
 int main() {
 
-    double *xi = new double[5];
-    double *yi = new double[5];
+    double *xi = new double[9];
+    double *yi = new double[9];
     double *funci = new double[41];
     vector<double> vec = linspace(-10,10,41);
     for(int i = 0;i<41;i++){
-        funci[i]=2*pow(vec[i],6)-6*pow(vec[i],4)-3;
+        funci[i]=0.003*pow(vec[i],6)-6*pow(vec[i],4)-3;
     }
     int j = 0;
     for(int i = 0;i<41;i+=5){
@@ -26,9 +26,14 @@ int main() {
         yi[j]=funci[i];
         j = j+1;
     }
+    //for(int i = 0;i<10;i++){
+    //    xi[i]=-10+2.5*i;
+    //    yi[i]= 0.003*pow(xi[i],6) - 6*pow(xi[i],4) - 3;
+    //    cout << xi[i] << " & " << yi[i]<< endl;
+    //}
 
-    VectorXd coeff1 = CalculateCoeff(xi,yi,9,2);
-    VectorXd coeff2 = pieceWise(xi, yi,9,2);
+    VectorXd coeff1 = CalculateCoeff(xi,yi,9,6);
+    VectorXd coeff2 = pieceWise(xi, yi,9,3);
 
     cout << "The 1st solution is:\n" << coeff1 << endl;
     cout << "The 2nd solution is:\n" << coeff2 << endl;
@@ -87,6 +92,7 @@ VectorXd pieceWise(double *x, double *y, int pointNb,int polDegree){
                 a(i+1)= y[j]-x[j]*(y[j+1]-y[j])/(x[j+1]-x[j]);
                 j+=1;
             }
+            break;
         }
         case 2:{
             for(int i = 0;i<(pointNb-1)*2;i = i+2){
@@ -113,6 +119,7 @@ VectorXd pieceWise(double *x, double *y, int pointNb,int polDegree){
                 f = f+1;
             }
             a = A.colPivHouseholderQr().solve(b);
+            break;
         }
         case 3:{
             for(int i = 0;i<(pointNb-1)*2;i = i+2){
@@ -160,8 +167,11 @@ VectorXd pieceWise(double *x, double *y, int pointNb,int polDegree){
                 f = f+pointNb-1;
             }
             a = A.colPivHouseholderQr().solve(b);
+            break;
         }
     }
+    cout << "Here is the matrix A:\n" << A << endl;
+    cout << "Here is the vector b:\n" << b << endl;
     return a;
 }
 
