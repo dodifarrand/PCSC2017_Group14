@@ -1,7 +1,7 @@
 #ifndef APPR0XIMATION
 #define APPR0XIMATION
-
 #include <Eigen/Dense>
+#include "Points.hpp"
 using namespace Eigen;
 
 
@@ -10,25 +10,37 @@ public:
     // Default constructor
     Approximation();
     // Alternate constructors
-    Approximation(const double *x,const double *y, const int pointNb);
-    Approximation(const double *x,const double *y);
-
+    Approximation(Points P){
+        this->x = P.x;
+        this->y = P.y;
+        this->nbPoint = P.nbPoint;
+        this->degree = P.degree;
+    }
     // Destructor
     virtual ~Approximation() {}
 
-    virtual void CalculateCoeff(int *x, int *y, int pointNb, int polDegree);
+    virtual VectorXd CalculateCoeff();
 
-    void SetFines(const double fines);
-
-    // Return the total money owed by the student
-    virtual double MoneyOwed() const;
-
-private:
+protected:
     // Private data
-    std::string name_;
-    double fines_;
-    double fees_;
+    double *x;
+    double *y;
+    int nbPoint;
+    int degree;
 };
+
+//class DataFitting: public Approximation {
+//public:
+//    DataFitting(double *x, double *y, int nbPoint, int degree):Approximation(x, y, nbPoint,  degree);
+//    virtual VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree);
+//
+//};
+//
+//class DataInterpolation: public Approximation {
+//public:
+//    DataInterpolation(double *x, double *y, int nbPoint, int degree):Approximation(x, y, nbPoint,  degree);
+//    virtual VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree);
+//};
 
 #endif
 

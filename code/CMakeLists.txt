@@ -11,4 +11,7 @@ target_link_libraries (leastsquares Eigen3::Eigen)
 set(HEADER_FILES Approximation.hpp)
 add_executable(main_functions main_functions.cpp)
 add_executable(test_parser test_parser.cpp)
-
+add_executable(main_approx main_approx.cpp)
+target_link_libraries (main_approx Eigen3::Eigen)
+add_executable(main_approx_test main_approx_test.cpp)
+target_link_libraries (main_approx_test Eigen3::Eigen)
