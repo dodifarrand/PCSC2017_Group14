@@ -4,22 +4,12 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-
+#include "ReadInput.h"
 
 // implement reading data from file class
 // what we have:
 // filename
 
-class ReadInput{
-private:
-    int n_rows;
-    const char* file_name;
-public:
-    ReadInput();
-    ReadInput(std::string f_name);
-    int GetNLines();
-
-};
 ReadInput::ReadInput() {
 
 
@@ -88,9 +78,3 @@ int ReadInput::GetNLines(){
     return n_rows;
 }
 
-int main(int argc, char* argv[]) {
-
-    ReadInput readInput("data");
-    readInput.GetNLines();
-
-}

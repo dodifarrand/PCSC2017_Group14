@@ -17,16 +17,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 int main(int argc, char* argv[]) {
 
     // check if filename has been provided as a console input
