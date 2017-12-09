@@ -29,18 +29,20 @@ protected:
     int degree;
 };
 
-//class DataFitting: public Approximation {
-//public:
-//    DataFitting(double *x, double *y, int nbPoint, int degree):Approximation(x, y, nbPoint,  degree);
-//    virtual VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree);
-//
-//};
-//
-//class DataInterpolation: public Approximation {
-//public:
-//    DataInterpolation(double *x, double *y, int nbPoint, int degree):Approximation(x, y, nbPoint,  degree);
-//    virtual VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree);
-//};
+class DataFitting: public Approximation {
+public:
+    DataFitting(Points P):Approximation(P){};
+    virtual VectorXd CalculateCoeff();
+
+};
+
+class DataInterpolation: public Approximation {
+public:
+    DataInterpolation(Points P):Approximation(P){};
+    virtual VectorXd CalculateCoeff();
+    VectorXd Polynomial();
+    VectorXd Piecewise();
+};
 
 #endif
 
