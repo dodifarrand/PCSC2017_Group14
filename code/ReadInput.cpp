@@ -12,7 +12,6 @@
 
 ReadInput::ReadInput() {
 
-
 std::cout << "Enter filename and press enter\n";
 std::string f_name;
 std::getline(std::cin, f_name);
@@ -47,6 +46,7 @@ getline(read_file, line);
 ReadInput::ReadInput(std::string f_name) {
 
     f_name = f_name + ".csv";
+
     file_name = f_name.c_str();
 
     std::ifstream read_file(file_name);
@@ -78,3 +78,8 @@ int ReadInput::GetNLines(){
     return n_rows;
 }
 
+
+const char* ReadInput::GetFileName(){
+    return file_name;
+
+}

@@ -14,7 +14,8 @@ public:
     ReadInput();
     ReadInput(std::string f_name);
     int GetNLines();
-
+    const char* GetFileName();
+    //~ReadInput(); ?
 };
 
 
