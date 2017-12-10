@@ -5,10 +5,17 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 add_executable(test_eig test_eigen.cpp)
 target_link_libraries (test_eig Eigen3::Eigen)
 add_executable(read_input read_input.cpp)
-add_executable(main main.cpp)
+add_executable(main_old main_old.cpp)
 add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
 
 add_executable(main_functions main_functions.cpp)
 add_executable(test_parser test_parser.cpp)
+
+add_executable(ReadInput ReadInput.cpp)
+
+add_executable(ReadFile ReadFile.cpp ReadInput.cpp)
+
+add_executable(New_main New_main.cpp ReadInput.cpp ReadFile.cpp)
+
 

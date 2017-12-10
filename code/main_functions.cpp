@@ -5,6 +5,19 @@
 #include <vector>
 #include <cassert>
 
+
+// 1: testing or not
+// if testing what to do,
+// parser for ax+b
+// if testing, read a file
+// 2: what method poly or piecewise
+// link between piecewise and poly? rething
+//
+
+
+
+
+
 int main(int argc, char* argv[]){
 
 
@@ -15,7 +28,7 @@ int main(int argc, char* argv[]){
     std::getline(std::cin, func_name);
 
 
-    // end of read file
+
     int n; // degree of polynomial
     std::cout << "Enter degree of polynomial do you want to use?" << std::endl;
     // add assert statement of check for validity
@@ -42,7 +55,8 @@ int main(int argc, char* argv[]){
     double (*p_function)(double x);
 
 // simple functions
-    //
+    //  pass function name to create an object of type Func
+    // return a pointer to the function
     if (func_name=="sin(x)"){
         p_function = &sin;
     }
