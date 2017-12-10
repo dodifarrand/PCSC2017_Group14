@@ -3,6 +3,7 @@
 #include <cstdio>
 #include "ReadInput.h"
 #include "ReadFile.h"
+#include <iostream>
 
 
 ReadFile::ReadFile() {
@@ -19,14 +20,6 @@ ReadFile::ReadFile(char const * file_name) {
 }
 
 FILE * ReadFile::GetFilePointer() {
+   // std::cout << mpFile << std::endl;
     return mpFile;
-}
-
-
-int main(int argc, char* argv[]) {
-
-    ReadFile readFile;
-
-    return 0;
-
 }

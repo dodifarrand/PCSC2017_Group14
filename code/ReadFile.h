@@ -5,6 +5,8 @@
 #ifndef PCSC_PROJECT6_READFILE_H
 #define PCSC_PROJECT6_READFILE_H
 
+#include "ReadInput.h"
+
 class ReadFile: public ReadInput
 {
 private:
@@ -14,7 +16,6 @@ public:
     ReadFile();
     ReadFile(char const * file_name);
     FILE * GetFilePointer();
-
 
 };
 
