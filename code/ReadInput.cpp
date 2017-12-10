@@ -18,6 +18,7 @@ std::getline(std::cin, f_name);
 
 f_name = f_name + ".csv";
     file_name = f_name.c_str();
+ //   std::cout << file_name << std::endl;
 
 std::ifstream read_file(file_name);
 
@@ -39,8 +40,6 @@ getline(read_file, line);
     }
     read_file.close();
     n_rows = i;
-    // for the found number of rows
-    std::cout << "Number of rows = " << i << "\n";
 }
 
 ReadInput::ReadInput(std::string f_name) {
@@ -74,12 +73,13 @@ ReadInput::ReadInput(std::string f_name) {
 
 int ReadInput::GetNLines(){
     // for the found number of rows
-    std::cout << "Number of rows = " << n_rows << "\n";
+ //   std::cout << "Number of rows = " << n_rows << "\n";
     return n_rows;
 }
 
 
 const char* ReadInput::GetFileName(){
+  //  std::cout << file_name << std::endl;
     return file_name;
 
 }

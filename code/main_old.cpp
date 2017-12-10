@@ -17,7 +17,7 @@ template<class T> void Print(T*& v, const int length);
 
 
 
-int main(int argc, char* argv[]){
+int mainold(int argc, char* argv[]){
 
 
 // ******************************************************************************************************
