@@ -10,11 +10,17 @@ class ReadInput{
 private:
     int n_rows;
     const char* file_name;
+    int piece;
+    int nPoints;
+    int test;
 public:
     ReadInput();
-    ReadInput(std::string f_name);
     int GetNLines();
     const char* GetFileName();
+    void ReadHeader(std::string line);
+    void CountLines();
+    int isTest();
+    int isPiecewise();
     //~ReadInput(); ?
 };
 

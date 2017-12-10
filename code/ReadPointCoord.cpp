@@ -26,16 +26,16 @@ ReadPointCoord::~ReadPointCoord() {
 }
 
 void ReadPointCoord::ReadData(){
-    //std::cout << "ReadData" << std::endl;
-    //FILE * pFile = GetFilePointer();
+
     float g1=0;
     float g2=0;
+    fscanf(GetFilePointer(), "%*[^\n]\n");
     for (int i = 0; i < mnPoints; i++) {
 
         fscanf(GetFilePointer(), "%g,%g", &g1, &g2);
         m_x[i] = (double)g1;
         m_y[i] = (double)g2;
-        std::cout << "x[" << i << "]" << ": " << m_x[i] << ", y[" << i << "]: " <<  m_y[i] << std::endl;
+      //  std::cout << "x[" << i << "]" << ": " << m_x[i] << ", y[" << i << "]: " <<  m_y[i] << std::endl;
 
     }
 
