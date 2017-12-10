@@ -40,3 +40,12 @@ void ReadPointCoord::ReadData(){
     }
 
 }
+
+
+double* ReadPointCoord::x(){
+    return m_x;
+
+}
+double* ReadPointCoord::y(){
+    return m_y;
+}

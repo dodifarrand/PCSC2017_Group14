@@ -18,6 +18,8 @@ public:
     ReadPointCoord();
     ~ReadPointCoord();
     void ReadData();
+    double* x();
+    double* y();
 
 };
 #endif //PCSC_PROJECT6_READPOINTS_H

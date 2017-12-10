@@ -1,27 +1,23 @@
 // main file to use classes
 
-#include "ReadInput.h"
 #include <iostream>
-#include "ReadFile.h"
 #include "ReadPointCoord.h"
 
 
 int main(int argc, char* argv[]) {
 
-    //ReadInput readInput;
-    //readInput.GetNLines();
-    //const char* file_name;
-    //file_name = readInput.GetFileName();
-    //std::cout << file_name << std::endl;
-    //ReadFile readFile;
-    //readFile.GetFilePointer();
-    //readFile.GetNLines()
 
     ReadPointCoord readPoints;
     readPoints.ReadData();
+    double* x;
+    double* y;
+    x = readPoints.x();
+    y = readPoints.y();
+    int n = readPoints.GetNLines();
+    for (int i = 0; i<n; i++){
+        std::cout << x[i] << " " << y[i] << std::endl;
+    }
 
- //   int nPoints = readPoints.GetNLines();
-  //  std::cout << "Main number of points " << nPoints << std::endl;
 
     return 0;
 
