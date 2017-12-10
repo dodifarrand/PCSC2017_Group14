@@ -2,20 +2,8 @@
 
 #include <cstdio>
 #include "ReadInput.h"
+#include "ReadFile.h"
 
-
-class ReadFile: public ReadInput
-{
-private:
-    FILE * mpFile;
-
-public:
-    ReadFile();
-    ReadFile(char const * file_name);
-    FILE * GetFilePointer();
-
-
-};
 
 ReadFile::ReadFile() {
 // read the file into the vectors
