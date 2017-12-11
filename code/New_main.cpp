@@ -3,7 +3,24 @@
 #include <iostream>
 #include "ReadPointCoord.h"
 
+#include "Config.h"
+int main(int argc, char* argv[]){
+    Config config("config.csv");
+    std::cout << "File Name: ";
+    std::string point_file = config.GetFileName();
+    std::cout << point_file.c_str() << std::endl;
 
+    int degree;
+    std::cout << "degree: ";
+    degree = config.GetDegree();
+    std::cout << degree << std::endl;
+
+    std::string type = config.GetType();
+    std::cout << "type: "<< type.c_str() << std::endl;
+
+    return 0;
+
+}
 //int main(int argc, char* argv[]) {
 
 //

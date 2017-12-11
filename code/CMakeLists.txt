@@ -8,7 +8,7 @@ target_link_libraries (test_eig Eigen3::Eigen)
 add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
 
-add_executable(New_main New_main.cpp ReadInput.cpp ReadFile.cpp ReadPointCoord.cpp)
+add_executable(New_main New_main.cpp Config.cpp)
 
 set(HEADER_FILES Approximation.hpp)
 

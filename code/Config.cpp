@@ -4,27 +4,7 @@
 
 // used as Approx approx("config.csv");
 
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <fstream>
-
-class Config
-{
-private:
-    char const* mfile_name; // file name of the configuration file
-    int degree;
-    std::string mfile_name_points; // file name of the file containing the points
-    std::string type;
-public:
-    Config();
-    Config(std::string f_name);
-    std::string GetFileName();
-    void ReadConfig();
-    int GetDegree();
-    std::string GetType();
-
-};
+#include "Config.h"
 Config::Config(){
 
     Config("config.csv"); // file name of the configuration file
@@ -70,20 +50,4 @@ std::string Config::GetType() {
     return type;
 }
 
-int main(int argc, char* argv[]){
-    Config config("config.csv");
-    std::cout << "File Name: ";
-    std::string point_file = config.GetFileName();
-    std::cout << point_file.c_str() << std::endl;
 
-    int degree;
-    std::cout << "degree: ";
-    degree = config.GetDegree();
-    std::cout << degree << std::endl;
-
-    std::string type = config.GetType();
-    std::cout << "type: "<< type.c_str() << std::endl;
-
-    return 0;
-
-}
