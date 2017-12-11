@@ -12,17 +12,17 @@
 class Config
 {
 private:
-    char const* mfile_name; // file name of the configuration file
+    std::string mfile_name; // file name of the configuration file
     int degree;
     char const* mfile_name_points; // file name of the file containing the points
-    char const* type;
+    std::string type;
 public:
     Config();
     Config(std::string f_name);
-    char const* GetFileName();
+    std::string GetFileName();
     void ReadConfig();
     int GetDegree();
-    char const* GetType();
+    std::string GetType();
 
 };
 Config::Config(){
@@ -59,8 +59,8 @@ void Config::ReadConfig() {
     type = token[2].c_str();
 
 }
-char const* Config::GetFileName() {
-//    std::cout << mfile_name_points << std::endl;
+std::string Config::GetFileName() {
+
     return mfile_name_points;
 }
 
@@ -68,13 +68,13 @@ int Config::GetDegree() {
     return degree;
 }
 
-char const* Config::GetType() {
+std::string Config::GetType() {
     return type;
 }
 
 int main(int argc, char* argv[]){
     Config config("config.csv");
-//    std::cout << "File Name: " << std::endl;
+    std::cout << "File Name: " << std::endl;
     std::string point_file = config.GetFileName();
     std::cout << point_file.c_str() << std::endl;
 
@@ -83,7 +83,8 @@ int main(int argc, char* argv[]){
     std::cout << degree << std::endl;
 
     std::string type = config.GetType();
-    std::cout << type.c_str() << std::endl;
+    std::cout << "type: "<< type.c_str() << std::endl;
+
     return 0;
 
 }
