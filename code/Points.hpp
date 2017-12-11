@@ -21,7 +21,7 @@ public:
 
     // Private data
     double *x;
-    double *y;
+        double *y;
     int nbPoint;
     int degree;
 };
