@@ -4,13 +4,12 @@
 #include "Testing.h"
 
 Testing::Testing() {
-    myfunc_name = "";
+
+    std::cout << "Testing constructed without testing.csv file supplied" << std::endl;
     m_a = 0;
     m_b = 0;
     N_points = 0;
-    type = "";
-
-
+    SetFunctionPointer("blah");
 
 }
 
@@ -31,11 +30,11 @@ Testing::Testing(std::string testing_file) {
     while(std::getline(ss, token[i], ',')) {
         i++;
     }
-    myfunc_name = token[0];
+    std::string myfunc_name = token[0];
     double a = atof(token[1].c_str());
     double b = atof(token[2].c_str());
     N_points = atoi(token[3].c_str());
-    type = token[4].c_str();
+   std::string type = token[4];
     int degree = atoi(token[5].c_str());
     read_file.close();
 
@@ -45,10 +44,13 @@ Testing::Testing(std::string testing_file) {
 
     std::ofstream write_output("config2.csv");
     assert(write_output.is_open());
-    write_output << myfunc_name+".csv" << "," << degree << "," << type << std::endl;
+    std::string function_name = myfunc_name+".csv";
+
+    write_output << function_name.c_str() << "," << degree << "," << type.c_str() << std::endl;
 
 // ******************************************************************************************************
     write_output.close();
+    WritePoints(myfunc_name);
 
 }
 
@@ -58,9 +60,6 @@ void Testing::SetInterval(double a, double b) {
     m_b = b;
 }
 
-std::string Testing::GetFuncName() {
-    return myfunc_name;
-}
 
 
 void Testing::SetFunctionPointer(std::string func_name){
@@ -87,11 +86,12 @@ void Testing::SetFunctionPointer(std::string func_name){
 
 }
 
-void Testing::WritePoints() {
-    double steps = double((m_b-m_a))/(N_points-1);
+void Testing::WritePoints(std::string func_name) {
+    double steps = (m_b-m_a)/(N_points-1);
     double x[N_points];
     double y[N_points];
     for (int i = 0; i < N_points; i++){
+        // try and catch if inf or -inf
         x[i] = m_a+i*steps;
         //   std::cout << x[i] << std::endl;
         y[i] = my_p_function(m_a+double(i)*steps);
@@ -99,7 +99,8 @@ void Testing::WritePoints() {
 
     }
 
-    std::ofstream write_output(myfunc_name+".csv");
+    std::string function_name = func_name+".csv";
+    std::ofstream write_output(function_name.c_str());
     assert(write_output.is_open());
     for (int i = 0; i < N_points-1; i++){
         write_output << x[i] << "," << y[i] << std::endl;
