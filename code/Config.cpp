@@ -12,9 +12,9 @@
 class Config
 {
 private:
-    std::string mfile_name; // file name of the configuration file
+    char const* mfile_name; // file name of the configuration file
     int degree;
-    char const* mfile_name_points; // file name of the file containing the points
+    std::string mfile_name_points; // file name of the file containing the points
     std::string type;
 public:
     Config();
@@ -50,11 +50,9 @@ void Config::ReadConfig() {
     std::string token[3];
     int i = 0;
     while(std::getline(ss, token[i], ',')) {
-   //     std::cout << token[i] << std::endl;
         i++;
     }
     mfile_name_points = token[0].c_str();
- //   std::cout << mfile_name_points << std::endl;
     degree = atoi(token[1].c_str()) ;
     type = token[2].c_str();
 
@@ -74,11 +72,12 @@ std::string Config::GetType() {
 
 int main(int argc, char* argv[]){
     Config config("config.csv");
-    std::cout << "File Name: " << std::endl;
+    std::cout << "File Name: ";
     std::string point_file = config.GetFileName();
     std::cout << point_file.c_str() << std::endl;
 
     int degree;
+    std::cout << "degree: ";
     degree = config.GetDegree();
     std::cout << degree << std::endl;
 
