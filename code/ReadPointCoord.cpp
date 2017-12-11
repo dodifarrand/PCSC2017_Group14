@@ -1,21 +1,26 @@
 
-#include "ReadFile.h"
-#include <iostream>
-#include "ReadPointCoord.h"
+#include "Config.h"
 #include <cassert>
+#include "ReadPointCoord.h"
+
 
 ReadPointCoord::ReadPointCoord() {
-    mnPoints = GetNLines();
-    assert(mnPoints > 0);
+
+    std::string f_name = "data.csv";
+    char const* p_file = f_name.c_str();
+    file_name = p_file;
+    m_x = new double;
+    m_y = new double;
+    mnPoints = 0;
+
+}
+ReadPointCoord::ReadPointCoord(char const* a_file_name) {
+    file_name = a_file_name;
+    std::cout << file_name << std::endl;
+    CountLines();
     m_x = new double[mnPoints];
     m_y = new double[mnPoints];
-
-    for (int i=0; i<mnPoints; i++)
-    {
-        m_x[i] = 0.0;
-        m_y[i] = 0.0;
-    }
-
+    ReadData();
 }
 
 
@@ -26,17 +31,15 @@ ReadPointCoord::~ReadPointCoord() {
 }
 
 void ReadPointCoord::ReadData(){
-
+    FILE* pFile = fopen(file_name,"r");
     float g1=0;
     float g2=0;
-    fscanf(GetFilePointer(), "%*[^\n]\n");
+
     for (int i = 0; i < mnPoints; i++) {
 
-        fscanf(GetFilePointer(), "%g,%g", &g1, &g2);
+        fscanf(pFile, "%g,%g", &g1, &g2);
         m_x[i] = (double)g1;
         m_y[i] = (double)g2;
-      //  std::cout << "x[" << i << "]" << ": " << m_x[i] << ", y[" << i << "]: " <<  m_y[i] << std::endl;
-
     }
 
 }
@@ -48,4 +51,32 @@ double* ReadPointCoord::x(){
 }
 double* ReadPointCoord::y(){
     return m_y;
+}
+
+void ReadPointCoord::CountLines() {
+    std::ifstream read_file(file_name);
+   // std::cout << "Count Lines" << std::endl;
+
+    if(!read_file.is_open()) {
+        std::cout << "Error opening file: " << file_name << std::endl;
+    }
+    else{
+        int i = 0;
+        while (!read_file.eof())
+        {
+            std::string line;
+            getline(read_file, line);
+            if (line.compare("") != 0){
+                i++;
+            }
+        }
+        read_file.close();
+    //    std::cout << "End of Count Lines, total number of lines in file: " << i <<std::endl;
+        mnPoints = i;
+    }
+
+}
+
+int ReadPointCoord::GetNPoints(){
+    return mnPoints;
 }

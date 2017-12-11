@@ -2,13 +2,15 @@
 
 #include <iostream>
 #include "ReadPointCoord.h"
+#include <Eigen/Dense>
+#include "Points.hpp"
 
-#include "Config.h"
 int main(int argc, char* argv[]){
     Config config("config.csv");
     std::cout << "File Name: ";
     std::string point_file = config.GetFileName();
     std::cout << point_file.c_str() << std::endl;
+    char const* p_file = point_file.c_str();
 
     int degree;
     std::cout << "degree: ";
@@ -18,37 +20,19 @@ int main(int argc, char* argv[]){
     std::string type = config.GetType();
     std::cout << "type: "<< type.c_str() << std::endl;
 
+    ReadPointCoord readPointCoord(p_file);
+    double* x;
+    double* y;
+    x = readPointCoord.x();
+    y = readPointCoord.y();
+       int n = readPointCoord.GetNPoints();
+    for (int i = 0; i<n; i++){
+        std::cout << x[i] << " " << y[i] << std::endl;
+    }
+
+   // Points(x,y,n,degree);
+
     return 0;
 
 }
-//int main(int argc, char* argv[]) {
-
-//
-//    ReadPointCoord readPoints;
-//    readPoints.ReadData();
-//    double* x;
-//    double* y;
-//    x = readPoints.x();
-//    y = readPoints.y();
-//    int n = readPoints.GetNLines();
-//    for (int i = 0; i<n; i++){
-//        std::cout << x[i] << " " << y[i] << std::endl;
-//    }
-//    if (readPoints.isTest()==1){
-//        std::cout << "Testing " << std::endl;
-//    }
-//    else{
-//        std::cout << "Not testing " << std::endl;
-//    }
-//    if (readPoints.isPiecewise()==1){
-//        std::cout << "Piecewise approximation " << std::endl;
-//    }
-//    else{
-//        std::cout << "Polynomial approximation " << std::endl;
-//    }
-//
-//
-//    return 0;
-
-//}
 

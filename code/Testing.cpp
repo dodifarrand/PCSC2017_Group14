@@ -39,4 +39,15 @@ void Testing::GetInterval() {
 
     m_a = a;
     m_b = b;
+
+    // could also ask user to specify file name
+    std::ofstream write_output(func_name+".csv");
+    assert(write_output.is_open());
+    for (int i = 0; i < N-1; i++){
+        write_output << x[i] << "," << y[i] << std::endl;
+
+    }
+    write_output << x[N-1] << "," << y[N-1];
+// ******************************************************************************************************
+    write_output.close();
 }

@@ -6,8 +6,8 @@
 
 #include "Config.h"
 Config::Config(){
-
     Config("config.csv"); // file name of the configuration file
+
 }
 
 Config::Config(std::string f_name) {
@@ -21,7 +21,7 @@ void Config::ReadConfig() {
     std::ifstream read_file(mfile_name);
 
     if(!read_file.is_open()) {
-        std::cout << "Error opening file." << std::endl;
+        std::cout << "Error opening file in read config." << std::endl;
     }
 
     std::string line;
@@ -32,14 +32,14 @@ void Config::ReadConfig() {
     while(std::getline(ss, token[i], ',')) {
         i++;
     }
-    mfile_name_points = token[0].c_str();
+    file_name_points = token[0].c_str();
     degree = atoi(token[1].c_str()) ;
     type = token[2].c_str();
 
 }
 std::string Config::GetFileName() {
-
-    return mfile_name_points;
+    std::cout << file_name_points << std::endl;
+    return file_name_points;
 }
 
 int Config::GetDegree() {

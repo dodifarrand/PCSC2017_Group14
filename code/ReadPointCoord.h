@@ -5,21 +5,24 @@
 #ifndef PCSC_PROJECT6_READPOINTS_H
 #define PCSC_PROJECT6_READPOINTS_H
 
-#include "ReadFile.h"
-#include "ReadInput.h"
+#include "Config.h"
 
-class ReadPointCoord : public ReadFile
+
+class ReadPointCoord : public Config
 {
 private:
     double* m_x;
     double* m_y;
     int mnPoints;
+    char const* file_name;
 public:
     ReadPointCoord();
-    ~ReadPointCoord();
     void ReadData();
+    void CountLines();
+    ReadPointCoord(char const* f_name);
     double* x();
     double* y();
-
+    ~ReadPointCoord();
+    int GetNPoints();
 };
 #endif //PCSC_PROJECT6_READPOINTS_H

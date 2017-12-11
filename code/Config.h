@@ -14,7 +14,7 @@ class Config
 private:
     char const* mfile_name; // file name of the configuration file
     int degree;
-    std::string mfile_name_points; // file name of the file containing the points
+    std::string file_name_points; // file name of the file containing the points
     std::string type;
 public:
     Config();
