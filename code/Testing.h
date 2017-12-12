@@ -23,6 +23,7 @@ public:
     void SetInterval(double a, double b);
     Testing();
     Testing(std::string file_name);
+    Testing(std::string file_name, double (*pf)(double));
     void WritePoints(std::string func_name);
     void SetFunctionPointer(std::string func_name);
 };

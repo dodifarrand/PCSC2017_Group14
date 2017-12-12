@@ -13,7 +13,7 @@ Testing::Testing() {
 
 }
 
-Testing::Testing(std::string testing_file) {
+Testing::Testing(std::string testing_file, double (*pf)(double) = NULL) {
   //  std::cout << "Testing" << std::endl;
     char const* mfile_name = testing_file.c_str();
     std::ifstream read_file(mfile_name);
@@ -40,7 +40,9 @@ Testing::Testing(std::string testing_file) {
 
     SetInterval(a,b);
     SetFunctionPointer(myfunc_name);
-
+    if (my_p_function==NULL){
+        my_p_function = pf;
+    }
 
     std::ofstream write_output("config2.csv");
     assert(write_output.is_open());
@@ -60,8 +62,6 @@ void Testing::SetInterval(double a, double b) {
     m_b = b;
 }
 
-
-
 void Testing::SetFunctionPointer(std::string func_name){
 
     if (func_name=="sin(x)"){
@@ -80,7 +80,7 @@ void Testing::SetFunctionPointer(std::string func_name){
         my_p_function = &log;
     }
     else{
-        std::cout << "No matching function, please specify your own function" << std::endl;
+        my_p_function = NULL;
     }
 
 
