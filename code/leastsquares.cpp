@@ -8,8 +8,9 @@ using std::vector;
 
 VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree);
 VectorXd pieceWise(double *x, double *y, int pointNb,int polDegree);
+VectorXd pieceWise2(double *x, double *y, int pointNb,int polDegree);
 vector<double> linspace(double a, double b, int n);
-vector<double> generateRange(double a, double b, double c);
+double CalculateError(VectorXd a, double *x, double *y,int nbPoint);
 
 int main() {
 
@@ -32,11 +33,14 @@ int main() {
     //    cout << xi[i] << " & " << yi[i]<< endl;
     //}
 
-    VectorXd coeff1 = CalculateCoeff(xi,yi,9,6);
-    VectorXd coeff2 = pieceWise(xi, yi,9,3);
+    //VectorXd coeff2 = pieceWise2(xi, yi,9,4);
 
-    cout << "The 1st solution is:\n" << coeff1 << endl;
-    cout << "The 2nd solution is:\n" << coeff2 << endl;
+    VectorXd coeff1 = CalculateCoeff(xi,yi,9,2);
+    //VectorXd coeff2 = pieceWise(xi, yi,5,2);
+    double err = CalculateError(coeff1,xi,yi,9);
+    //cout << "The 1st solution is:\n" << coeff1 << endl;
+    //cout << "The 2nd solution is:\n" << coeff2 << endl;
+    cout << "Error : " << err  << endl;
     delete[] xi;
     delete[] yi;
     delete[] funci;
@@ -67,8 +71,6 @@ VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree){
     VectorXd a = A.colPivHouseholderQr().solve(b);
     delete[] val;
     delete[] val2;
-    cout << "Here is the matrix A:\n" << A << endl;
-    cout << "Here is the vector b:\n" << b << endl;
     return a;
 }
 
@@ -170,8 +172,6 @@ VectorXd pieceWise(double *x, double *y, int pointNb,int polDegree){
             break;
         }
     }
-    cout << "Here is the matrix A:\n" << A << endl;
-    cout << "Here is the vector b:\n" << b << endl;
     return a;
 }
 
@@ -186,11 +186,64 @@ vector<double> linspace(double a, double b, int n) {
     return array;
 }
 
-vector<double> generateRange(double a, double b, double c) {
-    vector<double> array;
-    while(a <= c) {
-        array.push_back(a);
-        a += b;         // could recode to better handle rounding errors
+VectorXd pieceWise2(double *x, double *y, int pointNb,int polDegree){
+    int funcNb,resDegree,unknownNb;
+    funcNb = floor((pointNb-1)/polDegree);
+    resDegree = (pointNb-1) - (funcNb*polDegree);
+    if(resDegree>0) {
+        unknownNb = funcNb * (polDegree + 1) + resDegree + 1;
+    }else{
+        unknownNb = funcNb * (polDegree + 1);
     }
-    return array;
+    VectorXd a(unknownNb);
+    for(int i = 0;i<unknownNb;i++){
+        a(i)=0;
+    }
+    int f = 0;
+    for(int i = 0;i<funcNb;i++){
+        double *x_p = new double[polDegree+1];
+        double *y_p = new double[polDegree+1];
+        for(int j = 0;j<polDegree+1;j++) {
+            x_p[j] = x[i*(polDegree)+j];
+            y_p[j] = y[i*(polDegree)+j];
+            cout << x_p[j]<< " & "<<y_p[j]<<endl;
+        }
+        VectorXd coeff =  CalculateCoeff(x_p,y_p,polDegree+1,polDegree);
+        for(int j = 0;j<polDegree+1;j++) {
+            a(f+j) = coeff(j);
+        }
+        f = f+polDegree+1;
+        cout << " new "<<endl;
+        delete[] x_p;
+        delete[] y_p;
+    }
+    if(resDegree>0){
+        double *xi2 = new double[resDegree+1];
+        double *yi2 = new double[resDegree+1];
+        for(int j = 0;j<resDegree+1;j++) {
+            xi2[j] = x[funcNb*(polDegree)+j];
+            yi2[j] = y[funcNb*(polDegree)+j];
+            cout << xi2[j]<< " & "<< yi2[j]<<endl;
+        }
+        VectorXd coeff2 =  CalculateCoeff(xi2,yi2,resDegree+1,resDegree);
+        for(int j = 0;j<resDegree+1;j++) {
+            a(f+j) = coeff2(j);
+        }
+    }
+    return a;
+}
+
+
+double CalculateError(VectorXd a, double *x, double *y,int nbPoint){
+    int degree = a.size()-1;
+    double err = 0;
+    double *fx = new double[nbPoint];
+    for(int i = 0; i<nbPoint;i++){
+        fx[i] = 0;
+        for(int j = 0; j<degree+1;j++){
+            fx[i] += pow(x[i],degree-j)*a(j);
+        }
+        err += pow(y[i]-fx[i],2);
+    }
+    return err;
 }

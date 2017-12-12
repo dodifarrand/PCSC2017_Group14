@@ -33,9 +33,11 @@ int main() {
     VectorXd coeff1 = A.CalculateCoeff();
     VectorXd coeff2 = df.CalculateCoeff();
     VectorXd coeff3 = di.CalculateCoeff();
+    double error = df.CalculateError(coeff1);
     cout << "The solution is:\n" << coeff1 << endl;
     cout << "The solution is:\n" << coeff2 << endl;
     cout << "The solution is:\n" << coeff3 << endl;
+    cout << "The error is: \n" << error <<endl;
 
 
 }
@@ -94,10 +96,24 @@ VectorXd DataFitting::CalculateCoeff() {
     return a;
 }
 
+double DataFitting::CalculateError(VectorXd a) {
+    double err = 0;
+    double *fx = new double[nbPoint];
+    for(int i = 0; i<nbPoint;i++){
+        fx[i] = 0;
+        for(int j = 0; j<degree+1;j++){
+            fx[i] += pow(x[i],degree-j)*a(j);
+        }
+        err += pow(y[i]-fx[i],2);
+    }
+    delete[] fx;
+    return err;
+}
+
 VectorXd DataInterpolation::CalculateCoeff() {
     VectorXd a;
     if(nbPoint>11 || degree <4){
-        a = Piecewise();
+        a = PieceWise();
     }
     else {
         a = Polynomial();
@@ -131,7 +147,7 @@ VectorXd DataInterpolation::Polynomial() {
     return a;
 }
 
-VectorXd DataInterpolation::Piecewise() {
+VectorXd DataInterpolation::PieceWiseContinuous(){
     int unknownNb = (nbPoint-1)*(degree+1);
     MatrixXd A(unknownNb,unknownNb);
     VectorXd b(unknownNb);
@@ -227,6 +243,57 @@ VectorXd DataInterpolation::Piecewise() {
             }
             a = A.colPivHouseholderQr().solve(b);
             break;
+        }
+    }
+    return a;
+}
+
+VectorXd DataInterpolation::PieceWise(){
+    int funcNb,resDegree,unknownNb;
+    funcNb = floor((nbPoint-1)/nbPoint);
+    resDegree = (nbPoint-1) - (funcNb*nbPoint);
+    if(resDegree>0) {
+        unknownNb = funcNb * (nbPoint + 1) + resDegree + 1;
+    }else{
+        unknownNb = funcNb * (nbPoint + 1);
+    }
+    VectorXd a(unknownNb);
+    for(int i = 0;i<unknownNb;i++){
+        a(i)=0;
+    }
+    int f = 0;
+    for(int i = 0;i<funcNb;i++){
+        double *xi = new double[degree+1];
+        double *yi = new double[degree+1];
+        for(int j = 0;j<degree+1;j++) {
+            xi[j] = x[i*(degree)+j];
+            yi[j] = y[i*(degree)+j];
+            cout << xi[j]<< " & "<<yi[j]<<endl;
+        }
+        Points P(xi,yi,degree+1,degree);
+        DataFitting df(P);
+        VectorXd coeff =  df.CalculateCoeff();
+        for(int j = 0;j<degree+1;j++) {
+            a(f+j) = coeff(j);
+        }
+        f = f+degree+1;
+        cout << " new "<<endl;
+        delete[] xi;
+        delete[] yi;
+    }
+    if(resDegree>0){
+        double *xi2 = new double[resDegree+1];
+        double *yi2 = new double[resDegree+1];
+        for(int j = 0;j<resDegree+1;j++) {
+            xi2[j] = x[funcNb*(degree)+j];
+            yi2[j] = y[funcNb*(degree)+j];
+            cout << xi2[j]<< " & "<< yi2[j]<<endl;
+        }
+        Points P2(xi2,yi2,degree+1,degree);
+        DataFitting df2(P2);
+        VectorXd coeff2 =  df2.CalculateCoeff();
+        for(int j = 0;j<resDegree+1;j++) {
+            a(f+j) = coeff2(j);
         }
     }
     return a;

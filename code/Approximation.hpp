@@ -2,6 +2,7 @@
 #define APPR0XIMATION
 #include <Eigen/Dense>
 #include "Points.hpp"
+
 using namespace Eigen;
 
 
@@ -33,6 +34,7 @@ class DataFitting: public Approximation {
 public:
     DataFitting(Points P):Approximation(P){};
     virtual VectorXd CalculateCoeff();
+    double CalculateError(VectorXd a);
 
 };
 
@@ -41,7 +43,8 @@ public:
     DataInterpolation(Points P):Approximation(P){};
     virtual VectorXd CalculateCoeff();
     VectorXd Polynomial();
-    VectorXd Piecewise();
+    VectorXd PieceWise();
+    VectorXd PieceWiseContinuous();
 };
 
 #endif
