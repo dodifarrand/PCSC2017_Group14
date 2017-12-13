@@ -25,7 +25,7 @@ int main() {
         j = j+1;
     }
     int pointsNb = 9;
-    int degree = 8;
+    int degree = 7;
     Points P(xi,yi,pointsNb,degree);
     //Approximation A(P);
     //DataFitting df(P);
@@ -38,7 +38,8 @@ int main() {
     //cout << "The solution is:\n" << coeff2 << endl;
     cout << "The solution is:\n" << coeff3 << endl;
     //cout << "The error is: \n" << error <<endl;
-
+    delete[] xi;
+    delete[] yi;
 
 }
 
@@ -251,11 +252,11 @@ VectorXd DataInterpolation::PieceWiseContinuous(){
 VectorXd DataInterpolation::PieceWise(){
     int funcNb,resDegree,unknownNb;
     funcNb = floor((nbPoint-1)/degree);
-    resDegree = (nbPoint-1) - (funcNb*nbPoint);
+    resDegree = (nbPoint-1) - (funcNb*degree);
     if(resDegree>0) {
-        unknownNb = funcNb * (nbPoint + 1) + resDegree + 1;
+        unknownNb = funcNb * degree + 1 + resDegree + 1;
     }else{
-        unknownNb = funcNb * (nbPoint + 1);
+        unknownNb = funcNb * degree + 1;
     }
     VectorXd a(unknownNb);
     for(int i = 0;i<unknownNb;i++){
@@ -263,14 +264,14 @@ VectorXd DataInterpolation::PieceWise(){
     }
     int f = 0;
     for(int i = 0;i<funcNb;i++){
-        double *xi = new double[degree+1];
-        double *yi = new double[degree+1];
+        double *x_p = new double[degree+1];
+        double *y_p = new double[degree+1];
         for(int j = 0;j<degree+1;j++) {
-            xi[j] = x[i*(degree)+j];
-            yi[j] = y[i*(degree)+j];
-            cout << xi[j]<< " & "<<yi[j]<<endl;
+            x_p[j] = x[i*(degree)+j];
+            y_p[j] = y[i*(degree)+j];
+            cout << x_p[j]<< " & "<<y_p[j]<<endl;
         }
-        Points P(xi,yi,degree+1,degree);
+        Points P(x_p,y_p,degree+1,degree);
         DataFitting df(P);
         VectorXd coeff =  df.CalculateCoeff();
         for(int j = 0;j<degree+1;j++) {
@@ -278,8 +279,8 @@ VectorXd DataInterpolation::PieceWise(){
         }
         f = f+degree+1;
         cout << " new "<<endl;
-        delete[] xi;
-        delete[] yi;
+        delete[] x_p;
+        delete[] y_p;
     }
     if(resDegree>0){
         double *xi2 = new double[resDegree+1];
