@@ -35,12 +35,12 @@ int main() {
 
     //VectorXd coeff2 = pieceWise2(xi, yi,9,4);
 
-    VectorXd coeff1 = CalculateCoeff(xi,yi,9,2);
+    VectorXd coeff1 = CalculateCoeff(xi,yi,9,8);
     //VectorXd coeff2 = pieceWise(xi, yi,5,2);
-    double err = CalculateError(coeff1,xi,yi,9);
-    //cout << "The 1st solution is:\n" << coeff1 << endl;
+    //double err = CalculateError(coeff1,xi,yi,9);
+    cout << "The 1st solution is:\n" << coeff1 << endl;
     //cout << "The 2nd solution is:\n" << coeff2 << endl;
-    cout << "Error : " << err  << endl;
+    //cout << "Error : " << err  << endl;
     delete[] xi;
     delete[] yi;
     delete[] funci;
@@ -52,7 +52,7 @@ VectorXd CalculateCoeff(double *x, double *y, int pointNb, int polDegree){
     double *val2 = new double[polDegree+1];
     MatrixXd A(polDegree+1,polDegree+1);
     VectorXd b(polDegree+1);
-    for(int n = 0; n<=2*polDegree;n++){
+    for(int n = 0; n<2*polDegree+1;n++){
         val[n]=0;
         val2[n]=0;
         for(int i = 0; i<pointNb;i++){
