@@ -112,7 +112,7 @@ double DataFitting::CalculateError(VectorXd a) {
 
 VectorXd DataInterpolation::CalculateCoeff() {
     VectorXd a;
-    if(nbPoint>11 || degree <4){
+    if(nbPoint>11 || degree <8){
         a = PieceWise();
     }
     else {

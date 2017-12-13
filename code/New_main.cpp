@@ -4,14 +4,20 @@
 #include "Testing.h"
 #include <cmath>
 #include "ReadPointCoord.h"
-
+#include "Points.hpp"
+#include "Approximation.hpp"
 
 double MyFunction(double x){
     return (x/2);
 }
 int main(int argc, char* argv[]){
 
-    Testing testing("testing.csv", &MyFunction);
+
+
+  //  std::string config_fileName = argv[1];
+
+
+   // Testing testing("testing.csv", &MyFunction);
 
     Config config("config2.csv");
     std::cout << "File Name: ";
@@ -36,7 +42,31 @@ int main(int argc, char* argv[]){
     for (int i = 0; i<n; i++){
         std::cout << x[i] << " " << y[i] << std::endl;
     }
+
+    Points points(x,y,n,degree);
+    // Approximation
+
+    DataFitting df(points);
+
+    VectorXd coeff = df.CalculateCoeff();
+
+    std::cout << "The solution is:\n" << coeff << std::endl;
+
+    // Piecewise
+    DataInterpolation dI(points);
+
+    VectorXd coeff2 = dI.CalculateCoeff();
+
+    std::cout << "The solution is:\n" << coeff2 << std::endl;
+
+
+
     return 0;
+    // If type is polynomial verify degree == nPoints-1
+        // else, degree given and do piecewise
+    //
+
+
 
 }
 
