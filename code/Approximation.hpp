@@ -12,10 +12,11 @@ public:
     Approximation();
     // Alternate constructors
     Approximation(Points P){
-        this->x = P.x;
-        this->y = P.y;
-        this->nbPoint = P.nbPoint;
-        this->degree = P.degree;
+        this->x = P.m_x;
+        this->y = P.m_y;
+        this->nbPoint = P.m_nbPoint;
+        this->degree = P.m_degree;
+        this->type = P.m_type;
     }
     // Destructor
     virtual ~Approximation() {}
@@ -28,25 +29,8 @@ protected:
     double *y;
     int nbPoint;
     int degree;
+    std::string type;
 };
-
-class DataFitting: public Approximation {
-public:
-    DataFitting(Points P):Approximation(P){};
-    virtual VectorXd CalculateCoeff();
-    double CalculateError(VectorXd a);
-
-};
-
-class DataInterpolation: public Approximation {
-public:
-    DataInterpolation(Points P):Approximation(P){};
-    virtual VectorXd CalculateCoeff();
-    VectorXd PieceWise();
-    VectorXd Polynomial();
-    VectorXd PieceWiseContinuous();
-};
-
 #endif
 
 

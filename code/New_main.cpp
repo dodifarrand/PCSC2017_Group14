@@ -5,7 +5,9 @@
 #include <cmath>
 #include "ReadPointCoord.h"
 #include "Points.hpp"
-#include "Approximation.hpp"
+#include "DataFitting.h"
+#include "DataInterpolation.h"
+#include <string>
 
 double MyFunction(double x){
     return (x/2);
@@ -43,7 +45,7 @@ int main(int argc, char* argv[]){
         std::cout << x[i] << " " << y[i] << std::endl;
     }
 
-    Points points(x,y,n,degree,type);
+    Points points(x,y,n,degree,"type");
     // Approximation
 
     DataFitting df(points);
@@ -55,9 +57,9 @@ int main(int argc, char* argv[]){
     // Piecewise and Polynomial chooses the right one
     DataInterpolation dI(points);
 
-    VectorXd coeff2 = dI.CalculateCoeff();
+    //VectorXd coeff2 = dI.CalculateCoeff();
 
-    std::cout << "The solution is:\n" << coeff2 << std::endl;
+    //std::cout << "The solution is:\n" << coeff2 << std::endl;
 
     // PiecewiseContinuous
 

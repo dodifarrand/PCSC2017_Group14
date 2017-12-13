@@ -9,7 +9,7 @@ add_executable(leastsquares leastsquares.cpp)
 target_link_libraries (leastsquares Eigen3::Eigen)
 
 
-add_executable(New_main New_main.cpp Testing.cpp ReadPointCoord.cpp Config.cpp)
+add_executable(New_main New_main.cpp Testing.cpp ReadPointCoord.cpp Config.cpp DataFitting.cpp Points.cpp DataInterpolation.cpp)
 target_link_libraries (New_main Eigen3::Eigen)
 set(HEADER_FILES Approximation.hpp)
 

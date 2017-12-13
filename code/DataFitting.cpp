@@ -1,8 +1,11 @@
-#include "Approximation.hpp"
-#include <Eigen/Dense>
-#include "Points.hpp"
+//
+// Created by Anouk Allenspach on 13.12.17.
+//
 
-VectorXd Approximation::CalculateCoeff() {
+#include "DataFitting.h"
+
+
+VectorXd DataFitting::CalculateCoeff() {
     double *val = new double[2*degree+1];
     double *val2 = new double[degree+1];
     MatrixXd A(degree+1,degree+1);
@@ -27,4 +30,18 @@ VectorXd Approximation::CalculateCoeff() {
     delete[] val;
     delete[] val2;
     return a;
+}
+
+double DataFitting::CalculateError(VectorXd a) {
+    double err = 0;
+    double *fx = new double[nbPoint];
+    for(int i = 0; i<nbPoint;i++){
+        fx[i] = 0;
+        for(int j = 0; j<degree+1;j++){
+            fx[i] += pow(x[i],degree-j)*a(j);
+        }
+        err += pow(y[i]-fx[i],2);
+    }
+    delete[] fx;
+    return err;
 }

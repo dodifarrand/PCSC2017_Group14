@@ -9,8 +9,7 @@
 #include <sstream>
 #include <fstream>
 
-class Config : public
-{
+class Config  {
 private:
     char const* mfile_name; // file name of the configuration file
     int degree;
