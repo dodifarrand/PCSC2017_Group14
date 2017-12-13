@@ -9,4 +9,3 @@ cmake_install.cmake
 .cproject
 cmake-build-debug
 .DS_Store*
-code/CMakeLists.txt
