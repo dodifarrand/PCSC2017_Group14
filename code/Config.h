@@ -9,7 +9,7 @@
 #include <sstream>
 #include <fstream>
 
-class Config
+class Config : public
 {
 private:
     char const* mfile_name; // file name of the configuration file

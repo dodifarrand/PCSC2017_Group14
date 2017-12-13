@@ -43,7 +43,7 @@ int main(int argc, char* argv[]){
         std::cout << x[i] << " " << y[i] << std::endl;
     }
 
-    Points points(x,y,n,degree);
+    Points points(x,y,n,degree,type);
     // Approximation
 
     DataFitting df(points);
@@ -52,12 +52,15 @@ int main(int argc, char* argv[]){
 
     std::cout << "The solution is:\n" << coeff << std::endl;
 
-    // Piecewise
+    // Piecewise and Polynomial chooses the right one
     DataInterpolation dI(points);
 
     VectorXd coeff2 = dI.CalculateCoeff();
 
     std::cout << "The solution is:\n" << coeff2 << std::endl;
+
+    // PiecewiseContinuous
+
 
 
 
