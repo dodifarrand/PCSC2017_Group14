@@ -25,19 +25,19 @@ int main() {
         j = j+1;
     }
     int pointsNb = 9;
-    int degree = 3;
+    int degree = 8;
     Points P(xi,yi,pointsNb,degree);
-    Approximation A(P);
-    DataFitting df(P);
+    //Approximation A(P);
+    //DataFitting df(P);
     DataInterpolation di(P);
-    VectorXd coeff1 = A.CalculateCoeff();
-    VectorXd coeff2 = df.CalculateCoeff();
+    //VectorXd coeff1 = A.CalculateCoeff();
+    //VectorXd coeff2 = df.CalculateCoeff();
     VectorXd coeff3 = di.CalculateCoeff();
-    double error = df.CalculateError(coeff1);
-    cout << "The solution is:\n" << coeff1 << endl;
-    cout << "The solution is:\n" << coeff2 << endl;
+    //double error = df.CalculateError(coeff1);
+    //cout << "The solution is:\n" << coeff1 << endl;
+    //cout << "The solution is:\n" << coeff2 << endl;
     cout << "The solution is:\n" << coeff3 << endl;
-    cout << "The error is: \n" << error <<endl;
+    //cout << "The error is: \n" << error <<endl;
 
 
 }
@@ -112,7 +112,7 @@ double DataFitting::CalculateError(VectorXd a) {
 
 VectorXd DataInterpolation::CalculateCoeff() {
     VectorXd a;
-    if(nbPoint>11 || degree <4){
+    if(degree<nbPoint-1){
         a = PieceWise();
     }
     else {
@@ -250,7 +250,7 @@ VectorXd DataInterpolation::PieceWiseContinuous(){
 
 VectorXd DataInterpolation::PieceWise(){
     int funcNb,resDegree,unknownNb;
-    funcNb = floor((nbPoint-1)/nbPoint);
+    funcNb = floor((nbPoint-1)/degree);
     resDegree = (nbPoint-1) - (funcNb*nbPoint);
     if(resDegree>0) {
         unknownNb = funcNb * (nbPoint + 1) + resDegree + 1;
