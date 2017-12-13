@@ -1,6 +1,11 @@
-//
-// Created by Anouk Allenspach on 11.12.17.
-//
+/**
+ * @file
+ * Config.h
+ * 	This is our config class that reads the configuration file
+ *
+ *  Created on: Dec 12, 2017
+ *      Author: Anouk Allenspach
+ */
 
 #ifndef PCSC_PROJECT6_CONFIG_H
 #define PCSC_PROJECT6_CONFIG_H
@@ -11,13 +16,14 @@
 
 class Config  {
 private:
-    char const* mfile_name; // file name of the configuration file
-    int degree;
-    std::string file_name_points; // file name of the file containing the points
-    std::string type;
+    char const* mfile_name; // /*!< file name of the configuration file */
+    int degree; // /*!< degree of polynomial */
+    std::string file_name_points; // /*!<file name of the file containing the points */
+    std::string type; // /*!< type of approximation to do */
 public:
+
     Config();
-    Config(std::string f_name);
+    Config(std::string f_name /**< [in] configuration file name. */);
     std::string GetFileName();
     void ReadConfig();
     int GetDegree();

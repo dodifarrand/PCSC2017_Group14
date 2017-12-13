@@ -6,6 +6,7 @@
 #define PCSC_PROJECT6_DATAFITTING_H
 
 #include "Approximation.hpp"
+
 class DataFitting: public Approximation {
 public:
     DataFitting(Points P):Approximation(P){};

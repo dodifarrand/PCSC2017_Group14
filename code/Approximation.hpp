@@ -2,6 +2,7 @@
 #define APPR0XIMATION
 #include <Eigen/Dense>
 #include "Points.hpp"
+#include <iostream>
 
 using namespace Eigen;
 
@@ -19,7 +20,7 @@ public:
         this->type = P.m_type;
     }
     // Destructor
-    virtual ~Approximation() {}
+    virtual ~Approximation() {std::cout << "Destroy object Approximation" << std::endl;}
 
     virtual VectorXd CalculateCoeff() = 0;
 

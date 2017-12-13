@@ -5,7 +5,9 @@
 using namespace Eigen;
 
 #include <string>
-
+/**
+* This is our points class
+*/
 class Points {
 public:
     // Default constructor
@@ -16,11 +18,11 @@ public:
     virtual ~Points() {}
 
     // Private data
-    double *m_x;
-    double *m_y;
-    int m_nbPoint;
-    int m_degree;
-    std::string m_type;
+    double *m_x;    // /*!< x vector */
+    double *m_y;    // /*!< y vector */
+    int m_nbPoint; // /*!< number of points */
+    int m_degree;// /*!< degree */
+    std::string m_type;// /*!< type */
 };
 
 #endif

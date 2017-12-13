@@ -3,26 +3,38 @@
 //
 
 #include "DataInterpolation.h"
-#include "DataFitting.h"
 
-
+// method to chose which method to use according to the degree and the number of points
 VectorXd DataInterpolation::CalculateCoeff() {
+    // initialize solution vector containing the coefficients
     VectorXd a;
+
+    // if the degree is inferior to the number of points minus one, do piecewise, otherwise do a polynomial approximation
     if(degree<nbPoint-1){
         a = PieceWise();
     }
     else {
         a = Polynomial();
     }
+    // return the coefficients computed
     return a;
 }
 
+// method to do a polynomial approximation
 VectorXd DataInterpolation::Polynomial() {
+
+    // set the degree to the right value
     degree = nbPoint -1;
+
+    // initialize pointers to double vectors containing the computed values (for the matrix A and the vector b to solve Ax = b)
     double *val = new double[2*degree+1];
     double *val2 = new double[degree+1];
+
+    // initialize matrix A and vector b
     MatrixXd A(degree+1,degree+1);
     VectorXd b(degree+1);
+
+    // compute values of vectors that will be stored in A and b
     for(int n = 0; n<=2*degree;n++){
         val[n]=0;
         val2[n]=0;
@@ -33,29 +45,50 @@ VectorXd DataInterpolation::Polynomial() {
             }
         }
     }
+    // fill matrix A and vector b
     for(int i = 0; i<degree+1;i++){
         for(int j = 0; j<degree+1;j++){
             A(i,j)=val[i+j];
         }
         b(i)=val2[i];
     }
+
+    // solve the equation Ax = b
     VectorXd a = A.colPivHouseholderQr().solve(b);
+
+    // free memory
+    delete[] val;
+    delete[] val2;
+
+    // return the coefficients found
     return a;
 }
 
+// method to do a continuous piecewise approximation for degree <=3
 VectorXd DataInterpolation::PieceWiseContinuous(){
+
+    // set the number of points to the required value
     int unknownNb = (nbPoint-1)*(degree+1);
+
+    // initialize matrix A and b
     MatrixXd A(unknownNb,unknownNb);
     VectorXd b(unknownNb);
+
+    // fill a and b with zeros
     for(int i = 0;i<unknownNb;i++){
         for(int j = 0;j<unknownNb;j++){
             A(i,j)=0;
         }
         b(i)=0;
     }
+    // initialize j and f
     int j = 0;
     int f = 0;
+
+    // initialize vector to contain coefficients
     VectorXd a(unknownNb);
+
+    // according to the degree, do
     switch(degree){
         case 1: {
             for (int i = 0; i<unknownNb;i=i+2){
@@ -137,6 +170,8 @@ VectorXd DataInterpolation::PieceWiseContinuous(){
                 j = j+4*(nbPoint-2);
                 f = f+nbPoint-1;
             }
+
+            // compute solution to equation Ax = b
             a = A.colPivHouseholderQr().solve(b);
             break;
         }
@@ -145,19 +180,32 @@ VectorXd DataInterpolation::PieceWiseContinuous(){
 }
 
 VectorXd DataInterpolation::PieceWise() {
+    // initialization
     int funcNb, resDegree, unknownNb;
+
+    // number of funtions to compute with the given degree
     funcNb = floor((nbPoint - 1) / degree);
+
+    // degree of the polynom that if left over
     resDegree = (nbPoint - 1) - (funcNb * degree);
+
+    // find number of coefficients to compute
     if (resDegree > 0) {
         unknownNb = funcNb * (nbPoint + 1) + resDegree + 1;
     } else {
         unknownNb = funcNb * (nbPoint + 1);
     }
+
+
+    // initialization of solution vector to zero
     VectorXd a(unknownNb);
     for (int i = 0; i < unknownNb; i++) {
         a(i) = 0;
     }
+
     int f = 0;
+
+    // group points in auxiliary vectors
     for (int i = 0; i < funcNb; i++) {
         double *xi = new double[degree + 1];
         double *yi = new double[degree + 1];
@@ -166,17 +214,23 @@ VectorXd DataInterpolation::PieceWise() {
             yi[j] = y[i * (degree) + j];
             //cout << xi[j] << " & " << yi[j] << endl;
         }
+
+        // object point to create object datafinterpolation
         Points P(xi, yi, degree + 1, degree, type);
-        DataFitting df(P);
+        DataInterpolation df(P);
+
+        // compute coefficients for current function
         VectorXd coeff = df.CalculateCoeff();
         for (int j = 0; j < degree + 1; j++) {
-            a(f + j) = coeff(j);
+            a(f + j) = coeff(j);    // add to final vector
         }
         f = f + degree + 1;
      //   cout << " new " << endl;
         delete[] xi;
         delete[] yi;
     }
+
+    // do the same thing as above for a degree smaller than the degree specified by the user
     if (resDegree > 0) {
         double *xi2 = new double[resDegree + 1];
         double *yi2 = new double[resDegree + 1];
@@ -185,12 +239,22 @@ VectorXd DataInterpolation::PieceWise() {
             yi2[j] = y[funcNb * (degree) + j];
        //     cout << xi2[j] << " & " << yi2[j] << endl;
         }
+
+        // object point to generate object DataInterpolation
         Points P2(xi2, yi2, degree + 1, degree, type);
-        DataFitting df2(P2);
+        DataInterpolation df2(P2);
+
+        // compute the coefficients for the remaining points
         VectorXd coeff2 = df2.CalculateCoeff();
+
+        // fill coefficients in vector to be returned
         for (int j = 0; j < resDegree + 1; j++) {
             a(f + j) = coeff2(j);
         }
+        delete[] xi2;
+        delete[] yi2;
     }
+
+    // return coefficients
     return a;
 }

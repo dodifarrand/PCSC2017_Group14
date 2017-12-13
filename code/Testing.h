@@ -11,13 +11,16 @@
 #include <cassert>
 #include <cmath>
 
+/**
+* This is my super cool class
+*/
 class Testing{
 private:
 
-    double m_a;    // beginning of interval
-    double m_b;    // end of interval
-    int N_points;   // number of points to generate
-    double (*my_p_function)(double x);  // function pointer to be used for any function
+    double m_a;    // /*!< beginning of interval */
+    double m_b;    // /*!< end of interval */
+    int N_points;   // /*!< number of points to generate */
+    double (*my_p_function)(double x);  // /*!< function pointer to be used for any function */
 public:
 
     void SetInterval(double a, double b);

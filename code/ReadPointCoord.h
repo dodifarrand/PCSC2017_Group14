@@ -7,14 +7,16 @@
 
 #include "Config.h"
 
-
+/**
+* This is our ReadPointCoord class
+*/
 class ReadPointCoord : public Config
 {
 private:
-    double* m_x;
-    double* m_y;
-    int mnPoints;
-    char const* file_name;
+    double* m_x;// /*!< vector of x coords */
+    double* m_y;// /*!< vector of y coords */
+    int mnPoints;// /*!< number of points */
+    char const* file_name;// /*!< file name of point file */
 public:
     ReadPointCoord();
     void ReadData();

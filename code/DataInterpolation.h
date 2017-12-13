@@ -6,7 +6,9 @@
 #define PCSC_PROJECT6_DATAINTERPOLATION_H
 
 #include "Approximation.hpp"
-
+/**
+* This is our DataInterpolation class
+*/
 class DataInterpolation: public Approximation {
 
 public:

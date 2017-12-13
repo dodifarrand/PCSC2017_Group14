@@ -57,7 +57,7 @@ int main(int argc, char* argv[]){
     // Piecewise and Polynomial chooses the right one
     DataInterpolation dI(points);
 
-    //VectorXd coeff2 = dI.CalculateCoeff();
+    VectorXd coeff2 = dI.CalculateCoeff();
 
     //std::cout << "The solution is:\n" << coeff2 << std::endl;
 
