@@ -4,6 +4,8 @@
 #include "Testing.h"
 #include <cmath>
 #include "ReadPointCoord.h"
+
+
 double MyFunction(double x){
     return (x/2);
 }
