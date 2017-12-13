@@ -13,7 +13,7 @@ public:
     // Default constructor
     Points();
     // Alternate constructors
-    Points(double *x, double *y, int nbPoint, int degree, std::string type);
+    Points(double *x, double *y, int nbPoint, int degree);
     // Destructor
     virtual ~Points() {}
 
@@ -22,7 +22,7 @@ public:
     double *m_y;    // /*!< y vector */
     int m_nbPoint; // /*!< number of points */
     int m_degree;// /*!< degree */
-    std::string m_type;// /*!< type */
+    //std::string m_type;// /*!< type */
 };
 
 #endif

@@ -1,0 +1,104 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Approximation of data}%replace X with the appropriate number
+\author{Rodolphe Anouk}  
+\maketitle
+ 
+
+\section{Goal}
+The goal of this project is to find a polynomial approximation of some data. Several approximation can be made. First, if the goal of the user is to find a trend for the data, the program will return a polynomial with a degree lower than the number of points minus one. Then, the program can compute an interpolation of data. Several possibilities are available to interpolate. The first one is a simple polynomial interpolation, where the degree is equal to the number of points minus 1. Then, a piecewise interpolation can be made. Depending on the needs of the user this interpolation can be spline or not.
+
+\section{Requirements}
+A gcc compiler (version 4.7.2 or above) \textbf{a verifier???} and the CMake software (version 2.6 or above) to link the files are necessary to compile the program. An external library is used to solve linear systems, that is the Eigen library.
+
+ \section{Method}
+ To approximate the data, the main method that have been used is the least squares method. The method aim to minimize the error between the true value and the estimated one, that is:
+ \begin{equation}
+ min \sum_i (y_i - p(x_i))^2
+ \end{equation}
+ $p(x_i) = a_0 + a_1\cdot x_i+ \ldots +a_1\cdot x_i^m$ being the interpolant polynomial at $x_i$ of degree $m$.
+ By deriving this equation with respect with all the coefficient of the polynomial, the following linear system is obtained:
+ \begin{equation}
+\left[ \begin{array}{cccc}
+\sum_i x_i^0 & \sum_i x_i^1 & \cdots & \sum_i x_i^m \\
+\sum_i x_i^1 & \sum_i x_i^2 & \cdots & \sum_i x_i^{m+1} \\
+\vdots & \hfill & \ddots & \vdots \\
+\sum_i x_i^1& \cdots & \sum_i x_i^{2m-1} & \sum_i x_i^{2m}\\
+\end{array} \right]
+\left[ \begin{array}{c}
+a_0 \\
+a_1\\
+\vdots\\
+a_m\\
+\end{array} \right] = 
+\left[ \begin{array}{c}
+\sum_i y_i  \\
+\sum_i y_i x_i\\
+\vdots\\
+\sum_i y_i x_i^m\\
+\end{array} \right]
+\end{equation}
+ 
+ The linear system $Xa=b$ can be solved by computing $a = X^{-1}b$.\\
+ For the spline interpolation, \texttt{https://www.math.uh.edu/~jingqiu/math4364/spline.pdf} the following paper has been used.
+ 
+ \section{Usage of the program}
+ The program developed allows the user to give a .csv file with some input inside. Depending on what is in the file, the program will compute what the user has asked. The .csv should have the following form:\\
+ \begin{center}
+ \begin{tabular}{|c|c|c|}
+ \hline
+data.csv  & Type & Approximation Degree \\
+\hline
+\end{tabular} 
+ \end{center}
+ The \emph{data.csv} file contains the points coordinate. The type is the approximation wanted by the user; it can be either \emph{Data fitting}, \emph{Interpolation}, \emph{Piece-wise Interpolation} or \emph{spline}. Finally, the approximation degree  is the degree of the polynomial which approximate the data.\\
+To exectute the program \textbf{\emph{to complete}}
+
+\section{Class description}
+\textbf{READFILE}\\
+\textbf{APPROXIMATION}\\
+
+\section{Tests}
+
+\section{Remarks}
+
+
+
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}

@@ -17,7 +17,7 @@ public:
         this->y = P.m_y;
         this->nbPoint = P.m_nbPoint;
         this->degree = P.m_degree;
-        this->type = P.m_type;
+        //this->type = P.m_type;
     }
     // Destructor
     virtual ~Approximation() {std::cout << "Destroy object Approximation" << std::endl;}
