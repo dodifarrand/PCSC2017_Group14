@@ -28,20 +28,20 @@ int main() {
     }
     int pointsNb = 10;
     int degree = 9;
-    int degree2 = 3;
+    int degree2 = 7;
     Points P(x,y,pointsNb,degree);
     Points P2(x,y,pointsNb,degree2);
     //Approximation A(P);
     DataFitting df(P);
     DataInterpolation di(P2);
     //VectorXd coeff1 = A.CalculateCoeff();
-    VectorXd coeff2 = df.CalculateCoeff();
-    VectorXd coeff3 = di.PieceWiseContinuous();
-    double error = df.CalculateError(coeff2);
+    //VectorXd coeff2 = df.CalculateCoeff();
+    VectorXd coeff3 = di.CalculateCoeff();
+    //double error = df.CalculateError(coeff2);
     //cout << "The solution is:\n" << coeff1 << endl;
-    cout << "The solution 1st is:\n" << coeff2 << endl;
+    //cout << "The solution 1st is:\n" << coeff2 << endl;
     cout << "The solution 2nd is:\n" << coeff3 << endl;
-    cout << "The error is: \n" << error <<endl;
+    //cout << "The error is: \n" << error <<endl;
     delete[] x;
     delete[] y;
     delete[] funci;
