@@ -4,6 +4,7 @@
 
 #include "DataInterpolation.h"
 #include "DataFitting.h"
+#include "Error.hpp"
 
 // method to chose which method to use according to the degree and the number of points
 VectorXd DataInterpolation::CalculateCoeff() {
@@ -296,4 +297,25 @@ void DataInterpolation::printSolution(VectorXd a){
     } else {
         //DataFitting::printSolution(a);
     }
+}
+
+double DataInterpolation::CalculateError(VectorXd a){
+    double err = 0;
+    double fx[nbPoint];
+
+    // intialize fx
+    for(int i = 0; i<nbPoint;i++) {
+        fx[i] = 0;
+    }
+    //compute the error
+    for(int i = 0; i<nbPoint;i++){
+        for(int j = 0; j<degree+1;j++){
+            fx[i] += pow(x[i],degree-j)*a(j);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
+        }
+        err += pow(y[i]-fx[i],2);   // increment error
+    }
+    //if (err>pow(10,1)){
+    //    throw ErrorPointsType();
+    //}
+    return err;
 }

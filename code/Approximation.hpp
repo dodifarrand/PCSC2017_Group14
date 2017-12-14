@@ -24,6 +24,7 @@ public:
 
     virtual VectorXd CalculateCoeff() = 0;
     virtual void printSolution(VectorXd a)=0;
+    virtual double CalculateError(VectorXd a)=0;
 
 protected:
     // Private data

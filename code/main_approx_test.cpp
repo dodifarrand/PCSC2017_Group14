@@ -38,10 +38,12 @@ int main() {
     VectorXd coeff2 = df.CalculateCoeff();
     VectorXd coeff3 = di.CalculateCoeff();
     double error = df.CalculateError(coeff2);
+    double error2 = di.CalculateError(coeff3);
     //cout << "The solution is:\n" << coeff1 << endl;
     //cout << "The solution 1st is:\n" << coeff2 << endl;
     cout << "The solution 2nd is:\n" << coeff3 << endl;
     cout << "The error is: \n" << error <<endl;
+    cout << "The 2nd error is: \n" << error2 <<endl;
     df.printSolution(coeff2);
     di.printSolution(coeff3);
     delete[] x;
