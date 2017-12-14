@@ -3,12 +3,10 @@
 
 #include "FuctionApprox.h"
 #include <cmath>
-#include "ReadPointCoord.h"
+#include "Config.h"
 #include "Points.hpp"
-#include "DataFitting.h"
-#include "DataInterpolation.h"
+#include "Approximation.hpp"
 #include <string>
-
 #include "Solution.h"
 double MyFunction(double x){
     return (x/2);
@@ -18,8 +16,6 @@ int main(int argc, char* argv[]){
 
 
   //  std::string config_fileName = argv[1];
-
-
    // Testing testing("testing.csv", &MyFunction);
 
     Config config("config2.csv");
@@ -36,37 +32,36 @@ int main(int argc, char* argv[]){
     std::string type = config.GetType();
     std::cout << "let's do a(n) "<< type.c_str() << " with the points in your file " << point_file <<std::endl;
 
+    //ReadPointCoord points1(p_file);
     Points points(p_file);
+
     std::cout << "created point object" << std::endl;
     int n = points.GetNPoints();
     std::cout << n << std::endl;
 
-//    for (int i = 0; i<n; i++){
-////        std::cout << x[i] << " " << y[i] << std::endl;
-//    }
-//
     VectorXd coeff;
-//
-//    if (type == "Approximation"){
-//        DataFitting df(points);
-//
-//        coeff = df.CalculateCoeff();
-//
-//
-//    }
-//
-//    else if ((type == "Piecewise") || (type == "Polynomial")){
-//
-        DataInterpolation dI(points);
-//
-//        coeff = dI.CalculateCoeff();
-//
-//    }
-//    else if (type == "PiecewiseContinuous"){
-//
-//    }
-//
-//    Solution(coeff, degree);
+    Approximation d(points);
+    if (type == "Approximation"){
+        Fitting d(points);
+
+        coeff = d.CalculateCoeff();
+
+
+    }
+
+    else if ((type == "Piecewise") || (type == "Polynomial")){
+
+        Interpolation d(points);
+
+        coeff = d.CalculateCoeff();
+
+    }
+    else if (type == "PiecewiseContinuous"){
+
+    }
+
+
+    d.printSolution(coeff);
 
     return 0;
     // If type is polynomial verify degree == nPoints-1

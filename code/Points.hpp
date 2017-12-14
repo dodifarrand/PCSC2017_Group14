@@ -6,6 +6,7 @@ using namespace Eigen;
 
 #include <string>
 #include "Config.h"
+
 /**
 * This is our points class
 */
@@ -15,14 +16,15 @@ public:
     Points();
     // Alternate constructors
     Points(double *x, double *y, int nbPoint, int degree);
-    Points(std::string point_file);
     // Destructor
-    ~Points();
-    int CountLines(std::string file_name);
+    //~Points();
+    int CountLines();
     double* x();
     double* y();
     int GetNPoints();
+    explicit Points(char const* a_file_name);
 
+    void ReadData();
 
     // Private data
     friend class Approximation;
@@ -33,9 +35,12 @@ private:
     double *m_y;    // /*!< y vector */
     int m_nbPoint; // /*!< number of points */
     int m_degree;// /*!< degree */
+    char const* file_name;// /*!< file name of point file */
     //std::string m_type;// /*!< type */
 };
+//
+// Created by Anouk Allenspach on 10.12.17.
+//
 
 #endif
-
 

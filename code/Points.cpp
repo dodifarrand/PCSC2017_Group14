@@ -1,37 +1,34 @@
-//
-// Created by Anouk Allenspach on 13.12.17.
-//
-#include <fstream>
+
+#include "Config.h"
+#include <cassert>
 #include "Points.hpp"
-#include <iostream>
-
-Points::Points(){
-    m_x = new double;    // /*!< x vector */
-    *m_x = 0.0;
-    m_y = new double;    // /*!< y vector */
-    *m_y = 0.0;
-    m_nbPoint = 0; // /*!< number of points */
-    m_degree = 0;// /*!< degree */
-}
-Points::Points(double *x, double *y, int nbPoint, int degree/*, std::string type*/){
-
-    this->m_nbPoint = nbPoint;
-    this->m_x = x;
-    this->m_y = y;
-    this->m_degree = degree;
-    //this->m_type = type;
+Points::Points(double *x, double *y, int nbPoint, int degree){
+    m_x = x;
+    m_y = y;
+    m_nbPoint = nbPoint;
+    m_degree = degree;
 }
 
-Points::Points(std::string point_file) {
+Points::Points() {
 
-    int n_p = CountLines(point_file);
-    double* x_temp = new double [m_nbPoint];
-    double* y_temp = new double [m_nbPoint];
+    std::string f_name = "data.csv";
+    char const* p_file = f_name.c_str();
+    file_name = p_file;
+    m_x = new double;
+    m_y = new double;
+    m_nbPoint = 0;
 
-    int dgr = GetDegree();// /*!< degree */
-    char const* file_name = point_file.c_str();
+}
+Points::Points(char const* a_file_name) {
+    file_name = a_file_name;
+    //  std::cout << file_name << std::endl;
+    CountLines();
+    m_x = new double[m_nbPoint];
+    m_y = new double[m_nbPoint];
+    ReadData();
+}
 
-
+void Points::ReadData(){
     FILE* pFile = fopen(file_name,"r");
     float g1=0;
     float g2=0;
@@ -39,18 +36,22 @@ Points::Points(std::string point_file) {
     for (int i = 0; i < m_nbPoint; i++) {
 
         fscanf(pFile, "%g,%g", &g1, &g2);
-        x_temp[i] = (double)g1;
-        y_temp[i] = (double)g2;
+        m_x[i] = (double)g1;
+        m_y[i] = (double)g2;
     }
 
-    Points(x_temp, y_temp, n_p, dgr);
-
-    delete [] x_temp;
-    delete [] y_temp;
 }
 
 
-int Points::CountLines(std::string file_name) {
+double* Points::x(){
+    return m_x;
+
+}
+double* Points::y(){
+    return m_y;
+}
+
+int Points::CountLines() {
     std::ifstream read_file(file_name);
     // std::cout << "Count Lines" << std::endl;
     int i = 0;
@@ -71,25 +72,10 @@ int Points::CountLines(std::string file_name) {
         //    std::cout << "End of Count Lines, total number of lines in file: " << i <<std::endl;
 
     }
-    return i;
-}
+    m_nbPoint = i;
 
-
-double* Points::x(){
-    return m_x;
-
-}
-
-double* Points::y(){
-    return m_y;
 }
 
 int Points::GetNPoints(){
     return m_nbPoint;
-}
-
-Points::~Points() {
-      std::cout << "Destruct Points " << std::endl;
-    delete [] m_x;
-    delete [] m_y;
 }
