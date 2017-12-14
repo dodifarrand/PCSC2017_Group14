@@ -8,8 +8,8 @@
 #include "DataFitting.h"
 #include "DataInterpolation.h"
 #include <string>
-#include <iomanip>
 
+#include "Solution.h"
 double MyFunction(double x){
     return (x/2);
 }
@@ -67,27 +67,7 @@ int main(int argc, char* argv[]){
 
     }
 
-
-    std::cout << "The solution is: f(x) = " << std::setprecision(5) << std::fixed;
-
-    double tol = 1e-4;
-    for (int i = 0; i< degree-1 ; i++){
-        int power = degree -i;
-        std::cout   << coeff[i] << " * x^" << power;
-
-        if (coeff[i+1] > tol ){
-            std::cout << " + ";
-        }
-        else if (coeff[i+1] <= tol ){
-            std::cout << " ";
-        }
-    }
-    std::string sign = "";
-
-    if (coeff[degree+1]>tol){
-        sign = " + ";
-    }
-    std::cout  << coeff[degree] << " x " << sign << coeff[degree+1] << std::endl;
+    Solution(coeff, degree);
 
     return 0;
     // If type is polynomial verify degree == nPoints-1
