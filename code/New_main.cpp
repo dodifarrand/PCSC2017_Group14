@@ -50,13 +50,20 @@ int main(int argc, char* argv[]){
 
     }
 
-    else if ((type == "Piecewise") || (type == "Polynomial")){
+    else if (type == "Piecewise"){
 
-        Interpolation d(points);
+        PieceWiseInterpolation d(points);
 
         coeff = d.CalculateCoeff();
         d.printSolution(coeff);
 
+    }
+    else if ( (type == "Polynomial")){
+        Interpolation d(points);
+        std::cout << "Polynomial " << std::endl;
+        coeff = d.CalculateCoeff();
+        std::cout << coeff << std::endl;
+        d.printSolution(coeff);
     }
     else if (type == "PiecewiseContinuous"){
 
