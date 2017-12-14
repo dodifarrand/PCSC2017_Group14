@@ -3,7 +3,7 @@
 //
 
 #include "DataInterpolation.h"
-#include "DataFitting.h"
+
 
 // method to chose which method to use according to the degree and the number of points
 VectorXd DataInterpolation::CalculateCoeff() {
@@ -300,6 +300,6 @@ void DataInterpolation::printSolution(VectorXd a){
         }
 
     } else {
-        //DataFitting::printSolution(a);
+        printSolution(a);
     }
 }

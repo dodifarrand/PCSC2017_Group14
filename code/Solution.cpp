@@ -6,7 +6,7 @@
 Solution::Solution(VectorXd coeff, int degree){
 std::cout << "The solution is: f(x) = " << std::setprecision(5) << std::fixed;
 
-double tol = 1e-4;
+double tol = .1e-4;
 for (int i = 0; i< degree-1 ; i++){
 int power = degree -i;
 std::cout   << coeff[i] << " * x^" << power;
@@ -20,7 +20,7 @@ std::cout << " ";
 }
 std::string sign = "";
 
-if (coeff[degree+1]>tol){
+if (coeff[degree+1]<=tol){
 sign = " + ";
 }
 std::cout  << coeff[degree] << " x " << sign << coeff[degree+1] << std::endl;
