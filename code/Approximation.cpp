@@ -435,76 +435,99 @@ VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
 
 double PieceWiseInterpolation::CalculateError(VectorXd a) {
     double err = 0;
-    int f = 0;
     double fx[nbPoint];
-    // intialize fx
-    for(int i = 0; i<nbPoint;i++) {
-        fx[i] = 0;
-    }
-    for(int i = 0; i<nbPoint;i++) {
-        fx[i] = 0;
-        for(int j = 0; j<degree+1;j++){
-            fx[i] += pow(x[i],degree-j)*a(j+(degree+1)*f);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
+    if (degree <= 3) {
+        int f = 0;
+        // intialize fx
+        for (int i = 0; i < nbPoint; i++) {
+            fx[i] = 0;
         }
-        if((i-1)%degree==0){
-            f=f+1;
-        }
-        err += pow(y[i]-fx[i],2);   // increment error
-    }
+        for (int i = 0; i < nbPoint; i++) {
+            if ((i - 1) % degree == 0 and (i-1)>0) {
+                f = f + 1;
+            }
+            for (int j = 0; j < degree + 1; j++) {
+                fx[i] += pow(x[i], degree - j) * a(j + (degree + 1) *
+                                                       f);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
+            }
 
+            err += pow(y[i] - fx[i], 2);   // increment error
+        }
+    } else {
+        int funcNb, resDegree;
+        int f = 0;
+        funcNb = floor((nbPoint - 1) / degree);
+        resDegree = (nbPoint) - (funcNb * degree + 1);
+        for (int i = 0; i < nbPoint; i++) {
+            fx[i] = 0;
+        }
+        std::cout << "The polynomials has the following form: \n";
+        for (int i = 0; i < nbPoint; i++) {
+            if (i < degree * funcNb + 1) {
+                if ((i - 1) % degree == 0 and (i-1)>0) {
+                    f = f + 1;
+                }
+                for (int j = 0; j < degree + 1; j++) {
+                    fx[i] += pow(x[i], degree - j) * a(j + (degree + 1) * f);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
+                }
+            } else {
+                for (int j = 0; j < resDegree + 1; j++) {
+                    fx[i] += pow(x[i], resDegree - j) * a(a.size()-1-(resDegree)+j);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
+                }
+            }
+            err += pow(y[i] - fx[i], 2);
+        }
+    }
     return err;
 }
 
 void PieceWiseInterpolation::printSolution(VectorXd a) {
-    int iter,len,corr;
+    int iter, len, corr;
     corr = 0;
-    if (degree<=3){
-        iter = nbPoint-1;
-        std::cout<<"The polynomials has the following form: \n";
-        for(int i = 1;i<iter+1;i++){
+    if (degree <= 3) {
+        iter = nbPoint - 1;
+        std::cout << "The polynomials has the following form: \n";
+        for (int i = 1; i < iter + 1; i++) {
             len = degree;
-            std::cout<<"f"<<i<<"(x) =  ";
-            for(int j = 0; j<len+1;j++){
-                if(j==0) {
-                    std::cout << a((degree+1)*(i) - 1 - j) << " + ";
-                }
-                else if(j==len){
-                    std::cout << a((degree+1)*(i) - 1 - j) << "x^"<<j<<std::endl;
-                }
-                else {
-                    std::cout << a((degree+1)*(i) - 1 - j) << "x^"<<j<<" + ";
+            std::cout << "f" << i << "(x) =  ";
+            for (int j = 0; j < len + 1; j++) {
+                if (j == 0) {
+                    std::cout << a((degree + 1) * (i) - 1 - j) << " + ";
+                } else if (j == len) {
+                    std::cout << a((degree + 1) * (i) - 1 - j) << "x^" << j << std::endl;
+                } else {
+                    std::cout << a((degree + 1) * (i) - 1 - j) << "x^" << j << " + ";
                 }
             }
         }
-    }else {
+    } else {
         if (((nbPoint - 1) % degree) == 0) {
             iter = ((nbPoint - 1) / degree);
         } else {
             iter = ((nbPoint - 1) / degree) + 1;
         }
-        std::cout<<"The polynomials has the following form: \n";
-        for(int i = 1;i<iter+1;i++){
-            if(i==iter){
-                len = a.size()-(iter-1)*(degree+1);
-                corr = -(degree+1)+len;
-            }else{
-                len = degree+1;
+        std::cout << "The polynomials has the following form: \n";
+        for (int i = 1; i < iter + 1; i++) {
+            if (i == iter) {
+                len = a.size() - (iter - 1) * (degree + 1);
+                corr = -(degree + 1) + len;
+            } else {
+                len = degree + 1;
             }
-            std::cout<<"f"<<i<<"(x) =  ";
-            for(int j = 0; j<len;j++){
-                if(j==0) {
-                    std::cout << a((degree+1)*(i)+corr - 1 - j) << " + ";
-                }
-                else if(j==len-1){
-                    std::cout << a((degree+1)*(i)+corr - 1 - j) << "x^"<<j<<std::endl;
-                }
-                else {
-                    std::cout << a((degree+1)*(i)+corr - 1 - j) << "x^"<<j<<" + ";
+            std::cout << "f" << i << "(x) =  ";
+            for (int j = 0; j < len; j++) {
+                if (j == 0) {
+                    std::cout << a((degree + 1) * (i) + corr - 1 - j) << " + ";
+                } else if (j == len - 1) {
+                    std::cout << a((degree + 1) * (i) + corr - 1 - j) << "x^" << j << std::endl;
+                } else {
+                    std::cout << a((degree + 1) * (i) + corr - 1 - j) << "x^" << j << " + ";
                 }
             }
         }
     }
 }
+
 
 /*
 void DataInterpolation::printSolution(VectorXd a){

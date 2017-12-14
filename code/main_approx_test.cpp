@@ -14,8 +14,8 @@ vector<double> linspace(double a, double b, int n);
 int main() {
     double *x = new double[7];
     double *y = new double[7];
-    double *funci = new double[5];
-    vector<double> vec = linspace(1,5,7);
+    double *funci = new double[7];
+    vector<double> vec = linspace(1,7,7);
     for(int i = 0;i<7;i++){
         funci[i]=log(vec[i])-6*vec[i];
     }
@@ -29,7 +29,7 @@ int main() {
     int pointsNb = 7;
     int degree = 6;
     int degree2 = 10;
-    int degree3 = 5;
+    int degree3 = 3;
     //Points P(x,y,pointsNb,degree);
     //Points P2(x,y,pointsNb,degree2);
     Points P3(x,y,pointsNb,degree3);
