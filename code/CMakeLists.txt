@@ -14,3 +14,6 @@ add_executable(Config Config.cpp)
 add_executable(Approximation Approximation.cpp)
 target_link_libraries (Approximation Eigen3::Eigen)
 
+
+add_executable(CreateScenarios CreateScenarios.cpp FuctionApprox.cpp)
+

@@ -2,25 +2,18 @@
 #include "Config.h"
 #include <cassert>
 #include "Points.hpp"
-Points::Points(double *x, double *y, int nbPoint, int degree){
+
+Points::Points(double *x, double *y, int nbPoint, int degree, std::string type): m_degree(degree){
     m_x = x;
     m_y = y;
     m_nbPoint = nbPoint;
-    m_degree = degree;
-}
-
-Points::Points() {
-
-    std::string f_name = "data.csv";
-    char const* p_file = f_name.c_str();
-    file_name = p_file;
-    m_x = new double;
-    m_y = new double;
-    m_nbPoint = 0;
+    m_type = type;
 
 }
-Points::Points(char const* a_file_name) {
-    file_name = a_file_name;
+
+Points::Points(std::string a_file_name, int degree, std::string type):m_degree(degree) {
+    m_type = type;
+    file_name = a_file_name.c_str();
     //  std::cout << file_name << std::endl;
     CountLines();
     m_x = new double[m_nbPoint];
@@ -53,7 +46,6 @@ double* Points::y(){
 
 int Points::CountLines() {
     std::ifstream read_file(file_name);
-    // std::cout << "Count Lines" << std::endl;
     int *out = new int;
     if(!read_file.is_open()) {
         std::cout << "Error opening file: " << file_name << std::endl;
@@ -80,4 +72,10 @@ int Points::CountLines() {
 
 int Points::GetNPoints(){
     return m_nbPoint;
+}
+
+
+
+std::string Points::GetType(){
+    return m_type;
 }

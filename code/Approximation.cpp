@@ -6,8 +6,8 @@ using namespace Eigen;
 
 
 Approximation::Approximation(Points P){
-std::cout << "Create Approximation object " << std::endl;
-std::cout << " " << std::endl;
+//std::cout << "Create Approximation object " << std::endl;
+//std::cout << " " << std::endl;
 this->x = P.m_x;
 this->y = P.m_y;
 this->nbPoint = P.m_nbPoint;
