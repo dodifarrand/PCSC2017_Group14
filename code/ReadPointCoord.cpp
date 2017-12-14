@@ -16,7 +16,7 @@ ReadPointCoord::ReadPointCoord() {
 }
 ReadPointCoord::ReadPointCoord(char const* a_file_name) {
     file_name = a_file_name;
-    std::cout << file_name << std::endl;
+  //  std::cout << file_name << std::endl;
     CountLines();
     m_x = new double[mnPoints];
     m_y = new double[mnPoints];

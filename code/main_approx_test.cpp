@@ -3,8 +3,7 @@
 #include <vector>
 #include <math.h>
 #include "Points.hpp"
-#include "DataInterpolation.h"
-#include "DataFitting.h"
+#include "Approximation.hpp"
 
 using namespace std;
 using namespace Eigen;
@@ -13,45 +12,66 @@ using std::vector;
 vector<double> linspace(double a, double b, int n);
 
 int main() {
-    double *x = new double[11];
-    double *y = new double[11];
-    double *funci = new double[10];
-    vector<double> vec = linspace(1,11,11);
-    for(int i = 0;i<11;i++){
+    double *x = new double[7];
+    double *y = new double[7];
+    double *funci = new double[5];
+    vector<double> vec = linspace(1,5,7);
+    for(int i = 0;i<7;i++){
         funci[i]=log(vec[i])-6*vec[i];
     }
     int j = 0;
-    for(int i = 0;i<11;i++){
+    for(int i = 0;i<7;i++){
         x[j]=vec[i];
         y[j]=funci[i];
+        cout<<y[j]<<endl;
         j = j+1;
     }
-    int pointsNb = 11;
+    int pointsNb = 7;
     int degree = 6;
-    int degree2 = 5;
-    Points P(x,y,pointsNb,degree);
-    Points P2(x,y,pointsNb,degree2);
+    int degree2 = 10;
+    int degree3 = 5;
+    //Points P(x,y,pointsNb,degree);
+    //Points P2(x,y,pointsNb,degree2);
+    Points P3(x,y,pointsNb,degree3);
     //Approximation A(P);
-    DataFitting df(P);
-    DataInterpolation di(P2);
+    //Fitting df(P);
+    //Interpolation di(P2);
+    PieceWiseInterpolation dpw(P3);
     //VectorXd coeff1 = A.CalculateCoeff();
-    VectorXd coeff2 = df.CalculateCoeff();
-    VectorXd coeff3 = di.CalculateCoeff();
-    double error = df.CalculateError(coeff2);
-    double error2 = di.CalculateError(coeff3);
+    //VectorXd coeff2 = df.CalculateCoeff();
+    //VectorXd coeff3 = di.CalculateCoeff();
+    VectorXd coeff4 = dpw.CalculateCoeff();
+    //double error = df.CalculateError(coeff2);
+    //double error2 = di.CalculateError(coeff3);
+    double error3 = dpw.CalculateError(coeff4);
     //cout << "The solution is:\n" << coeff1 << endl;
     //cout << "The solution 1st is:\n" << coeff2 << endl;
-    cout << "The solution 2nd is:\n" << coeff3 << endl;
-    cout << "The error is: \n" << error <<endl;
-    cout << "The 2nd error is: \n" << error2 <<endl;
-    df.printSolution(coeff2);
-    di.printSolution(coeff3);
+   //cout << "The solution 2nd is:\n" << coeff3 << endl;
+   //cout << "The error is: \n" << error <<endl;
+   //cout << "The 2nd error is: \n" << error2 <<endl;
+    cout << "The 3rd error is: \n" << error3 <<endl;
+    cout << "The 3rd sol is: \n" << coeff4 <<endl;
+   // df.printSolution(coeff2);
+   // di.printSolution(coeff3);
+    dpw.printSolution(coeff4);
     delete[] x;
     delete[] y;
     delete[] funci;
 
 }
 
+vector<double> linspace(double a, double b, int n) {
+    vector<double> array;
+    double step = (b-a) / (n-1);
+
+    while(a <= b) {
+        array.push_back(a);
+        a += step;           // could recode to better handle rounding errors
+    }
+    return array;
+}
+
+/*
 //VectorXd Approximation::CalculateCoeff() {
 //    double *val = new double[2*degree+1];
 //    double *val2 = new double[degree+1];
@@ -314,16 +334,7 @@ int main() {
 //    return a;
 //}
 //
-vector<double> linspace(double a, double b, int n) {
-    vector<double> array;
-    double step = (b-a) / (n-1);
 
-    while(a <= b) {
-        array.push_back(a);
-        a += step;           // could recode to better handle rounding errors
-    }
-    return array;
-}
 //
 //Points::Points(double *x, double *y, int nbPoint, int degree){
 //    this->m_x = x;
@@ -332,3 +343,5 @@ vector<double> linspace(double a, double b, int n) {
 //    this->m_degree = degree;
 //    //this->m_type = type;
 //}
+
+ */

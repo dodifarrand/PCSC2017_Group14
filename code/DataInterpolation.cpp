@@ -2,29 +2,15 @@
 // Created by Anouk Allenspach on 13.12.17.
 //
 
+/*
 #include "DataInterpolation.h"
 #include "DataFitting.h"
 #include "Error.hpp"
 
-// method to chose which method to use according to the degree and the number of points
-VectorXd DataInterpolation::CalculateCoeff() {
-    // initialize solution vector containing the coefficients
-    VectorXd a;
-
-    // if the degree is inferior to the number of points minus one, do piecewise, otherwise do a polynomial approximation
-    if(degree<nbPoint-1){
-        a = PieceWise();
-    }
-    else {
-        a = Polynomial();
-    }
-    // return the coefficients computed
-    return a;
-}
 
 // method to do a polynomial approximation
 VectorXd DataInterpolation::Polynomial() {
-
+    std::cout << "Polynomial in DataInterpolation Class " << std::endl;
     // set the degree to the right value
     //degree = nbPoint -1;
 
@@ -65,12 +51,33 @@ VectorXd DataInterpolation::Polynomial() {
     // free memory
 
     // return the coefficients found
+    std::cout << "End Polynomial in DataInterpolation Class " << std::endl;
+    std::cout << "***" << std::endl;
+    return a;
+}
+
+// method to chose which method to use according to the degree and the number of points
+VectorXd DataInterpolation::CalculateCoeff() {
+    // initialize solution vector containing the coefficients
+    VectorXd a;
+    std::cout << "Calculate Coeff in DataInterpolation Class " << std::endl;
+    // if the degree is inferior to the number of points minus one, do piecewise, otherwise do a polynomial approximation
+    if(degree<nbPoint-1){
+        std::cout << "dregree < nbPoints - 1 in Calculate Coeff in DataInterpolation Class " << std::endl;
+        a = PieceWise();
+        std::cout << "do Piecewise in DataInterpolation Class " << std::endl;
+    }
+    else {
+        a = Polynomial();
+        std::cout << "do Polynomial in DataInterpolation Class " << std::endl;
+    }
+    // return the coefficients computed
     return a;
 }
 
 // method to do a continuous piecewise approximation for degree <=3
 VectorXd DataInterpolation::PieceWiseContinuous(){
-
+    std::cout << "Piecewise Cont in DataInterpolation Class " << std::endl;
     // set the number of points to the required value
     int unknownNb = (nbPoint-1)*(degree+1);
 
@@ -185,6 +192,7 @@ VectorXd DataInterpolation::PieceWiseContinuous(){
 
 VectorXd DataInterpolation::PieceWise() {
     // initialization
+    std::cout << "Piecewise in DataInterpolation Class " << std::endl;
     int funcNb, resDegree, unknownNb;
 
     // number of funtions to compute with the given degree
@@ -295,7 +303,7 @@ void DataInterpolation::printSolution(VectorXd a){
         }
 
     } else {
-        //DataFitting::printSolution(a);
+        printSolution(a);
     }
 }
 
@@ -319,3 +327,4 @@ double DataInterpolation::CalculateError(VectorXd a){
     //}
     return err;
 }
+*/
