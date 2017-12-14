@@ -1,12 +1,8 @@
-//
-// Created by Anouk Allenspach on 13.12.17.
-//
 
+/*
 #include "DataFitting.h"
 
-/**
-* This is our DataFitting Class
-*/
+//This is our DataFitting Class/
 
 
 // exactly the same code as in Approx class!
@@ -92,3 +88,5 @@ void DataFitting::printSolution(VectorXd a){
         }
     }
 }
+
+*/

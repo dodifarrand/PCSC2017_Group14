@@ -2,27 +2,11 @@
 // Created by Anouk Allenspach on 13.12.17.
 //
 
+/*
 #include "DataInterpolation.h"
+#include "DataFitting.h"
+#include "Error.hpp"
 
-
-// method to chose which method to use according to the degree and the number of points
-VectorXd DataInterpolation::CalculateCoeff() {
-    // initialize solution vector containing the coefficients
-    VectorXd a;
-    std::cout << "Calculate Coeff in DataInterpolation Class " << std::endl;
-    // if the degree is inferior to the number of points minus one, do piecewise, otherwise do a polynomial approximation
-    if(degree<nbPoint-1){
-        std::cout << "dregree < nbPoints - 1 in Calculate Coeff in DataInterpolation Class " << std::endl;
-        a = PieceWise();
-        std::cout << "do Piecewise in DataInterpolation Class " << std::endl;
-    }
-    else {
-        a = Polynomial();
-        std::cout << "do Polynomial in DataInterpolation Class " << std::endl;
-    }
-    // return the coefficients computed
-    return a;
-}
 
 // method to do a polynomial approximation
 VectorXd DataInterpolation::Polynomial() {
@@ -69,6 +53,25 @@ VectorXd DataInterpolation::Polynomial() {
     // return the coefficients found
     std::cout << "End Polynomial in DataInterpolation Class " << std::endl;
     std::cout << "***" << std::endl;
+    return a;
+}
+
+// method to chose which method to use according to the degree and the number of points
+VectorXd DataInterpolation::CalculateCoeff() {
+    // initialize solution vector containing the coefficients
+    VectorXd a;
+    std::cout << "Calculate Coeff in DataInterpolation Class " << std::endl;
+    // if the degree is inferior to the number of points minus one, do piecewise, otherwise do a polynomial approximation
+    if(degree<nbPoint-1){
+        std::cout << "dregree < nbPoints - 1 in Calculate Coeff in DataInterpolation Class " << std::endl;
+        a = PieceWise();
+        std::cout << "do Piecewise in DataInterpolation Class " << std::endl;
+    }
+    else {
+        a = Polynomial();
+        std::cout << "do Polynomial in DataInterpolation Class " << std::endl;
+    }
+    // return the coefficients computed
     return a;
 }
 
@@ -304,3 +307,25 @@ void DataInterpolation::printSolution(VectorXd a){
         //printSolution(a);
     }
 }
+
+double DataInterpolation::CalculateError(VectorXd a){
+    double err = 0;
+    double fx[nbPoint];
+
+    // intialize fx
+    for(int i = 0; i<nbPoint;i++) {
+        fx[i] = 0;
+    }
+    //compute the error
+    for(int i = 0; i<nbPoint;i++){
+        for(int j = 0; j<degree+1;j++){
+            fx[i] += pow(x[i],degree-j)*a(j);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
+        }
+        err += pow(y[i]-fx[i],2);   // increment error
+    }
+    //if (err>pow(10,1)){
+    //    throw ErrorPointsType();
+    //}
+    return err;
+}
+*/

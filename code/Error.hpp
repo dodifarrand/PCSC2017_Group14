@@ -1,5 +1,5 @@
 /*
- * This is the error class. It gives error message when common mistakes are made
+ * This is the error class. It gives error message when common mistakes
  */
 
 #ifndef SRC_ERROR_HPP_
@@ -73,12 +73,12 @@ public:
 };
 
 // Error if the type doesn't exist
-class ErrorDataType : public std::exception
+class ErrorInterpolationType : public std::exception
 {
 private:
     std::string mphrase;
 public:
-    ErrorDataType() throw()
+    ErrorInterpolationType() throw()
     {
         mphrase="ERROR: The type of interpolation is not accepted by the program\n";
     }
@@ -87,17 +87,17 @@ public:
     {
         return mphrase.c_str();
     }
-    virtual ~ErrorDataType() throw()
+    virtual ~ErrorInterpolationType() throw()
     {}
 };
 
 // Error if the type and the degree are not compatible
-class ErrorDataType : public std::exception
+class ErrorDegreeTypeType : public std::exception
 {
 private:
     std::string mphrase;
 public:
-    ErrorDataType() throw()
+    ErrorDegreeTypeType() throw()
     {
         mphrase="ERROR: The degree and the type are not compatible\n";
     }
@@ -106,17 +106,17 @@ public:
     {
         return mphrase.c_str();
     }
-    virtual ~ErrorDataType() throw()
+    virtual ~ErrorDegreeTypeType() throw()
     {}
 };
 
 // Error with the interpolation points
-class ErrorDataType : public std::exception
+class ErrorPointsType : public std::exception
 {
 private:
     std::string mphrase;
 public:
-    ErrorDataType() throw()
+    ErrorPointsType() throw()
     {
         mphrase="ERROR: The interpolation was not found: Try with other control points if possible\n";
     }
@@ -125,7 +125,7 @@ public:
     {
         return mphrase.c_str();
     }
-    virtual ~ErrorDataType() throw()
+    virtual ~ErrorPointsType() throw()
     {}
 };
 
