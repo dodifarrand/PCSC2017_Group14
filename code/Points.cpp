@@ -2,24 +2,14 @@
 #include "Config.h"
 #include <cassert>
 #include "Points.hpp"
-Points::Points(double *x, double *y, int nbPoint, int degree){
+Points::Points(double *x, double *y, int nbPoint, int degree): m_degree(degree){
     m_x = x;
     m_y = y;
     m_nbPoint = nbPoint;
-    m_degree = degree;
-}
-
-Points::Points() {
-
-    std::string f_name = "data.csv";
-    char const* p_file = f_name.c_str();
-    file_name = p_file;
-    m_x = new double;
-    m_y = new double;
-    m_nbPoint = 0;
 
 }
-Points::Points(char const* a_file_name) {
+
+Points::Points(char const* a_file_name, int degree):m_degree(degree) {
     file_name = a_file_name;
     //  std::cout << file_name << std::endl;
     CountLines();

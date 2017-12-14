@@ -22,7 +22,7 @@ public:
     double* x();
     double* y();
     int GetNPoints();
-    explicit Points(char const* a_file_name);
+    Points(char const* a_file_name, int degree);
 
     void ReadData();
 
@@ -34,7 +34,7 @@ private:
     double *m_x;    // /*!< x vector */
     double *m_y;    // /*!< y vector */
     int m_nbPoint; // /*!< number of points */
-    int m_degree;// /*!< degree */
+    int const m_degree;// /*!< degree */
     char const* file_name;// /*!< file name of point file */
     //std::string m_type;// /*!< type */
 };

@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
     std::cout << "let's do a(n) "<< type.c_str() << " with the points in your file " << point_file <<std::endl;
 
     //ReadPointCoord points1(p_file);
-    Points points(p_file);
+    Points points(p_file, degree);
 
     std::cout << "created point object" << std::endl;
     int n = points.GetNPoints();
