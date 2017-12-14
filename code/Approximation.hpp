@@ -25,6 +25,7 @@ public:
     virtual ~Approximation() {std::cout << "Destroy object Approximation" << std::endl;}
 
     virtual VectorXd CalculateCoeff() = 0;
+    virtual void printSolution(VectorXd a)=0;
 
 protected:
     // Private data

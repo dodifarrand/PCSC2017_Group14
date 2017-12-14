@@ -16,19 +16,19 @@ int main() {
     double *x = new double[11];
     double *y = new double[11];
     double *funci = new double[10];
-    vector<double> vec = linspace(1,10,10);
-    for(int i = 0;i<10;i++){
+    vector<double> vec = linspace(1,11,11);
+    for(int i = 0;i<11;i++){
         funci[i]=log(vec[i])-6*vec[i];
     }
     int j = 0;
-    for(int i = 0;i<10;i++){
+    for(int i = 0;i<11;i++){
         x[j]=vec[i];
         y[j]=funci[i];
         j = j+1;
     }
-    int pointsNb = 10;
-    int degree = 0;
-    int degree2 = 7;
+    int pointsNb = 11;
+    int degree = 6;
+    int degree2 = 5;
     Points P(x,y,pointsNb,degree);
     Points P2(x,y,pointsNb,degree2);
     //Approximation A(P);
@@ -39,9 +39,11 @@ int main() {
     VectorXd coeff3 = di.CalculateCoeff();
     double error = df.CalculateError(coeff2);
     //cout << "The solution is:\n" << coeff1 << endl;
-    cout << "The solution 1st is:\n" << coeff2 << endl;
+    //cout << "The solution 1st is:\n" << coeff2 << endl;
     cout << "The solution 2nd is:\n" << coeff3 << endl;
     cout << "The error is: \n" << error <<endl;
+    df.printSolution(coeff2);
+    di.printSolution(coeff3);
     delete[] x;
     delete[] y;
     delete[] funci;

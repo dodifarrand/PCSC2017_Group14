@@ -1,3 +1,7 @@
+/*
+ * This is the error class. It gives error message when common mistakes are made
+ */
+
 #ifndef SRC_ERROR_HPP_
 #define SRC_ERROR_HPP_
 
@@ -5,6 +9,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
+
 
 
 // Error if the degree is greater than the number of points
