@@ -36,17 +36,12 @@ int main(int argc, char* argv[]){
     std::string type = config.GetType();
     std::cout << "let's do a(n) "<< type.c_str() << " with the points in your file " << point_file <<std::endl;
 
-    ReadPointCoord readPointCoord(p_file);
-    double* x;
-    double* y;
-    x = readPointCoord.x();
-    y = readPointCoord.y();
-    int n = readPointCoord.GetNPoints();
+    Points points(p_file);
+    int n = points.GetNPoints();
     for (int i = 0; i<n; i++){
 //        std::cout << x[i] << " " << y[i] << std::endl;
     }
 
-    Points points(x,y,n,degree);
     VectorXd coeff;
 
     if (type == "Approximation"){
