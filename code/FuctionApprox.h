@@ -21,6 +21,7 @@ private:
     double m_b;    // /*!< end of interval */
     int N_points;   // /*!< number of points to generate */
     double (*my_p_function)(double x);  // /*!< function pointer to be used for any function */
+
 public:
 
     void SetInterval(double a, double b);
@@ -29,5 +30,6 @@ public:
     FuctionApprox(std::string file_name, double (*pf)(double));
     void WritePoints(std::string func_name);
     void SetFunctionPointer(std::string func_name);
+
 };
 #endif //PCSC_PROJECT6_TESTING_H

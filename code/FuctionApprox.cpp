@@ -44,7 +44,7 @@ FuctionApprox::FuctionApprox(std::string testing_file, double (*pf)(double) = NU
         my_p_function = pf;
     }
 
-    std::ofstream write_output("config2.csv");
+    std::ofstream write_output("config"+myfunc_name+".csv");
     assert(write_output.is_open());
     std::string function_name = myfunc_name+".csv";
 
@@ -53,7 +53,7 @@ FuctionApprox::FuctionApprox(std::string testing_file, double (*pf)(double) = NU
 // ******************************************************************************************************
     write_output.close();
     WritePoints(myfunc_name);
-
+    std::cout << "Your configuration has been written to " << "config"+myfunc_name+".csv" << std::endl;
 }
 
 
@@ -100,7 +100,7 @@ void FuctionApprox::WritePoints(std::string func_name) {
     }
 
     std::string function_name = func_name+".csv";
-    std::ofstream write_output(function_name.c_str());
+    std::ofstream write_output(function_name);
     assert(write_output.is_open());
     for (int i = 0; i < N_points-1; i++){
         write_output << x[i] << "," << y[i] << std::endl;
@@ -109,4 +109,6 @@ void FuctionApprox::WritePoints(std::string func_name) {
     write_output << x[N_points-1] << "," << y[N_points-1];
 // ******************************************************************************************************
     write_output.close();
+
+    std::cout << "Your points have been written to " << function_name << std::endl;
 }
