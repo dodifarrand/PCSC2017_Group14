@@ -3,6 +3,7 @@
 //
 
 #include "DataInterpolation.h"
+#include "DataFitting.h"
 
 // method to chose which method to use according to the degree and the number of points
 VectorXd DataInterpolation::CalculateCoeff() {
@@ -195,7 +196,7 @@ VectorXd DataInterpolation::PieceWise() {
     if (resDegree > 0) {
         unknownNb = funcNb * (degree + 1) + resDegree + 1;
     } else {
-        unknownNb = funcNb * degree + 1;
+        unknownNb = funcNb * (degree + 1);
     }
 
 
@@ -260,4 +261,39 @@ VectorXd DataInterpolation::PieceWise() {
 
     // return coefficients
     return a;
+}
+
+void DataInterpolation::printSolution(VectorXd a){
+    // Print the solution depending on the type
+    if(degree<nbPoint-1){
+        int iter,len;
+        if(((nbPoint - 1) % degree)==0){
+            iter = ((nbPoint - 1) / degree);
+        }else {
+            iter = ((nbPoint - 1) / degree) + 1 ;
+        }
+        std::cout<<"The polynomials has the following form: \n";
+        for(int i = 1;i<iter+1;i++){
+            if(i==iter){
+                len = a.size()-(iter-1)*(degree+1);
+            }else{
+                len = degree+1;
+            }
+            std::cout<<"f"<<i<<"(x) =  ";
+            for(int j = 0; j<len;j++){
+                if(j==0) {
+                    std::cout << a((degree+1)*(i) - 1 - j) << " + ";
+                }
+                else if(j==len-1){
+                    std::cout << a((degree+1)*(i) - 1 - j) << "x^"<<j<<std::endl;
+                }
+                else {
+                    std::cout << a((degree+1)*(i) - 1 - j) << "x^"<<j<<" + ";
+                }
+            }
+        }
+
+    } else {
+        //DataFitting::printSolution(a);
+    }
 }

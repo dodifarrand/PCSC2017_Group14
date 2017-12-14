@@ -12,6 +12,7 @@ public:
     DataFitting(Points P):Approximation(P){};
     virtual VectorXd CalculateCoeff();
     double CalculateError(VectorXd a);
+    void printSolution(VectorXd a);
 
 };
 

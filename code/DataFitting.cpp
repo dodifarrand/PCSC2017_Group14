@@ -43,8 +43,7 @@ VectorXd DataFitting::CalculateCoeff() {
         }
         b(i)=val2[i];
     }
-    std::cout << "Here is the matrix A:\n" << A << std::endl;
-    std::cout << "Here is the vector b:\n" << b << std::endl;
+
     // solve Ax = b
     VectorXd a = A.fullPivLu().solve(b);
 
@@ -75,4 +74,21 @@ double DataFitting::CalculateError(VectorXd a) {
 
     // return the error
     return err;
+}
+
+void DataFitting::printSolution(VectorXd a){
+    int len = a.size();
+    std::cout<<"The polynomial has the following form: \n";
+    std::cout<<"f(x) =  ";
+    for(int i = 0; i<len;i++){
+        if(i==0) {
+            std::cout << a(len - 1 - i) << " + ";
+        }
+        else if(i==len-1){
+            std::cout << a(len - 1 - i) << "x^"<<i<<std::endl;
+        }
+        else {
+            std::cout << a(len - 1 - i) << "x^"<<i<<" + ";
+        }
+    }
 }

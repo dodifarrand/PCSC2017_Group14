@@ -17,6 +17,7 @@ public:
     VectorXd PieceWise();
     VectorXd Polynomial();
     VectorXd PieceWiseContinuous();
+    void printSolution(VectorXd a);
 };
 
 
