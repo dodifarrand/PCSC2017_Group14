@@ -14,7 +14,6 @@ double MyFunction(double x){
 int main(int argc, char* argv[]){
 
 
-
   //  std::string config_fileName = argv[1];
    // Testing testing("testing.csv", &MyFunction);
 
@@ -43,7 +42,6 @@ int main(int argc, char* argv[]){
 
     if (type == "Approximation"){
         Fitting d(points);
-
         coeff = d.CalculateCoeff();
         d.printSolution(coeff);
 

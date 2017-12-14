@@ -1,6 +1,7 @@
 #include "Approximation.hpp"
 #include "Points.hpp"
 #include <Eigen/Dense>
+#include "Error.hpp"
 using namespace Eigen;
 
 
@@ -15,7 +16,14 @@ this->degree = P.m_degree;
 }
 
  VectorXd Approximation::CalculateCoeff(){
-    // vectors storing what will go into matrix
+     // Exceptions
+     if(degree>=nbPoint){
+         throw ErrorHighDegreeType();
+     }
+     if(degree<0){
+         throw ErrorNegDegreeType();
+     }
+     // vectors storing what will go into matrix
     double val [2*degree+1];
     double val2 [degree+1];
 
@@ -46,11 +54,11 @@ this->degree = P.m_degree;
         }
         b(i)=val2[i];
     }
-
+     std::cout << "Here is the matrix A:\n" << A << std::endl;
+     std::cout << "Here is the vector b:\n" << b << std::endl;
     // solve Ax = b
     VectorXd a = A.fullPivLu().solve(b);
 
-    // free memory
 
     // return solution
     return a;
@@ -185,6 +193,9 @@ void Fitting::printSolution(VectorXd a){
 /*********************** Interpolation ***********************/
 // method to chose which method to use according to the degree and the number of points
 VectorXd Interpolation::CalculateCoeff() {
+    if (degree<nbPoint-1){
+        throw ErrorDegreeTypeType();
+    }
     VectorXd a = Approximation::CalculateCoeff();
     return a;
     /*// initialize solution vector containing the coefficients
@@ -212,7 +223,9 @@ void Interpolation::printSolution(VectorXd a) {
 //Calculate error for the interpolation
 double Interpolation::CalculateError(VectorXd a) {
     double err = Approximation::CalculateError(a);
-
+    if(err>10){
+        throw ErrorPointsType();
+    }
     // add exceptions for the error too big
     return err;
 }
@@ -221,6 +234,13 @@ double Interpolation::CalculateError(VectorXd a) {
 /*********************** Piece-wise ***********************/
 
 VectorXd PieceWiseInterpolation::CalculateCoeff() {
+    // Exceptions
+    if(degree>=nbPoint){
+        throw ErrorHighDegreeType();
+    }
+    if(degree<0){
+        throw ErrorNegDegreeType();
+    }
     VectorXd a;
     if(degree<=3){
         a = PieceWiseInterpolation::PieceWiseContinuous();
@@ -317,6 +337,9 @@ VectorXd PieceWiseInterpolation::PieceWise() {
 }
 
 VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
+    if(degree>3){
+        throw ErrorDegreeTypeType();
+    }
     std::cout << "Piecewise Cont in DataInterpolation Class " << std::endl;
     // set the number of points to the required value
     int unknownNb = (nbPoint-1)*(degree+1);
@@ -365,16 +388,14 @@ VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
             A((nbPoint-1)*2,0)=1;
             j = 0;
             f = 1;
-            for(int i = (nbPoint-1)*2+1;i<(unknownNb);i++){
-                A(i,j)=2*x[f];
-                A(i,j+1)=1;
-                A(i,j+3)=-2*x[f];
-                A(i,j+4)=-1;
-                j = j+3;
-                f = f+1;
+            for(int i = (nbPoint-1)*2+1;i<(unknownNb);i++) {
+                A(i, j) = 2 * x[f];
+                A(i, j + 1) = 1;
+                A(i, j + 3) = -2 * x[f];
+                A(i, j + 4) = -1;
+                j = j + 3;
+                f = f + 1;
             }
-            std::cout << "Here is the matrix A:\n" << A << std::endl;
-            std::cout << "Here is the vector b:\n" << b << std::endl;
             a =  A.fullPivLu().solve(b);
             break;
         }
@@ -423,8 +444,6 @@ VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
                 j = j+4*(nbPoint-2);
                 f = f+nbPoint-1;
             }
-            std::cout << "Here is the matrix A:\n" << A << std::endl;
-            std::cout << "Here is the vector b:\n" << b << std::endl;
             // compute solution to equation Ax = b
             a =  A.fullPivLu().solve(b);
             break;
@@ -443,12 +462,11 @@ double PieceWiseInterpolation::CalculateError(VectorXd a) {
             fx[i] = 0;
         }
         for (int i = 0; i < nbPoint; i++) {
-            if ((i - 1) % degree == 0 and (i-1)>0) {
+            if ((i-1)>0) {
                 f = f + 1;
             }
             for (int j = 0; j < degree + 1; j++) {
-                fx[i] += pow(x[i], degree - j) * a(j + (degree + 1) *
-                                                       f);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
+                fx[i] += pow(x[i], degree - j) * a(j + (degree + 1) * f);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
             }
 
             err += pow(y[i] - fx[i], 2);   // increment error

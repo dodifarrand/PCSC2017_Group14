@@ -2,9 +2,6 @@
  * @file
  * Config.h
  * 	This is our config class that reads the configuration file
- *
- *  Created on: Dec 12, 2017
- *      Author: Anouk Allenspach
  */
 
 #ifndef PCSC_PROJECT6_CONFIG_H
