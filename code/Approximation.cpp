@@ -17,7 +17,7 @@ this->degree = P.m_degree;
 
  VectorXd Approximation::CalculateCoeff(){
      // Exceptions
-     if(degree>=nbPoint){
+     if(degree>nbPoint){
          throw ErrorHighDegreeType();
      }
      if(degree<0){
@@ -54,8 +54,6 @@ this->degree = P.m_degree;
         }
         b(i)=val2[i];
     }
-     std::cout << "Here is the matrix A:\n" << A << std::endl;
-     std::cout << "Here is the vector b:\n" << b << std::endl;
     // solve Ax = b
     VectorXd a = A.fullPivLu().solve(b);
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.28)  13 DEC 2017 20:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.4.28)  14 DEC 2017 19:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -192,27 +192,27 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 37.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 78--79
+)
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
 
+[1
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--92
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
 
  []
 
 [2] (./ReadMe.aux) ) 
 Here is how much of TeX's memory you used:
- 1741 strings out of 493014
- 21533 string characters out of 6133351
+ 1742 strings out of 493014
+ 21550 string characters out of 6133351
  87246 words of memory out of 5000000
- 5298 multiletter control sequences out of 15000+600000
- 12971 words of font info for 50 fonts, out of 8000000 for 9000
+ 5299 multiletter control sequences out of 15000+600000
+ 13278 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,9n,32p,622b,190s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,9n,32p,460b,190s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmbx12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmbxti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsf
@@ -226,7 +226,7 @@ y10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
 .pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.
 pfb>
-Output written on ReadMe.pdf (2 pages, 119944 bytes).
+Output written on ReadMe.pdf (2 pages, 122033 bytes).
 PDF statistics:
  59 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream

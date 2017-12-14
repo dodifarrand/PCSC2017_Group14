@@ -13,47 +13,46 @@ using std::vector;
 vector<double> linspace(double a, double b, int n);
 
 int main() {
-    double *x = new double[11];
-    double *y = new double[11];
-    double *funci = new double[11];
-    vector<double> vec = linspace(1,11,11);
-    for(int i = 0;i<11;i++){
+    double *x = new double[15];
+    double *y = new double[15];
+    double *funci = new double[15];
+    vector<double> vec = linspace(1,15,15);
+    for(int i = 0;i<15;i++){
         funci[i]=sin(vec[i])-0.5*vec[i];
     }
     int j = 0;
-    for(int i = 0;i<11;i++){
+    for(int i = 0;i<15;i++){
         x[j]=vec[i];
         y[j]=funci[i];
-        cout<<y[j]<<endl;
         j = j+1;
     }
-    int pointsNb = 11;
-    int degree = 6;
-    int degree2 = 9;
+    int pointsNb = 15;
+    int degree = 8;
+    int degree2 = 4;
     int degree3 = 2;
     Points P(x,y,pointsNb,degree);
     Points P2(x,y,pointsNb,degree2);
     Points P3(x,y,pointsNb,degree3);
     //Approximation A(P);
     Fitting df(P);
-    Interpolation di(P2);
-    PieceWiseInterpolation dpw(P3);
-    //VectorXd coeff2 = df.CalculateCoeff();
-    VectorXd coeff3 = di.CalculateCoeff();
-    VectorXd coeff4 = dpw.CalculateCoeff();
+    //Interpolation di(P2);
+    //PieceWiseInterpolation dpw(P3);
+    VectorXd coeff2 = df.CalculateCoeff();
+    //VectorXd coeff3 = di.CalculateCoeff();
+    //VectorXd coeff4 = dpw.CalculateCoeff();
     //double error = df.CalculateError(coeff2);
-    double error2 = di.CalculateError(coeff3);
-    double error3 = dpw.CalculateError(coeff4);
+    //double error2 = di.CalculateError(coeff3);
+    //double error3 = dpw.CalculateError(coeff4);
     //cout << "The solution is:\n" << coeff1 << endl;
-    //cout << "The solution 1st is:\n" << coeff2 << endl;
+    cout << "The solution 1st is:\n" << coeff2 << endl;
    //cout << "The solution 2nd is:\n" << coeff3 << endl;
    //cout << "The error is: \n" << error <<endl;
-   cout << "The 2nd error is: \n" << error2 <<endl;
-    cout << "The 3rd error is: \n" << error3 <<endl;
-    cout << "The 3rd sol is: \n" << coeff4 <<endl;
+   //cout << "The 2nd error is: \n" << error2 <<endl;
+    //cout << "The 3rd error is: \n" << error3 <<endl;
+    //cout << "The 3rd sol is: \n" << coeff4 <<endl;
    //df.printSolution(coeff2);
-   di.printSolution(coeff3);
-    dpw.printSolution(coeff4);
+    //di.printSolution(coeff3);
+    //dpw.printSolution(coeff4);
     delete[] x;
     delete[] y;
     delete[] funci;
