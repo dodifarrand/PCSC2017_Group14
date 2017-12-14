@@ -27,7 +27,7 @@ int main() {
         j = j+1;
     }
     int pointsNb = 10;
-    int degree = 9;
+    int degree = 0;
     int degree2 = 7;
     Points P(x,y,pointsNb,degree);
     Points P2(x,y,pointsNb,degree2);
@@ -35,13 +35,13 @@ int main() {
     DataFitting df(P);
     DataInterpolation di(P2);
     //VectorXd coeff1 = A.CalculateCoeff();
-    //VectorXd coeff2 = df.CalculateCoeff();
+    VectorXd coeff2 = df.CalculateCoeff();
     VectorXd coeff3 = di.CalculateCoeff();
-    //double error = df.CalculateError(coeff2);
+    double error = df.CalculateError(coeff2);
     //cout << "The solution is:\n" << coeff1 << endl;
-    //cout << "The solution 1st is:\n" << coeff2 << endl;
+    cout << "The solution 1st is:\n" << coeff2 << endl;
     cout << "The solution 2nd is:\n" << coeff3 << endl;
-    //cout << "The error is: \n" << error <<endl;
+    cout << "The error is: \n" << error <<endl;
     delete[] x;
     delete[] y;
     delete[] funci;
