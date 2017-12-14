@@ -12,7 +12,7 @@
 
 
 
-
+/** OK **/
 // Error if the degree is greater than the number of points
 class ErrorHighDegreeType : public std::exception
 {
@@ -32,6 +32,7 @@ public:
     {}
 };
 
+/** OK **/
 // Error if the degree is negative
 class ErrorNegDegreeType : public std::exception
 {
@@ -53,7 +54,6 @@ public:
 
 
 // Error if the data.csv file is empty
-
 class ErrorDataType : public std::exception
 {
 private:
@@ -91,6 +91,7 @@ public:
     {}
 };
 
+/** almost OK **/
 // Error if the type and the degree are not compatible
 class ErrorDegreeTypeType : public std::exception
 {
@@ -110,7 +111,8 @@ public:
     {}
 };
 
-// Error with the interpolation points
+/** OK **/
+// Error with the interpolation points ==> matrix badly condition
 class ErrorPointsType : public std::exception
 {
 private:
@@ -118,7 +120,7 @@ private:
 public:
     ErrorPointsType() throw()
     {
-        mphrase="ERROR: The interpolation was not found: Try with other control points if possible\n";
+        mphrase="ERROR: The interpolation was not found: The polynomial is badly conditioned. A piecewise interpolation is recommended \n";
     }
 
     virtual const char* what() const throw()
