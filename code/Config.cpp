@@ -54,7 +54,7 @@ void Config::ReadConfig() {
  * \brief Method to return the point file name
  */
 std::string Config::GetFileName() {
-    std::cout << file_name_points << std::endl;
+ //   std::cout << file_name_points << std::endl;
     return file_name_points;
 }
 /**
