@@ -10,7 +10,7 @@
 class DataFitting: public Approximation {
 public:
     DataFitting(Points P):Approximation(P){};
-    virtual VectorXd CalculateCoeff();
+    VectorXd CalculateCoeff();
     double CalculateError(VectorXd a);
 
 };

@@ -6,8 +6,9 @@
 
 using namespace Eigen;
 
-
+class DataFitting;
 class Approximation {
+
 public:
     // Default constructor
     Approximation();
