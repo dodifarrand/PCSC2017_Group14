@@ -2,14 +2,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
 
-
-add_executable(New_main New_main.cpp FuctionApprox.cpp ReadPointCoord.cpp Config.cpp DataFitting.cpp Points.cpp DataInterpolation.cpp Solution.cpp)
-target_link_libraries (New_main Eigen3::Eigen)
 set(HEADER_FILES Approximation.hpp)
+add_executable(New_main New_main.cpp Config.cpp Approximation.cpp Points.cpp)
+target_link_libraries (New_main Eigen3::Eigen)
 
-
-
-add_executable(main_approx_test main_approx_test.cpp Approximation.cpp Points.cpp)
+add_executable(main_approx_test main_approx_test.cpp Approximation.cpp Points.cpp Config.cpp)
 target_link_libraries (main_approx_test Eigen3::Eigen)
 
 add_executable(Config Config.cpp)

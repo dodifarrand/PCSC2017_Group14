@@ -14,7 +14,7 @@ public:
     // Alternate constructors
     Approximation(Points P);
     // Destructor
-    virtual ~Approximation() {std::cout << "Destroy object Approximation" << std::endl;}
+    virtual ~Approximation() {};//std::cout << "Destroy object Approximation" << std::endl;}
 
     virtual VectorXd CalculateCoeff();
     virtual void printSolution(VectorXd a);

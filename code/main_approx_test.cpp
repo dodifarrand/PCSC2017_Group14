@@ -3,6 +3,7 @@
 #include <vector>
 #include <math.h>
 #include "Points.hpp"
+#include "Config.h"
 #include "Approximation.hpp"
 
 using namespace std;
