@@ -37,14 +37,15 @@ int main(int argc, char* argv[]){
 
     std::cout << "created point object" << std::endl;
     int n = points.GetNPoints();
-    std::cout << n << std::endl;
+    std::cout << "Number of points " <<  n << std::endl;
 
     VectorXd coeff;
-    Approximation d(points);
+
     if (type == "Approximation"){
         Fitting d(points);
 
         coeff = d.CalculateCoeff();
+        d.printSolution(coeff);
 
 
     }
@@ -54,6 +55,7 @@ int main(int argc, char* argv[]){
         Interpolation d(points);
 
         coeff = d.CalculateCoeff();
+        d.printSolution(coeff);
 
     }
     else if (type == "PiecewiseContinuous"){
@@ -61,12 +63,10 @@ int main(int argc, char* argv[]){
     }
 
 
-    d.printSolution(coeff);
+
 
     return 0;
-    // If type is polynomial verify degree == nPoints-1
-        // else, degree given and do piecewise
-    //
+
 
 
 

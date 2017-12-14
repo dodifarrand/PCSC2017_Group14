@@ -54,12 +54,12 @@ double* Points::y(){
 int Points::CountLines() {
     std::ifstream read_file(file_name);
     // std::cout << "Count Lines" << std::endl;
-    int i = 0;
+    int *out = new int;
     if(!read_file.is_open()) {
         std::cout << "Error opening file: " << file_name << std::endl;
     }
     else{
-
+        int i = 0;
         while (!read_file.eof())
         {
             std::string line;
@@ -70,9 +70,11 @@ int Points::CountLines() {
         }
         read_file.close();
         //    std::cout << "End of Count Lines, total number of lines in file: " << i <<std::endl;
-
+        *out = i;
     }
-    m_nbPoint = i;
+
+    m_nbPoint = *out;
+    return *out;
 
 }
 
