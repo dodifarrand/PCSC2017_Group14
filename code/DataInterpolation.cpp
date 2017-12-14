@@ -191,9 +191,10 @@ VectorXd DataInterpolation::PieceWise() {
     // initialization
     std::cout << "Piecewise in DataInterpolation Class " << std::endl;
     int funcNb, resDegree, unknownNb;
-
+    std::cout << funcNb << std::endl;
     // number of funtions to compute with the given degree
     funcNb = floor((nbPoint - 1) / degree);
+    std::cout << funcNb << std::endl;
 
     // degree of the polynom that if left over
     resDegree = (nbPoint) - (funcNb*degree+1);
@@ -300,6 +301,6 @@ void DataInterpolation::printSolution(VectorXd a){
         }
 
     } else {
-        printSolution(a);
+        //printSolution(a);
     }
 }

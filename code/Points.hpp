@@ -17,7 +17,7 @@ public:
     Points(double *x, double *y, int nbPoint, int degree);
     Points(std::string point_file);
     // Destructor
-    virtual ~Points() {}
+    ~Points();
     int CountLines(std::string file_name);
     double* x();
     double* y();

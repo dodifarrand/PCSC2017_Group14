@@ -37,33 +37,36 @@ int main(int argc, char* argv[]){
     std::cout << "let's do a(n) "<< type.c_str() << " with the points in your file " << point_file <<std::endl;
 
     Points points(p_file);
+    std::cout << "created point object" << std::endl;
     int n = points.GetNPoints();
-    for (int i = 0; i<n; i++){
-//        std::cout << x[i] << " " << y[i] << std::endl;
-    }
+    std::cout << n << std::endl;
 
+//    for (int i = 0; i<n; i++){
+////        std::cout << x[i] << " " << y[i] << std::endl;
+//    }
+//
     VectorXd coeff;
-
-    if (type == "Approximation"){
-        DataFitting df(points);
-
-        coeff = df.CalculateCoeff();
-
-
-    }
-
-    else if ((type == "Piecewise") || (type == "Polynomial")){
-
+//
+//    if (type == "Approximation"){
+//        DataFitting df(points);
+//
+//        coeff = df.CalculateCoeff();
+//
+//
+//    }
+//
+//    else if ((type == "Piecewise") || (type == "Polynomial")){
+//
         DataInterpolation dI(points);
-
-        coeff = dI.CalculateCoeff();
-
-    }
-    else if (type == "PiecewiseContinuous"){
-
-    }
-
-    Solution(coeff, degree);
+//
+//        coeff = dI.CalculateCoeff();
+//
+//    }
+//    else if (type == "PiecewiseContinuous"){
+//
+//    }
+//
+//    Solution(coeff, degree);
 
     return 0;
     // If type is polynomial verify degree == nPoints-1
