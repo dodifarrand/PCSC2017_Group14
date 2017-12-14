@@ -58,6 +58,7 @@ int main(int argc, char* argv[]){
     }
 
     else if ((type == "Piecewise") || (type == "Polynomial")){
+
         DataInterpolation dI(points);
 
         coeff = dI.CalculateCoeff();

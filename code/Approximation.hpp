@@ -6,7 +6,6 @@
 
 using namespace Eigen;
 
-class DataFitting;
 class Approximation {
 
 public:
@@ -14,6 +13,8 @@ public:
     Approximation();
     // Alternate constructors
     Approximation(Points P){
+        std::cout << "Create Approximation object " << std::endl;
+        std::cout << " " << std::endl;
         this->x = P.m_x;
         this->y = P.m_y;
         this->nbPoint = P.m_nbPoint;
