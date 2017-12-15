@@ -24,18 +24,18 @@ protected:
     // Private data
     double *x;  // x coordinates of points to approximate
     double *y;  // y coodrinates of points to approximate
-    int nbPoint;
-    int degree;
-    std::string type;
+    int nbPoint;    // number of points given to be used for approximation
+    int degree; // degree of approximation to use
+    std::string type;   // type of method to do for the approximation
 };
 
 class Fitting: public Approximation {
 public:
-    Fitting(Points P):Approximation(P){};
-    VectorXd CalculateCoeff();
-    double CalculateError(VectorXd a);
-    void printSolution(VectorXd a);
-    ~Fitting(){};
+    Fitting(Points P):Approximation(P){};   // construnctor creating object from points object
+    VectorXd CalculateCoeff();  // calculate the coefficients in case of data fitting
+    double CalculateError(VectorXd a);  // overriden method to calculate the error if data fitting was done
+    void printSolution(VectorXd a); // overriden method to print solution in the fitting class
+    ~Fitting(){};   // destructor for the fitting class
 
 };
 
