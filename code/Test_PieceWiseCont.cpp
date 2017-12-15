@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]){
 
-    Points points("configPiecewiseCont.csv");
+    Points points("configPiecewiseContinuous.csv");
     VectorXd coeff;
 
     PieceWiseInterpolation d(points);
