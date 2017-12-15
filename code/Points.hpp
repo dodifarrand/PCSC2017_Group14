@@ -5,7 +5,8 @@
 using namespace Eigen;
 
 #include <string>
-#include "Config.h"
+#include <iostream>
+#include <fstream>
 
 /**
 * This is our points class
@@ -16,8 +17,7 @@ public:
     Points();
     // Alternate constructors
     Points(double *x, double *y, int nbPoint, int degree, std::string type = "");   // for knows x and y, known degree and optionally type
-    // Destructor
-    ~Points();
+
     int CountLines(std::string data_file);   // counts the number of lines
     double* x();    // return x_coordinates
     double* y();    // returns y_coordinates
