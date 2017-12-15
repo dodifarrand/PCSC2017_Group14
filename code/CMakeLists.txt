@@ -9,7 +9,6 @@ target_link_libraries (Interact_main Eigen3::Eigen)
 add_executable(Test_Fitting Test_Fitting.cpp Approximation.cpp Points.cpp)
 target_link_libraries (Test_Fitting Eigen3::Eigen)
 
-add_executable(Config Config.cpp)
 
 add_executable(Approximation Approximation.cpp)
 target_link_libraries (Approximation Eigen3::Eigen)
