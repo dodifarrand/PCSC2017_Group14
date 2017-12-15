@@ -1,5 +1,6 @@
 #include <cassert>
 #include "Points.hpp"
+#include "Error.hpp"
 
 
 Points::Points(double *x, double *y, int nbPoint, int degree, std::string type){
@@ -72,6 +73,9 @@ int Points::CountLines(std::string data_file) {
             getline(read_file, line);
             if (line.compare("") != 0){
                 i++;
+            }
+            if (i==0){
+                throw ErrorDataType();
             }
         }
         read_file.close();
