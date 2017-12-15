@@ -12,7 +12,7 @@ double MyFunction(double x){
     return sin(x/2);
 }
 int main(int argc, char* argv[]) {
-    FunctionApprox fuctionApprox("testing.csv", &MyFunction);
+    FunctionApprox fuctionApprox("testing2.csv", &MyFunction);
 
     return 0;
 
