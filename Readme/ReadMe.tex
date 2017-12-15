@@ -32,8 +32,8 @@
  
 %\renewcommand{\qedsymbol}{\filledbox}
  
-\title{Approximation of data}%replace X with the appropriate number
-\author{Rodolphe Anouk}  
+\title{Data Approximation}%replace X with the appropriate number
+\author{Anouk Allenspach, Rodolphe Farrando}  
 \maketitle
  
 
@@ -54,7 +54,7 @@ A gcc compiler (version 4.7.2 or above) \textbf{a verifier???} and the CMake sof
 \left[ \begin{array}{cccc}
 \sum_i x_i^0 & \sum_i x_i^1 & \cdots & \sum_i x_i^m \\
 \sum_i x_i^1 & \sum_i x_i^2 & \cdots & \sum_i x_i^{m+1} \\
-\vdots & \hfill & \ddots & \vdots \\
+\vdots & \ddots & \ddots & \vdots \\
 \sum_i x_i^1& \cdots & \sum_i x_i^{2m-1} & \sum_i x_i^{2m}\\
 \end{array} \right]
 \left[ \begin{array}{c}
@@ -87,17 +87,22 @@ data.csv  & Type & Approximation Degree \\
 The \emph{data.csv} file contains the points coordinate. The type is the approximation wanted by the user; it can be either \emph{Data fitting}, \emph{Interpolation}, \emph{Piece-wise Interpolation} or \emph{spline}. Finally, the approximation degree  is the degree of the polynomial which approximate the data.\\
 
 \subsection{Predefine Main}
-The predefine main allows the user to interact with a small program that gives the results wanted.
+The predefine main allows the user to interact with a small program that gives the results wanted. Just compile the program and enter the name file in the console and the program will give the coefficient, the function(s) and the error.
 To exectute the program \textbf{\emph{to complete}}
 
 \subsection{Create its own main}
+If the user wants to use his own main here are some usage tips. First the Config class will read all the information in the .csv. 
 How to use the different class and methods.
 
 \section{Class description}
-\textbf{Readfile (class)}: This class creates an object that instatiate the class Approximation.
+\textbf{Readfile (class)}: This class creates an object that instantiate the class Approximation.
 \textbf{Approximation (class)}: The approximation class has three derived class: Fitting, Interpolation and PieceWiseInterpolation. It will give the coefficients of the polynomial, the display of the function(s) and the error associated.
 
 \section{Tests}
+The series of tests are as follows:
+Test1:
+Test2:
+Test3:
 
 
 \section{Remarks}

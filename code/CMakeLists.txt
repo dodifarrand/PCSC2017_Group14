@@ -6,7 +6,7 @@ set(HEADER_FILES Approximation.hpp)
 add_executable(New_main New_main.cpp Config.cpp Approximation.cpp Points.cpp)
 target_link_libraries (New_main Eigen3::Eigen)
 
-add_executable(main_approx_test main_approx_test.cpp Approximation.cpp Points.cpp Config.cpp)
+add_executable(main_approx_test main_approx_test.cpp Approximation.cpp Points.cpp)
 target_link_libraries (main_approx_test Eigen3::Eigen)
 
 add_executable(Config Config.cpp)
