@@ -24,3 +24,4 @@ target_link_libraries (Approximation Eigen3::Eigen)
 
 add_executable(CreateScenarios CreateScenarios.cpp FunctionApprox.cpp)
 
+add_executable(TestFunctionApprox TestFunctionApprox.cpp FunctionApprox.cpp)
