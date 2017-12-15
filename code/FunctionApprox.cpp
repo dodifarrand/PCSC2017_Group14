@@ -1,11 +1,11 @@
 //
 // Created by Anouk Allenspach on 10.12.17.
 //
-#include "FuctionApprox.h"
+#include "FunctionApprox.h"
 
-FuctionApprox::FuctionApprox() {
+FunctionApprox::FunctionApprox() {
 
-    std::cout << "FuctionApprox constructed without testing.csv file supplied" << std::endl;
+    std::cout << "FunctionApprox constructed without testing.csv file supplied" << std::endl;
     m_a = 0;
     m_b = 0;
     N_points = 0;
@@ -13,8 +13,8 @@ FuctionApprox::FuctionApprox() {
 
 }
 
-FuctionApprox::FuctionApprox(std::string testing_file, double (*pf)(double) = NULL) {
-  //  std::cout << "FuctionApprox" << std::endl;
+FunctionApprox::FunctionApprox(std::string testing_file, double (*pf)(double) = NULL) {
+  //  std::cout << "FunctionApprox" << std::endl;
     char const* mfile_name = testing_file.c_str();
     std::ifstream read_file(mfile_name);
 
@@ -57,12 +57,12 @@ FuctionApprox::FuctionApprox(std::string testing_file, double (*pf)(double) = NU
 }
 
 
-void FuctionApprox::SetInterval(double a, double b) {
+void FunctionApprox::SetInterval(double a, double b) {
     m_a = a;
     m_b = b;
 }
 
-void FuctionApprox::SetFunctionPointer(std::string func_name){
+void FunctionApprox::SetFunctionPointer(std::string func_name){
 
     if (func_name=="sin(x)"){
         my_p_function = &sin;
@@ -86,7 +86,7 @@ void FuctionApprox::SetFunctionPointer(std::string func_name){
 
 }
 
-void FuctionApprox::WritePoints(std::string func_name) {
+void FunctionApprox::WritePoints(std::string func_name) {
     double steps = (m_b-m_a)/(N_points-1);
     double x[N_points];
     double y[N_points];

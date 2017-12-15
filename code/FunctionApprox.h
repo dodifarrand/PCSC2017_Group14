@@ -14,7 +14,7 @@
 /**
 * This class creates points from a function given by the user
 */
-class FuctionApprox{
+class FunctionApprox{
 private:
 
     double m_a;    // /*!< beginning of interval */
@@ -25,9 +25,9 @@ private:
 public:
 
     void SetInterval(double a, double b);
-    FuctionApprox();
-    FuctionApprox(std::string file_name);
-    FuctionApprox(std::string file_name, double (*pf)(double));
+    FunctionApprox();
+    FunctionApprox(std::string file_name);
+    FunctionApprox(std::string file_name, double (*pf)(double));
     void WritePoints(std::string func_name);
     void SetFunctionPointer(std::string func_name);
 
