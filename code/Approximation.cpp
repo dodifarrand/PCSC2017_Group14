@@ -8,15 +8,14 @@ using namespace Eigen;
 
 
 Approximation::Approximation(Points P){
-//std::cout << "Create Approximation object " << std::endl;
-//std::cout << " " << std::endl;
+
 this->x = P.m_x;
 this->y = P.m_y;
 this->nbPoint = P.m_nbPoint;
 this->degree = P.m_degree;
 this->type = P.m_type;
 }
-
+// base method to compute the coefficients for different types of methods
 VectorXd Approximation::CalculateCoeff(){
      // Exceptions
      if(degree>nbPoint){
@@ -59,10 +58,11 @@ VectorXd Approximation::CalculateCoeff(){
     // solve Ax = b
     VectorXd a = A.fullPivLu().solve(b);
 
-
     // return solution
     return a;
 }
+
+// method to print the solution found
 void Approximation::printSolution(VectorXd a){
     int len = a.size();
     std::cout<<"The polynomial has the following form: \n";
