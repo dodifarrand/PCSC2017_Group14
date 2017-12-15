@@ -14,7 +14,7 @@ FunctionApprox::FunctionApprox() {
 }
 
 FunctionApprox::FunctionApprox(std::string testing_file, double (*pf)(double) = NULL) {
-  //  std::cout << "FunctionApprox" << std::endl;
+
     char const* mfile_name = testing_file.c_str();
     std::ifstream read_file(mfile_name);
 
@@ -30,10 +30,10 @@ FunctionApprox::FunctionApprox(std::string testing_file, double (*pf)(double) = 
     while(std::getline(ss, token[i], ',')) {
         i++;
     }
-    std::string myfunc_name = token[0];
-    double a = atof(token[1].c_str());
+    std::string myfunc_name = token[0]; // function name of user's function
+    double a = atof(token[1].c_str());  /
     double b = atof(token[2].c_str());
-    N_points = atoi(token[3].c_str());
+    N_points = atoi(token[3].c_str());  // number of points to generate
    std::string type = token[4];
     int degree = atoi(token[5].c_str());
     read_file.close();
@@ -44,9 +44,10 @@ FunctionApprox::FunctionApprox(std::string testing_file, double (*pf)(double) = 
         my_p_function = pf;
     }
 
+    // write the configuration file
     std::string config_filename = "config"+type+".csv";
     std::ofstream write_output(config_filename);
-    assert(write_output.is_open());
+    assert(write_output.is_open()); // check that the file is open
     std::string function_name = myfunc_name+".csv";
 
     write_output << function_name.c_str() << "," << degree << "," << type.c_str() << std::endl;
@@ -54,15 +55,18 @@ FunctionApprox::FunctionApprox(std::string testing_file, double (*pf)(double) = 
 // ******************************************************************************************************
     write_output.close();
     WritePoints(myfunc_name);
+
+    // tell the user where to find his configuration file
     std::cout << "Your configuration has been written to " << config_filename << std::endl;
 }
 
-
+// function to set the interval members
 void FunctionApprox::SetInterval(double a, double b) {
     m_a = a;
     m_b = b;
 }
 
+// set the function pointer to compute the different points
 void FunctionApprox::SetFunctionPointer(std::string func_name){
 
     if (func_name=="sin(x)"){
@@ -80,13 +84,14 @@ void FunctionApprox::SetFunctionPointer(std::string func_name){
     else if (func_name=="log(x)"){
         my_p_function = &log;
     }
-    else{
+    else{   // the user has specified his/her own function
         my_p_function = NULL;
     }
 
 
 }
 
+// compute and write the points to a file with the same name as the function (.csv)
 void FunctionApprox::WritePoints(std::string func_name) {
     double steps = (m_b-m_a)/(N_points-1);
     double x[N_points];
@@ -110,6 +115,6 @@ void FunctionApprox::WritePoints(std::string func_name) {
     write_output << x[N_points-1] << "," << y[N_points-1];
 // ******************************************************************************************************
     write_output.close();
-
+    // tell the user where to find his point file
     std::cout << "Your points have been written to " << function_name << std::endl;
 }
