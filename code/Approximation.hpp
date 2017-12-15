@@ -16,14 +16,14 @@ public:
     // Destructor
     ~Approximation(){};//std::cout << "Destroy object Approximation" << std::endl;}
 
-    virtual VectorXd CalculateCoeff();
-    virtual void printSolution(VectorXd a);
-    virtual double CalculateError(VectorXd a);
+    virtual VectorXd CalculateCoeff();  // base method to compute the coefficients
+    virtual void printSolution(VectorXd a); // base method to print the solution
+    virtual double CalculateError(VectorXd a);  // base method to comute the error
 
 protected:
     // Private data
-    double *x;
-    double *y;
+    double *x;  // x coordinates of points to approximate
+    double *y;  // y coodrinates of points to approximate
     int nbPoint;
     int degree;
     std::string type;
