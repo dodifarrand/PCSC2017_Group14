@@ -26,10 +26,10 @@ double MyIntFunction(double x){
 
 
 int main(int argc, char* argv[]) {
-    FunctionApprox fuctionApprox("testing4.csv", &MyComplicatedFunction);   // PiecewiseContinuous
+   // FunctionApprox fuctionApprox("testing4.csv", &MyComplicatedFunction);   // PiecewiseContinuous
     FunctionApprox fuctionApprox1("testing3.csv", &MyCosSinFunction);       // Piecewise
-    FunctionApprox fuctionApprox2("testing2.csv", &MySinFunction);          // Fitting
-    FunctionApprox fuctionApprox3("testing1.csv", &MyIntFunction);          // Interpolation
+   // FunctionApprox fuctionApprox2("testing2.csv", &MySinFunction);          // Fitting
+   // FunctionApprox fuctionApprox3("testing1.csv", &MyIntFunction);          // Interpolation
 
     return 0;
 

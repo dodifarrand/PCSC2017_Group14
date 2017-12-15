@@ -80,7 +80,6 @@ int Points::CountLines(std::string data_file) {
         }
         read_file.close();
 
-        //    std::cout << "End of Count Lines, total number of lines in file: " << i <<std::endl;
         *out = i;
 
     }
@@ -112,9 +111,6 @@ std::string* Points::ReadConfig() {
     while(std::getline(ss, *token[i], ',')) {
         i++;
     }
-    //file_name_points = token[0].c_str();
-    //degree = atoi(token[1].c_str()) ;
-    //m_type = token[2].c_str();
 
     return *token;
 }
