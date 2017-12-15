@@ -4,7 +4,8 @@
  *
  *  Created on: Dec 15, 2017
  *      Author: Created by Anouk Allenspach
- *      class to generate a config file and the associated points for a function (MyOwnFunction) implemented by the user
+ *      main file demonstrating how to generate a config file and the associated points for a function (MyOwnFunction)
+ *      implemented by the user
  */
 
 #include "FunctionApprox.h"

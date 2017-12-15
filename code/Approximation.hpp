@@ -1,3 +1,12 @@
+/*
+ * @file
+ * Approximation.hpp
+ *
+ *  Created on: Dec 10, 2017
+ *      Author: Created by Rodolphe
+     *  Header file for approximation, data fitting, interpolation, and piecewise interpolation class
+ */
+
 #ifndef APPR0XIMATION
 #define APPR0XIMATION
 #include <Eigen/Dense>
@@ -5,7 +14,9 @@
 #include <iostream>
 
 using namespace Eigen;
-
+/**
+* This is our Approximation class
+*/
 class Approximation {
 
 public:
@@ -28,7 +39,9 @@ protected:
     int degree; // degree of approximation to use
     std::string type;   // type of method to do for the approximation
 };
-
+/**
+* This is our data fitting class
+*/
 class Fitting: public Approximation {
 public:
     Fitting(Points P):Approximation(P){};   // construnctor creating object from points object
@@ -38,7 +51,9 @@ public:
     ~Fitting(){};   // destructor for the fitting class
 
 };
-
+/**
+* This is our interpolation class
+*/
 class Interpolation: public Approximation {
 
 public:
@@ -48,7 +63,9 @@ public:
     double CalculateError(VectorXd a);
     ~Interpolation(){};
 };
-
+/**
+* This is our piecewise interpolation class
+*/
 class PieceWiseInterpolation: public Approximation{
 public:
     PieceWiseInterpolation(Points P):Approximation(P){};

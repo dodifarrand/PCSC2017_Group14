@@ -1,3 +1,12 @@
+/*
+ * @file
+ * Test_Interpolation.cpp
+ *
+ *  Created on: Dec 15, 2017
+ *      Author: Created by Rodolphe
+     *  main file to use piecewise interpolation class
+ */
+
 #include <cmath>
 #include "Points.hpp"
 #include "Approximation.hpp"

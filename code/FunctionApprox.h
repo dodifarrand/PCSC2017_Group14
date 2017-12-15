@@ -1,6 +1,11 @@
-//
-// Created by Anouk Allenspach on 11.12.17.
-//
+/*
+ * @file
+ * FunctionApprox.h
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: Created by Anouk Allenspach
+     *  header file of FunctionApprox class
+ */
 
 #ifndef PCSC_PROJECT6_TESTING_H
 #define PCSC_PROJECT6_TESTING_H

@@ -1,4 +1,11 @@
-// main file to use classes
+/*
+ * @file
+ * Test_Fitting.cpp
+ *
+ *  Created on: Dec 15, 2017
+ *      Author: Created by Rodolphe
+     *  main file to use data fitting
+ *///
 
 #include <cmath>
 #include "Points.hpp"

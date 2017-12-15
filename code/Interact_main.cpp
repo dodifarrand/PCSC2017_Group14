@@ -1,12 +1,15 @@
-// main file to use classes
-
+/*
+ * @file
+ * Interact_main.cpp
+ *
+ *  Created on: Dec 15, 2017
+ *      Author: Created by Rodolphe
+     *  interactive main file to do an approximation
+ */
 #include <cmath>
 #include "Points.hpp"
 #include "Approximation.hpp"
 
-double MyFunction(double x){
-    return (x/2);
-}
 int main(int argc, char* argv[]){
 
     std::string configfile;

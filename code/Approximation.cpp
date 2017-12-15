@@ -1,3 +1,11 @@
+/*
+ * @file
+ * Approximation.cpp
+ *
+ *  Created on: Dec 10, 2017
+ *      Author: Created by Rodolphe
+     *  implementation of Approximation class to approximate data points according to different methods
+ */
 #include "Approximation.hpp"
 #include "Points.hpp"
 #include <Eigen/Dense>
@@ -103,6 +111,9 @@ double Approximation::CalculateError(VectorXd a){
 
 
 /*********************** Fitting ***********************/
+/**
+* This is the implementation of the (data) Fitting class
+*/
 VectorXd Fitting::CalculateCoeff() {
     VectorXd a = Approximation::CalculateCoeff();
     return a;
@@ -121,6 +132,9 @@ void Fitting::printSolution(VectorXd a){
 }
 
 /*********************** Interpolation ***********************/
+/**
+* This is the implementation of the (data) Interpolation class
+*/
 // method to chose which method to use according to the degree and the number of points
 VectorXd Interpolation::CalculateCoeff() {
     if (degree<nbPoint-1){
@@ -147,7 +161,9 @@ double Interpolation::CalculateError(VectorXd a) {
 
 
 /*********************** Piece-wise ***********************/
-
+/**
+* This is the implementation of the piecewise class
+*/
 // method that determine the coeff depending on the type
 VectorXd PieceWiseInterpolation::CalculateCoeff() {
     // Exceptions
@@ -252,7 +268,9 @@ VectorXd PieceWiseInterpolation::PieceWise() {
     // return coefficients
     return a;
 }
-
+/**
+* This is the implementation of the piecewise interpolation class
+*/
 // method that determine the coeff for a piecewise continuous
 VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
     if(degree>3){

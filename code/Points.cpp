@@ -1,3 +1,11 @@
+/*
+ * @file
+ * Points.cpp
+ *
+ *  Created on: Dec 10, 2017
+ *      Author: Created by Anouk Allenspach
+     *  implementation of Points class
+ */
 #include <cassert>
 #include "Points.hpp"
 #include "Error.hpp"

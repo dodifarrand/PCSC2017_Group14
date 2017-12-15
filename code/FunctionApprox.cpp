@@ -1,8 +1,14 @@
-//
-// Created by Anouk Allenspach on 10.12.17.
-//
-#include "FunctionApprox.h"
+/*
+ * @file
+ * FunctionApprox.cpp
+ *
+ *  Created on: Dec 10, 2017
+ *      Author: Created by Anouk Allenspach
+     *  implementation of FunctionApprox class
+ */
 
+#include "FunctionApprox.h"
+// constructor
 FunctionApprox::FunctionApprox() {
 
     std::cout << "FunctionApprox constructed without testing.csv file supplied" << std::endl;

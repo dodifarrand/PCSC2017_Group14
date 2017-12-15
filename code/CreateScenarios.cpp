@@ -1,13 +1,18 @@
-//
-// Created by Anouk Allenspach on 14.12.17.
-//
-#include "FunctionApprox.h"
+/*
+ * @file
+ * CreateScenarios.cpp
+ *
+ *  Created on: Dec 14, 2017
+ *      Author: Created by Anouk Allenspach
+     *  implementation of CreateScenrios class
+ */
 
-// specify your own function
+#include "FunctionApprox.h"
 
 // testing.csv contains: the name of your function (MyOwnFunction), beginning of interval (0), end of interval,
 // number of points to generate,type of approximation,degree of approximation
 
+// example functions
 double MyComplicatedFunction(double x){
     return exp(x/2)-pow(x,3);
 }
