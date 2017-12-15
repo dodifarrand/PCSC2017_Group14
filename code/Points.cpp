@@ -31,8 +31,14 @@ Points::Points(std::string a_file_name){
     // get the line
     std::string line;
     getline(read_file, line);
+    
+    size_t n = std::count(line.begin(), line.end(), ',');
+    int number_comas = (int)n;
+    if (number_comas<2){
+        throw ErrorComaType();
 
-    // TODO assert that the line is not empty
+    }
+
     std::istringstream ss(line);
     std::string token[3];
     int i = 0;

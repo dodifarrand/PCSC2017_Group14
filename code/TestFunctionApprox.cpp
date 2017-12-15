@@ -24,7 +24,6 @@ double MyOwnFunction(double x){
 int main(int argc, char* argv[]) {
     FunctionApprox fuctionApprox1("testing.csv", &MyOwnFunction);
 
-
     return 0;
 
 }
