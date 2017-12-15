@@ -2,7 +2,7 @@
 #include "Points.hpp"
 #include "Error.hpp"
 
-
+//
 Points::Points(double *x, double *y, int nbPoint, int degree, std::string type){
     m_x = x;
     m_y = y;
