@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]){
 
-    Points points("interpolation.csv");
+    Points points("configInterpolation.csv");
     VectorXd coeff;
 
     Interpolation d(points);

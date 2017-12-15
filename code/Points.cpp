@@ -35,7 +35,6 @@ Points::Points(std::string a_file_name){
     m_x = new double[m_nbPoint];
     m_y = new double[m_nbPoint];
     ReadData();
-    std::cout<< m_x[3]<<std::endl;
 }
 
 void Points::ReadData(){

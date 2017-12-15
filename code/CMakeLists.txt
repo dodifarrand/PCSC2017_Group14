@@ -9,6 +9,14 @@ target_link_libraries (Interact_main Eigen3::Eigen)
 add_executable(Test_Fitting Test_Fitting.cpp Approximation.cpp Points.cpp)
 target_link_libraries (Test_Fitting Eigen3::Eigen)
 
+add_executable(Test_Interpolation Test_Interpolation.cpp Approximation.cpp Points.cpp)
+target_link_libraries (Test_Interpolation Eigen3::Eigen)
+
+add_executable(Test_PieceWise Test_PieceWise.cpp Approximation.cpp Points.cpp)
+target_link_libraries (Test_PieceWise Eigen3::Eigen)
+
+add_executable(Test_PieceWiseCont Test_PieceWiseCont.cpp Approximation.cpp Points.cpp)
+target_link_libraries (Test_PieceWiseCont Eigen3::Eigen)
 
 add_executable(Approximation Approximation.cpp)
 target_link_libraries (Approximation Eigen3::Eigen)

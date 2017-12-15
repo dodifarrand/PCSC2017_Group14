@@ -14,7 +14,7 @@ public:
     // Alternate constructors
     Approximation(Points P);
     // Destructor
-    virtual ~Approximation();//std::cout << "Destroy object Approximation" << std::endl;}
+    ~Approximation(){};//std::cout << "Destroy object Approximation" << std::endl;}
 
     virtual VectorXd CalculateCoeff();
     virtual void printSolution(VectorXd a);
@@ -35,6 +35,7 @@ public:
     VectorXd CalculateCoeff();
     double CalculateError(VectorXd a);
     void printSolution(VectorXd a);
+    ~Fitting(){};
 
 };
 
@@ -45,6 +46,7 @@ public:
     virtual VectorXd CalculateCoeff();
     void printSolution(VectorXd a);
     double CalculateError(VectorXd a);
+    ~Interpolation(){};
 };
 
 class PieceWiseInterpolation: public Approximation{
@@ -55,6 +57,7 @@ public:
     VectorXd PieceWiseContinuous();
     void printSolution(VectorXd a);
     double CalculateError(VectorXd a);
+    ~PieceWiseInterpolation(){};
 };
 #endif
 
