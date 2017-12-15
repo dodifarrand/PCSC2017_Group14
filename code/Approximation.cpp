@@ -374,7 +374,7 @@ VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
 double PieceWiseInterpolation::CalculateError(VectorXd a) {
     double err = 0;
     double fx[nbPoint];
-    if (type <= "PiecewiseContinuous") {
+    if (type == "PiecewiseContinuous") {
         int f = 0;
         // intialize fx
         for (int i = 0; i < nbPoint; i++) {
