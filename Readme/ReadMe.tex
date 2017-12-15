@@ -84,7 +84,7 @@ data.csv & Approximation Degree & Type  \\
 \hline
 \end{tabular} 
 \end{center}
-The \emph{data.csv} file contains the points coordinate. The type is the approximation wanted by the user; it can be either \emph{Data fitting}, \emph{Interpolation}, \emph{Piece-wise Interpolation} or \emph{spline}. Finally, the approximation degree  is the degree of the polynomial which approximate the data.\\
+The \emph{data.csv} file contains the points coordinate. The type is the approximation wanted by the user; it can be either \emph{Fitting}, \emph{Interpolation}, \emph{Piecewise} or \emph{PiecewiseContinuous}. Finally, the approximation degree  is the degree of the polynomial which approximate the data.\\
 
 \subsection{Predefine Main}
 The predefine main allows the user to interact with a small program that gives the results wanted. Just compile the program and enter the name file in the console and the program will give the coefficient, the function(s) and the error.
@@ -96,13 +96,15 @@ How to use the different class and methods.
 
 \section{Class description}
 \textbf{Points (class)}: This class creates an object that instantiate the class Approximation. There is two ways to create an object Points, either with a .csv file ore directly with vector and number.\\
-\textbf{Approximation (class)}: The approximation class has three derived class: Fitting, Interpolation and PieceWiseInterpolation. It will give the coefficients of the polynomial, the display of the function(s) and the error associated.
+\textbf{Approximation (class)}: The approximation class has three derived class: Fitting, Interpolation and PieceWiseInterpolation. It will give the coefficients of the polynomial, the display of the function(s) and the error associated.\\
+\textbf{Function Approximation (class)}:
 
 \section{Tests}
-The series of tests are as follows:
-Test1:
-Test2:
-Test3:
+A series of main are testing all the possible interpolation. All this tests returns the same output: the interpolation function(s) and the error compared to the points given\\
+Test1 $\rightarrow$ Fitting Method: $f(x) = sin(x/2$) 20 points, degree = 5 [0 2$\pi$]\\
+Test2 $\rightarrow$ Interpolation Method: $f(x) = log(x)$ degree 5 , 6points [1 6]\\
+Test3 $\rightarrow$ Piece-wise Method: $f(x) = cos(x)*sin(x/2)$ degree 5, 7 points\\
+Test4 $\rightarrow$ Piece-wise ContinuousMethod: $f(x) = e^{(x/2)} -x^3$ degree 3 20 points [3 10]
 
 
 \section{Remarks}
