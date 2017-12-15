@@ -44,7 +44,8 @@ FunctionApprox::FunctionApprox(std::string testing_file, double (*pf)(double) = 
         my_p_function = pf;
     }
 
-    std::ofstream write_output("config"+myfunc_name+".csv");
+    std::string config_filename = "config"+type+".csv";
+    std::ofstream write_output(config_filename);
     assert(write_output.is_open());
     std::string function_name = myfunc_name+".csv";
 
@@ -53,7 +54,7 @@ FunctionApprox::FunctionApprox(std::string testing_file, double (*pf)(double) = 
 // ******************************************************************************************************
     write_output.close();
     WritePoints(myfunc_name);
-    std::cout << "Your configuration has been written to " << "config"+myfunc_name+".csv" << std::endl;
+    std::cout << "Your configuration has been written to " << config_filename << std::endl;
 }
 
 
