@@ -1,7 +1,7 @@
 //
 // Created by Anouk Allenspach on 14.12.17.
 //
-#include "FuctionApprox.h"
+#include "FunctionApprox.h"
 
 // specify your own function
 
@@ -12,11 +12,8 @@ double MyFunction(double x){
     return sin(x/2);
 }
 int main(int argc, char* argv[]) {
-    FuctionApprox fuctionApprox("testing.csv", &MyFunction);
-
+    FunctionApprox fuctionApprox("testing.csv", &MyFunction);
 
     return 0;
-
-
 
 }
