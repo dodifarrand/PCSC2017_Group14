@@ -131,4 +131,22 @@ public:
     {}
 };
 
+class ErrorComaType : public std::exception
+{
+private:
+    std::string mphrase;
+public:
+    ErrorComaType() throw()
+    {
+        mphrase="ERROR: Not enough argument in the configuration file \n";
+    }
+
+    virtual const char* what() const throw()
+    {
+        return mphrase.c_str();
+    }
+    virtual ~ErrorComaType() throw()
+    {}
+};
+
 #endif /* SRC_ERROR_HPP_ */
