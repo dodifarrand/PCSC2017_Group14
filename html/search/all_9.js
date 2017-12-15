@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['piecewise',['PieceWise',['../class_data_interpolation.html#ae3454c73846707c4069cb49a6608db70',1,'DataInterpolation::PieceWise()'],['../leastsquares_8cpp.html#ae548d5cc0a2ea16bad95362dc65493d9',1,'pieceWise(double *x, double *y, int pointNb, int polDegree):&#160;leastsquares.cpp'],['../main__approx_8cpp.html#ae548d5cc0a2ea16bad95362dc65493d9',1,'pieceWise(double *x, double *y, int pointNb, int polDegree):&#160;main_approx.cpp']]],
-  ['piecewise2',['pieceWise2',['../leastsquares_8cpp.html#a9367ca23caeffde45400958066aab4cd',1,'leastsquares.cpp']]],
-  ['piecewisecontinuous',['PieceWiseContinuous',['../class_data_interpolation.html#ac67c6be44a5200a439a3fa1f7aa63c45',1,'DataInterpolation']]],
-  ['points',['Points',['../class_points.html',1,'Points'],['../class_points.html#aa4e68083d98bd04233c9753dfe1e46ab',1,'Points::Points()'],['../class_points.html#ad9f1906f7862efc80785b72f545240b0',1,'Points::Points(double *x, double *y, int nbPoint, int degree)']]],
+  ['piecewise',['PieceWise',['../class_piece_wise_interpolation.html#a72729b6f372dc6163866939df9d5794e',1,'PieceWiseInterpolation']]],
+  ['piecewisecontinuous',['PieceWiseContinuous',['../class_piece_wise_interpolation.html#a632ecf32d19e83c2154b980e23a53f50',1,'PieceWiseInterpolation']]],
+  ['piecewiseinterpolation',['PieceWiseInterpolation',['../class_piece_wise_interpolation.html',1,'PieceWiseInterpolation'],['../class_piece_wise_interpolation.html#a30d09b6f7e7c9e2c2c01a77952fc29cb',1,'PieceWiseInterpolation::PieceWiseInterpolation()']]],
+  ['points',['Points',['../class_points.html',1,'Points'],['../class_points.html#aa4e68083d98bd04233c9753dfe1e46ab',1,'Points::Points()'],['../class_points.html#a1abd4bab73e0ffb49f66889bc8745ff8',1,'Points::Points(double *x, double *y, int nbPoint, int degree, std::string type=&quot;&quot;)'],['../class_points.html#ab69b225411e9fad240a91f92e0d1f343',1,'Points::Points(std::string a_file_name)']]],
   ['points_2ecpp',['Points.cpp',['../_points_8cpp.html',1,'']]],
   ['points_2ehpp',['Points.hpp',['../_points_8hpp.html',1,'']]],
-  ['polynomial',['Polynomial',['../class_data_interpolation.html#a4d3f1899dba7ffff0ec3ec4b1b3c7ff4',1,'DataInterpolation']]],
-  ['printsolution',['printSolution',['../class_approximation.html#a4deef896a829ed7de3a97f846cc5b829',1,'Approximation::printSolution()'],['../class_data_fitting.html#a9e9c68301e6c6903ba590f2c0606b1fb',1,'DataFitting::printSolution()'],['../class_data_interpolation.html#adfc3727037f2a70006d146ebb3d45bbd',1,'DataInterpolation::printSolution()']]]
+  ['printsolution',['printSolution',['../class_approximation.html#a2e71cf7cecf58e12496cc5aaf9b1591a',1,'Approximation::printSolution()'],['../class_fitting.html#a768d525e7d31fea062cbe652f10c78f0',1,'Fitting::printSolution()'],['../class_interpolation.html#a508376818679d476aebe8fa4aa77fd07',1,'Interpolation::printSolution()'],['../class_piece_wise_interpolation.html#a35a46add1a3849d845128b3d991c8938',1,'PieceWiseInterpolation::printSolution()']]]
 ];

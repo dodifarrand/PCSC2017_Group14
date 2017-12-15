@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['error_2ehpp',['Error.hpp',['../_error_8hpp.html',1,'']]]
+  ['functionapprox_2ecpp',['FunctionApprox.cpp',['../_function_approx_8cpp.html',1,'']]],
+  ['functionapprox_2eh',['FunctionApprox.h',['../_function_approx_8h.html',1,'']]]
 ];

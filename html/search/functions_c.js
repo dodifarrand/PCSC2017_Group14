@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x',['x',['../class_read_point_coord.html#a406fa3118195ea4d236fc069f978c1b6',1,'ReadPointCoord']]]
+  ['y',['y',['../class_points.html#ae627c97720d87d8f17c0f560b421a03f',1,'Points']]]
 ];

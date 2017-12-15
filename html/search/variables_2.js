@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nbpoint',['nbPoint',['../class_approximation.html#a23f2c35624e1bd2a854193e27aed7d9e',1,'Approximation']]]
+  ['type',['type',['../class_approximation.html#a320fca9b4a4fc06824ab8fa1c2b56c7e',1,'Approximation']]]
 ];

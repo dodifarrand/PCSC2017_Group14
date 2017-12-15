@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['datafitting',['DataFitting',['../class_data_fitting.html',1,'']]],
-  ['datainterpolation',['DataInterpolation',['../class_data_interpolation.html',1,'']]]
+  ['fitting',['Fitting',['../class_fitting.html',1,'']]],
+  ['functionapprox',['FunctionApprox',['../class_function_approx.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type',['type',['../class_approximation.html#a320fca9b4a4fc06824ab8fa1c2b56c7e',1,'Approximation']]]
+  ['x',['x',['../class_approximation.html#a533f59f7a1f65de84ec3e50d29fb8b5d',1,'Approximation']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['fuctionapprox',['FuctionApprox',['../class_fuction_approx.html',1,'']]]
+  ['piecewiseinterpolation',['PieceWiseInterpolation',['../class_piece_wise_interpolation.html',1,'']]],
+  ['points',['Points',['../class_points.html',1,'']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['readconfig',['ReadConfig',['../class_config.html#a118f79f274d414de82305eceab5832da',1,'Config']]],
-  ['readdata',['ReadData',['../class_read_point_coord.html#a1bd2aa0de0028fc09fa46d66768784cc',1,'ReadPointCoord']]],
-  ['readpointcoord',['ReadPointCoord',['../class_read_point_coord.html#a08c68721091bcb7a178986920c7368a9',1,'ReadPointCoord::ReadPointCoord()'],['../class_read_point_coord.html#af685d5699bce66f85da80f5d57ca8344',1,'ReadPointCoord::ReadPointCoord(char const *f_name)']]]
+  ['setfunctionpointer',['SetFunctionPointer',['../class_function_approx.html#a65098db7c1e488e610a68dd7cfaea14a',1,'FunctionApprox']]],
+  ['setinterval',['SetInterval',['../class_function_approx.html#a8ac10c2e31396b6ab79c159d4a56100e',1,'FunctionApprox']]]
 ];
