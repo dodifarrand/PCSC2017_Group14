@@ -10,17 +10,12 @@ double MyFunction(double x){
 }
 int main(int argc, char* argv[]){
 
-    //std::string config_file;
-    //if (argc==2){
-    //    config_file = argv[1];
-    //}
-    //else{
-    //    config_file = "config2.csv";
-    //}
+    std::string configfile;
+    std::cout<< "What is your file name (located in the cmake-build-debug/CMakeFiles/code/CMakefiles): "<<std::endl;
+
+    getline(std::cin, configfile);
     //Config c(config_file);
-    Points points("config2.csv");
-    double *x = points.x();
-    std::cout<< x[3];
+    Points points(configfile);
     VectorXd coeff;
 
     if (points.GetType() == "Approximation"){
@@ -54,7 +49,6 @@ int main(int argc, char* argv[]){
         d.printSolution(coeff);
         double err = d.CalculateError(coeff);
     }
-
     return 0;
 
 }

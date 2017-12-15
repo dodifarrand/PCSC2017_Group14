@@ -17,13 +17,13 @@ public:
     // Alternate constructors
     Points(double *x, double *y, int nbPoint, int degree, std::string type = "");   // for knows x and y, known degree and optionally type
     // Destructor
-    //~Points();
+    ~Points();
     int CountLines(std::string data_file);   // counts the number of lines
     double* x();    // return x_coordinates
     double* y();    // returns y_coordinates
     int GetNPoints();   // returns number of points
     Points(std::string a_file_name);
-    double** ReadData();
+    void ReadData();
     std::string* ReadConfig();
     std::string GetType();  // returns the type
 

@@ -15,7 +15,6 @@ Points::Points(double *x, double *y, int nbPoint, int degree, std::string type){
 Points::Points(std::string a_file_name){
     mfile_name = a_file_name.c_str();
     std::ifstream read_file(mfile_name);
-
     if(!read_file.is_open()) {
         std::cout << "Error opening file in read config." << std::endl;
     }
@@ -28,38 +27,26 @@ Points::Points(std::string a_file_name){
     while(std::getline(ss, token[i], ',')) {
         i++;
     }
-    //std::string *tok = ReadConfig();
     data_file = token[0].c_str();
-    //std::cout << data_file << std::endl;
     m_degree = atoi(token[1].c_str());
     m_type = token[2].c_str();
+
     CountLines(data_file);
     m_x = new double[m_nbPoint];
     m_y = new double[m_nbPoint];
-    double** x = ReadData();
-    for(int i = 0; i<m_nbPoint;i++){
-        m_x[i] = x[i][1];
-        m_y[i] = x[i][2];
-    }
-
+    ReadData();
     std::cout<< m_x[3]<<std::endl;
 }
 
-double** Points::ReadData(){
+void Points::ReadData(){
     FILE* pFile = fopen(data_file,"r");
     float g1=0;
     float g2=0;
-    double **x;
-    x = new double*[m_nbPoint];
-    for(int i = 0; i<m_nbPoint;i++){
-        x[i] = new double[2];
-    }
     for (int i = 0; i < m_nbPoint; i++) {
         fscanf(pFile, "%g,%g", &g1, &g2);
-        x[i][1] = (double)g1;
-        x[i][2] = (double)g2;
+        this->m_x[i] = (double)g1;
+        this->m_y[i] = (double)g2;
     }
-    return x;
 }
 
 
@@ -125,4 +112,9 @@ std::string* Points::ReadConfig() {
     //m_type = token[2].c_str();
 
     return *token;
+}
+
+Points::~Points(){
+    delete[] m_x;
+    delete[] m_y;
 }
