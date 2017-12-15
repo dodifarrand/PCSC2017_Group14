@@ -1,3 +1,12 @@
+/**
+ * @file
+ * Points.hpp
+ *
+ *  Created on: Dec 15, 2017
+ *      Author: Created by Anouk Allenspach
+ *  point class header file
+ */
+
 #ifndef POINTS
 #define POINTS
 
