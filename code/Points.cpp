@@ -31,7 +31,7 @@ Points::Points(std::string a_file_name){
     // get the line
     std::string line;
     getline(read_file, line);
-    
+
     size_t n = std::count(line.begin(), line.end(), ',');
     int number_comas = (int)n;
     if (number_comas<2){
