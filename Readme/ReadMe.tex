@@ -25,14 +25,9 @@
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
  
 \begin{document}
+
  
-% --------------------------------------------------------------
-%                         Start here
-% --------------------------------------------------------------
- 
-%\renewcommand{\qedsymbol}{\filledbox}
- 
-\title{Data Approximation}%replace X with the appropriate number
+\title{Data Approximation}
 \author{Anouk Allenspach, Rodolphe Farrando}  
 \maketitle
  
@@ -41,21 +36,26 @@
 The goal of this project is to find a polynomial approximation of some data. Several approximation can be made. The goal of the user can be either to find a trend for the or to interpolate the data. Several possibilities are available to interpolate, the first one is a simple polynomial interpolation, where the degree is equal to the number of points minus 1. Then, a piecewise interpolation can be made, this interpolation can be spline or not.
 
 \section{Requirements}
-A gcc compiler (version 4.7.2 or above) \textbf{a verifier???} and the CMake software (version 2.6 or above) to link the files are necessary to compile the program. An external library is used to solve linear systems, that is the Eigen library.
+There is three requirements:
+\begin{itemize}
+\item A gcc compiler (We used Apple machine to run the program, it uses Clang instead of gcc).
+\item The CMake software (the version 3.10 was used to run the tests) to link the files are necessary to compile the program
+\item An external library is used to solve linear systems, that is the Eigen library.
+\end{itemize}
 
  \section{Method}
  To approximate the data, the main method that have been used is the least squares method. The method aim to minimize the error between the true value and the estimated one, that is:
  \begin{equation}
  min \sum_i (y_i - p(x_i))^2
  \end{equation}
- $p(x_i) = a_0 + a_1\cdot x_i+ \ldots +a_1\cdot x_i^m$ being the interpolant polynomial at $x_i$ of degree $m$.
+ $p(x_i) = a_0 + a_1\cdot x_i+ \ldots +a_m\cdot x_i^m$ being the interpolant polynomial at $x_i$ of degree $m$.
  By deriving this equation with respect with all the coefficient of the polynomial, the following linear system is obtained:
  \begin{equation}
 \left[ \begin{array}{cccc}
 \sum_i x_i^0 & \sum_i x_i^1 & \cdots & \sum_i x_i^m \\
 \sum_i x_i^1 & \sum_i x_i^2 & \cdots & \sum_i x_i^{m+1} \\
 \vdots & \ddots & \ddots & \vdots \\
-\sum_i x_i^1& \cdots & \sum_i x_i^{2m-1} & \sum_i x_i^{2m}\\
+\sum_i x_i^m& \cdots & \sum_i x_i^{2m-1} & \sum_i x_i^{2m}\\
 \end{array} \right]
 \left[ \begin{array}{c}
 a_0 \\
@@ -84,37 +84,31 @@ data.csv & Approximation Degree & Type  \\
 \hline
 \end{tabular} 
 \end{center}
-The \emph{data.csv} file contains the points coordinate. The type is the approximation wanted by the user; it can be either \emph{Fitting}, \emph{Interpolation}, \emph{Piecewise} or \emph{PiecewiseContinuous}. Finally, the approximation degree  is the degree of the polynomial which approximate the data.\\
+The \emph{data.csv} file contains the points coordinate. The type is the approximation wanted by the user; it can be either \emph{Fitting}, \emph{Interpolation}, \emph{Piecewise} or \emph{PiecewiseContinuous} - the Piecewise continous is a spline interpolation. Finally, the approximation degree  is the degree of the polynomial which approximate the data.\\
 
-\subsection{Predefine Main}
-The predefine main allows the user to interact with a small program that gives the results wanted. Just compile the program and enter the name file in the console and the program will give the coefficient, the function(s) and the error.
-To exectute the program \textbf{\emph{to complete}}
+\subsection{Interactive main}
+The interactive main allows the user to interact with a small program that gives the results wanted. Just compile the program and enter the name file in the console and the program will give the coefficient, the function(s) and the error.
 
-\subsection{Create its own main}
-If the user wants to use his own main here are some usage tips. First the Config class will read all the information in the .csv. 
-How to use the different class and methods.
+\subsection{Create a new main}
+The user just have to construct an object Points then he can construct the interpolation object that he needs and finally, he can call all the method that are in the approximation class.
 
-\section{Class description}
+\section{Features description}
 \textbf{Points (class)}: This class creates an object that instantiate the class Approximation. There is two ways to create an object Points, either with a .csv file ore directly with vector and number.\\
 \textbf{Approximation (class)}: The approximation class has three derived class: Fitting, Interpolation and PieceWiseInterpolation. It will give the coefficients of the polynomial, the display of the function(s) and the error associated.\\
 \textbf{Function Approximation (class)}:
 
 \section{Tests}
-A series of main are testing all the possible interpolation. All this tests returns the same output: the interpolation function(s) and the error compared to the points given\\
-Test1 $\rightarrow$ Fitting Method: $f(x) = sin(x/2$) 20 points, degree = 5 [0 2$\pi$]\\
-Test2 $\rightarrow$ Interpolation Method: $f(x) = log(x)$ degree 5 , 6points [1 6]\\
-Test3 $\rightarrow$ Piece-wise Method: $f(x) = cos(x)*sin(x/2)$ degree 5, 7 points\\
-Test4 $\rightarrow$ Piece-wise ContinuousMethod: $f(x) = e^{(x/2)} -x^3$ degree 3 20 points [3 10]
+A series of main are testing all the possible interpolation. All this tests returns the same output: the interpolation function(s) and the error compared to the points given. For the 4 first test we generate a .csv file using the FunctionApprox class. We define a function, an interval, the number of points and the degree of interpolation.\\
+Test 1 $\rightarrow$ Fitting Method: $f(x) = sin(x/2$), number of points =  20 , degree = 5, interval = [0 2$\pi$] \\
+Test 2 $\rightarrow$ Interpolation Method: $f(x) = log(x)$, number of points = 6, degree = 5, interval [1 6] \\
+Test 3 $\rightarrow$ Piece-wise Method: $f(x) = cos(x)*sin(x/2)$, number of points = 16, degree = 5, interval = [0 1] \\
+Test 4 $\rightarrow$ Piece-wise ContinuousMethod: $f(x) = e^{(x/2)} -x^3$number of points = 20, degree = 3, interval = [3 10] \\
+Test 5 $\rightarrow$ Function approximation class: Small test which shows how this class works\\
 
 
 \section{Remarks}
 When the degree of interpolation is high ($\ge 7$ approximatively), the polynomial is badly condition and the points are not exactly interpolated. Indeed, the condition number of the matrix $X$ in the linear system $Xa=b$ is big. It results difficulties to inverse the matrix and the solution is biased. The user needs to interpolate few points to have a good result.
 The same happen for fitting the data, the degree shouldn't be too high otherwise same problems could happen.
 
-
-
-% --------------------------------------------------------------
-%     You don't have to mess with anything below this line.
-% --------------------------------------------------------------
  
 \end{document}

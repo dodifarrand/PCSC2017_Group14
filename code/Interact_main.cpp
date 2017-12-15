@@ -13,7 +13,7 @@
 int main(int argc, char* argv[]){
 
     std::string configfile;
-    std::cout<< "What is your file name (located in the cmake-build-debug/CMakeFiles/code/CMakefiles): "<<std::endl;
+    std::cout<< "What is your file name (it should be located in the directory cmake-build-debug/CMakeFiles/code/CMakefiles): "<<std::endl;
 
     getline(std::cin, configfile);
 
@@ -52,6 +52,5 @@ int main(int argc, char* argv[]){
         double err = d.CalculateError(coeff);
     }
     return 0;
-
 }
 
