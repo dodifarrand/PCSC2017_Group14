@@ -2,6 +2,8 @@
 #include "Points.hpp"
 #include <Eigen/Dense>
 #include "Error.hpp"
+#include <iostream>     // std::cout, std::fixed
+#include <iomanip>
 using namespace Eigen;
 
 
@@ -12,10 +14,10 @@ this->x = P.m_x;
 this->y = P.m_y;
 this->nbPoint = P.m_nbPoint;
 this->degree = P.m_degree;
-//this->type = P.m_type;
+this->type = P.m_type;
 }
 
- VectorXd Approximation::CalculateCoeff(){
+VectorXd Approximation::CalculateCoeff(){
      // Exceptions
      if(degree>nbPoint){
          throw ErrorHighDegreeType();
@@ -67,13 +69,13 @@ void Approximation::printSolution(VectorXd a){
     std::cout<<"f(x) =  ";
     for(int i = 0; i<len;i++){
         if(i==0) {
-            std::cout << a(len - 1 - i) << " + ";
+            std::cout<< std::setprecision(3) << a(len - 1 - i) << " + ";
         }
         else if(i==len-1){
-            std::cout << a(len - 1 - i) << "x^"<<i<<std::endl;
+            std::cout << std::setprecision(3)  << a(len - 1 - i) << "x^"<<i<<std::endl;
         }
         else {
-            std::cout << a(len - 1 - i) << "x^"<<i<<" + ";
+            std::cout << std::setprecision(3)  << a(len - 1 - i) << "x^"<<i<<" + ";
         }
     }
 }
@@ -94,6 +96,7 @@ double Approximation::CalculateError(VectorXd a){
         err += pow(y[i]-fx[i],2);   // increment error
     }
 
+    std::cout<< "The error is : " << err << std::endl;
     // return the error
     return err;
 }
@@ -170,6 +173,7 @@ double Fitting::CalculateError(VectorXd a) {
     return err;
 }
 
+// method to print the solution
 void Fitting::printSolution(VectorXd a){
     Approximation::printSolution(a);
     /*int len = a.size();
@@ -231,6 +235,7 @@ double Interpolation::CalculateError(VectorXd a) {
 
 /*********************** Piece-wise ***********************/
 
+// method that determine the coeff depending on the type
 VectorXd PieceWiseInterpolation::CalculateCoeff() {
     // Exceptions
     if(degree>=nbPoint){
@@ -240,7 +245,7 @@ VectorXd PieceWiseInterpolation::CalculateCoeff() {
         throw ErrorNegDegreeType();
     }
     VectorXd a;
-    if(degree<=3){
+    if(type == "PiecewiseContinuous"){
         a = PieceWiseInterpolation::PieceWiseContinuous();
     }
     else {
@@ -249,6 +254,7 @@ VectorXd PieceWiseInterpolation::CalculateCoeff() {
     return a;
 }
 
+// method that determine the coeff for a piecewise
 VectorXd PieceWiseInterpolation::PieceWise() {
     // initialization
     std::cout << "Piecewise in DataInterpolation Class " << std::endl;
@@ -334,6 +340,7 @@ VectorXd PieceWiseInterpolation::PieceWise() {
     return a;
 }
 
+// method that determine the coeff for a piecewise continuous
 VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
     if(degree>3){
         throw ErrorDegreeTypeType();
@@ -450,10 +457,11 @@ VectorXd PieceWiseInterpolation::PieceWiseContinuous(){
     return a;
 }
 
+//Calculate error for the interpolation
 double PieceWiseInterpolation::CalculateError(VectorXd a) {
     double err = 0;
     double fx[nbPoint];
-    if (degree <= 3) {
+    if (type <= "PiecewiseContinuous") {
         int f = 0;
         // intialize fx
         for (int i = 0; i < nbPoint; i++) {
@@ -494,13 +502,15 @@ double PieceWiseInterpolation::CalculateError(VectorXd a) {
             err += pow(y[i] - fx[i], 2);
         }
     }
+    std::cout<< "The error is : " << err << std::endl;
     return err;
 }
 
+// Print solution for the interpolation
 void PieceWiseInterpolation::printSolution(VectorXd a) {
     int iter, len, corr;
     corr = 0;
-    if (degree <= 3) {
+    if (type == "PiecewiseContinuous") {
         iter = nbPoint - 1;
         std::cout << "The polynomials has the following form: \n";
         for (int i = 1; i < iter + 1; i++) {

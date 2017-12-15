@@ -10,25 +10,19 @@ double MyFunction(double x){
 }
 int main(int argc, char* argv[]){
 
-    std::string config_file;
-    if (argc==2){
-        config_file = argv[1];
-    }
-    else{
-        config_file = "config2.csv";
-    }
-    Config c(config_file);
-    Points points(c.GetFileName(), c.GetDegree(), c.GetType());
+    std::string configfile;
+    std::cout<< "What is your file name (located in the cmake-build-debug/CMakeFiles/code/CMakefiles): "<<std::endl;
 
-
+    getline(std::cin, configfile);
+    //Config c(config_file);
+    Points points(configfile);
     VectorXd coeff;
 
     if (points.GetType() == "Approximation"){
         Fitting d(points);
         coeff = d.CalculateCoeff();
         d.printSolution(coeff);
-
-
+        double err = d.CalculateError(coeff);
     }
 
     else if (points.GetType() == "Piecewise"){
@@ -37,6 +31,7 @@ int main(int argc, char* argv[]){
 
         coeff = d.CalculateCoeff();
         d.printSolution(coeff);
+        double err = d.CalculateError(coeff);
 
     }
     else if ( (points.GetType() == "Polynomial")){
@@ -47,9 +42,13 @@ int main(int argc, char* argv[]){
         d.printSolution(coeff);
     }
     else if (points.GetType() == "PiecewiseContinuous"){
-
+        PieceWiseInterpolation d(points);
+        std::cout << "Polynomial " << std::endl;
+        coeff = d.CalculateCoeff();
+        std::cout << coeff << std::endl;
+        d.printSolution(coeff);
+        double err = d.CalculateError(coeff);
     }
-
     return 0;
 
 }

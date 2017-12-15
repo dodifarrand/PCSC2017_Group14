@@ -12,7 +12,7 @@
 #include <cmath>
 
 /**
-* This is my super cool class
+* This class creates points from a function given by the user
 */
 class FuctionApprox{
 private:

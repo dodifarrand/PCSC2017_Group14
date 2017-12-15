@@ -25,6 +25,7 @@ public:
     void ReadConfig();
     int GetDegree();
     std::string GetType();
+    //friend class Points;
 
 };
 #endif //PCSC_PROJECT6_CONFIG_H
