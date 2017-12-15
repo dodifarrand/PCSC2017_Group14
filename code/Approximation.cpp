@@ -103,93 +103,21 @@ double Approximation::CalculateError(VectorXd a){
 
 
 /*********************** Fitting ***********************/
-// exactly the same code as in Approx class!
 VectorXd Fitting::CalculateCoeff() {
     VectorXd a = Approximation::CalculateCoeff();
-    /*// vectors storing what will go into matrix
-    double val [2*degree+1];
-    double val2 [degree+1];
-
-    // matrix A and vector b (Ax=b)
-    MatrixXd A(degree+1,degree+1);
-    VectorXd b(degree+1);
-
-    // fill vector that will be A (val) and b (val2)
-    for(int n = 0; n<2*degree+1;n++) {
-        val[n] = 0;
-        if(n<degree+1){
-            val2[n] = 0;
-        }
-    }
-    for(int n = 0; n<2*degree+1;n++){
-        for(int i = 0; i<nbPoint;i++){
-            val[n]+=pow(x[i],2*degree-n);
-            if(n<degree+1){
-                val2[n] += pow(x[i],degree-n)*y[i];
-            }
-        }
-    }
-    // put values in matrix A and vector b
-    for(int i = 0; i<degree+1;i++){
-        for(int j = 0; j<degree+1;j++){
-            int n = i+j;
-            A(i,j)=val[n];
-        }
-        b(i)=val2[i];
-    }
-
-    // solve Ax = b
-    VectorXd a = A.fullPivLu().solve(b);
-
-    // free memory
-
-    // return solution
-    return a;*/
     return a;
 };
 
 // method to compute error of approximation
 double Fitting::CalculateError(VectorXd a) {
     double err = Approximation::CalculateError(a);
-    /*
-    // initialize err and pointer to double fx
-    double err = 0;
-    double *fx = new double[nbPoint];
-
-    // compute fx
-    for(int i = 0; i<nbPoint;i++){
-        fx[i] = 0;
-        for(int j = 0; j<degree+1;j++){
-            fx[i] += pow(x[i],degree-j)*a(j);   // a(j) is the coeff  for x^(degree-j), x[i] is the x coordinate of point i
-        }
-        err += pow(y[i]-fx[i],2);   // increment error
-    }
-
-    // free memory
-    delete[] fx;
-
-    // return the error
-    return err; */
     return err;
 }
 
 // method to print the solution
 void Fitting::printSolution(VectorXd a){
     Approximation::printSolution(a);
-    /*int len = a.size();
-    std::cout<<"The polynomial has the following form: \n";
-    std::cout<<"f(x) =  ";
-    for(int i = 0; i<len;i++){
-        if(i==0) {
-            std::cout << a(len - 1 - i) << " + ";
-        }
-        else if(i==len-1){
-            std::cout << a(len - 1 - i) << "x^"<<i<<std::endl;
-        }
-        else {
-            std::cout << a(len - 1 - i) << "x^"<<i<<" + ";
-        }
-    }*/
+
 }
 
 /*********************** Interpolation ***********************/
@@ -200,21 +128,6 @@ VectorXd Interpolation::CalculateCoeff() {
     }
     VectorXd a = Approximation::CalculateCoeff();
     return a;
-    /*// initialize solution vector containing the coefficients
-    VectorXd a;
-    std::cout << "Calculate Coeff in DataInterpolation Class " << std::endl;
-    // if the degree is inferior to the number of points minus one, do piecewise, otherwise do a polynomial approximation
-    if(degree<nbPoint-1){
-        std::cout << "dregree < nbPoints - 1 in Calculate Coeff in DataInterpolation Class " << std::endl;
-        a = PieceWise();
-        std::cout << "do Piecewise in DataInterpolation Class " << std::endl;
-    }
-    else {
-        a = Polynomial();
-        std::cout << "do Polynomial in DataInterpolation Class " << std::endl;
-    }
-    // return the coefficients computed
-    return a;*/
 }
 
 // Print solution for the interpolation
@@ -254,7 +167,7 @@ VectorXd PieceWiseInterpolation::CalculateCoeff() {
     return a;
 }
 
-// method that determine the coeff for a piecewise
+// method that determines the coeff for a piecewise
 VectorXd PieceWiseInterpolation::PieceWise() {
     // initialization
     std::cout << "Piecewise in DataInterpolation Class " << std::endl;

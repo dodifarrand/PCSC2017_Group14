@@ -39,12 +39,8 @@ private:
     int m_degree;// /*!< degree */
     char const* data_file;// /*!< file name of point file */
     std::string m_type;// /*!< type */
-    char const* mfile_name;
-    //std::string file_name_points;
+    char const* mfile_name;// /*!< file name of configuration file */
 };
-//
-// Created by Anouk Allenspach on 10.12.17.
-//
 
 #endif
 
