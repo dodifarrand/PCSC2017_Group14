@@ -16,8 +16,8 @@ public:
     Points();
     // Alternate constructors
     Points(double *x, double *y, int nbPoint, int degree, std::string type = "");   // for knows x and y, known degree and optionally type
-    // Destructor
-    ~Points();
+
+
     int CountLines(std::string data_file);   // counts the number of lines
     double* x();    // return x_coordinates
     double* y();    // returns y_coordinates
@@ -27,7 +27,8 @@ public:
     std::string* ReadConfig();
     std::string GetType();  // returns the type
 
-
+    // Destructor
+    ~Points(){};
     // Private data
     friend class Approximation;
 

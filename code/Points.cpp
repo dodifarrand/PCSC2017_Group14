@@ -2,6 +2,7 @@
 #include "Config.h"
 #include <cassert>
 #include "Points.hpp"
+#include "Error.hpp"
 
 Points::Points(double *x, double *y, int nbPoint, int degree, std::string type){
     m_x = x;
@@ -74,6 +75,9 @@ int Points::CountLines(std::string data_file) {
             if (line.compare("") != 0){
                 i++;
             }
+            if (i==0){
+                throw ErrorDataType();
+            }
         }
         read_file.close();
         //    std::cout << "End of Count Lines, total number of lines in file: " << i <<std::endl;
@@ -112,9 +116,4 @@ std::string* Points::ReadConfig() {
     //m_type = token[2].c_str();
 
     return *token;
-}
-
-Points::~Points(){
-    delete[] m_x;
-    delete[] m_y;
 }
