@@ -10,9 +10,6 @@
 #include <sstream>
 #include <string>
 
-
-
-/** OK **/
 // Error if the degree is greater than the number of points
 class ErrorHighDegreeType : public std::exception
 {
@@ -32,7 +29,6 @@ public:
     {}
 };
 
-/** OK **/
 // Error if the degree is negative
 class ErrorNegDegreeType : public std::exception
 {
@@ -51,7 +47,6 @@ public:
     virtual ~ErrorNegDegreeType() throw()
     {}
 };
-
 
 // Error if the data.csv file is empty
 class ErrorDataType : public std::exception
@@ -91,7 +86,6 @@ public:
     {}
 };
 
-/** almost OK **/
 // Error if the type and the degree are not compatible
 class ErrorDegreeTypeType : public std::exception
 {
@@ -111,7 +105,6 @@ public:
     {}
 };
 
-/** OK **/
 // Error with the interpolation points ==> matrix badly condition
 class ErrorPointsType : public std::exception
 {
@@ -131,6 +124,7 @@ public:
     {}
 };
 
+// Error if not enough argument in the configuration file
 class ErrorComaType : public std::exception
 {
 private:
